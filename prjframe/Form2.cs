@@ -10,11 +10,38 @@ using System.Windows.Forms;
 
 namespace prjframe
 {
-    public partial class Form2 : Form
+    public partial class adminpanel : Form
     {
-        public Form2()
+        public adminpanel()
         {
             InitializeComponent();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("Heure", "heure");
+            dataGridView1.Columns.Add("Patient", "patient");
+
+            dataGridView1.Rows.Add("9:00 AM", "Patrick K.");
+            dataGridView1.Rows.Add("10:30 AM", "Maria S.");
+            dataGridView1.Rows.Add("11:00 AM", "John D.");
+        }
+
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
