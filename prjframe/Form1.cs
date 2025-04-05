@@ -12,6 +12,7 @@ namespace prjframe
 {
     public partial class DoctorDashboardForm : Form
     {
+
         public DoctorDashboardForm()
         {
             InitializeComponent();
