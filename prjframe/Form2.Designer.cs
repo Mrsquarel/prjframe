@@ -547,6 +547,7 @@
             this.Name = "adminpanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "adminpanel";
+            this.Load += new System.EventHandler(this.adminpanel_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);

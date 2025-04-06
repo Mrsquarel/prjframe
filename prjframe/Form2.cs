@@ -43,5 +43,12 @@ namespace prjframe
         {
 
         }
+
+        private void adminpanel_Load(object sender, EventArgs e)
+        {
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView2.RowHeadersVisible = false;
+
+        }
     }
 }
