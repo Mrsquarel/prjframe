@@ -50,7 +50,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.logout_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.date_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -59,15 +58,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.prochain_patient = new System.Windows.Forms.Label();
             this.nbr_cons = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.profile_pic = new System.Windows.Forms.PictureBox();
-            this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.specialite = new System.Windows.Forms.Label();
             this.doctor_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.date_label = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.profile_pic = new System.Windows.Forms.PictureBox();
+            this.logout_out = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -325,17 +325,6 @@
             this.panel2.Size = new System.Drawing.Size(266, 68);
             this.panel2.TabIndex = 3;
             // 
-            // date_label
-            // 
-            this.date_label.AutoSize = true;
-            this.date_label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(13, 37);
-            this.date_label.Name = "date_label";
-            this.date_label.Size = new System.Drawing.Size(50, 20);
-            this.date_label.TabIndex = 1;
-            this.date_label.Text = "label2";
-            this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -362,17 +351,17 @@
             this.panel9.Controls.Add(this.dataGridView3);
             this.panel9.Location = new System.Drawing.Point(832, 210);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(398, 187);
+            this.panel9.Size = new System.Drawing.Size(398, 203);
             this.panel9.TabIndex = 8;
             // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 31);
+            this.dataGridView3.Location = new System.Drawing.Point(0, 32);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(398, 156);
+            this.dataGridView3.Size = new System.Drawing.Size(398, 171);
             this.dataGridView3.TabIndex = 6;
             // 
             // tableLayoutPanel1
@@ -429,33 +418,6 @@
             this.nbr_cons.Text = "0";
             this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_stéthoscope_32;
-            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(44, 41);
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
-            // profile_pic
-            // 
-            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
-            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
-            this.profile_pic.Name = "profile_pic";
-            this.profile_pic.Size = new System.Drawing.Size(56, 58);
-            this.profile_pic.TabIndex = 7;
-            this.profile_pic.TabStop = false;
-            // 
-            // logout_out
-            // 
-            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
-            this.logout_out.Location = new System.Drawing.Point(1188, 9);
-            this.logout_out.Name = "logout_out";
-            this.logout_out.Size = new System.Drawing.Size(57, 58);
-            this.logout_out.TabIndex = 6;
-            this.logout_out.TabStop = false;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -482,7 +444,7 @@
             // 
             this.specialite.AutoSize = true;
             this.specialite.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.specialite.Location = new System.Drawing.Point(31, 78);
+            this.specialite.Location = new System.Drawing.Point(75, 78);
             this.specialite.Name = "specialite";
             this.specialite.Size = new System.Drawing.Size(96, 28);
             this.specialite.TabIndex = 2;
@@ -518,6 +480,44 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
+            // 
+            // date_label
+            // 
+            this.date_label.AutoSize = true;
+            this.date_label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_label.Location = new System.Drawing.Point(13, 37);
+            this.date_label.Name = "date_label";
+            this.date_label.Size = new System.Drawing.Size(50, 20);
+            this.date_label.TabIndex = 1;
+            this.date_label.Text = "label2";
+            this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_stéthoscope_32;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(44, 41);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // profile_pic
+            // 
+            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
+            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
+            this.profile_pic.Name = "profile_pic";
+            this.profile_pic.Size = new System.Drawing.Size(56, 58);
+            this.profile_pic.TabIndex = 7;
+            this.profile_pic.TabStop = false;
+            // 
+            // logout_out
+            // 
+            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
+            this.logout_out.Location = new System.Drawing.Point(1188, 9);
+            this.logout_out.Name = "logout_out";
+            this.logout_out.Size = new System.Drawing.Size(57, 58);
+            this.logout_out.TabIndex = 6;
+            this.logout_out.TabStop = false;
             // 
             // DoctorDashboardForm
             // 
@@ -566,7 +566,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label date_label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -604,6 +603,7 @@
         private System.Windows.Forms.Label nbr_cons;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label date_label;
     }
 }
 
