@@ -16,8 +16,8 @@ namespace prjframe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-             Application.Run(new DoctorDashboardForm());
-             Application.Run(new adminpanel());
+            Application.Run(new MenuForm());
+            
 
         }
     }

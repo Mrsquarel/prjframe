@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace prjframe
 {
-    public partial class DoctorDashboardForm : Form
+    public partial class DoctorDashboard : Form
     {
 
-        public DoctorDashboardForm()
+        public DoctorDashboard()
         {
             InitializeComponent();
         }
@@ -91,6 +91,42 @@ namespace prjframe
             dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        
+        private void logout_out_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+       "Voulez-vous vraiment vous déconnecter ?",
+       "Déconnexion",
+       MessageBoxButtons.YesNo,
+       MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Open MenuForm
+                MenuForm menu = new MenuForm();
+                menu.Show();
+
+                // Close current dashboard
+                this.Close();
+            }
+        }
+
+        private void profile_pic_Click(object sender, EventArgs e)
+        {
+            ProfileDoctor profile = new ProfileDoctor();
+            profile.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            nv_patient patient = new nv_patient();
+            patient.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Patient_infos patient = new Patient_infos();
+            patient.Show();
+        }
     }
+    
 }

@@ -1,6 +1,6 @@
 ﻿namespace prjframe
 {
-    partial class DoctorDashboardForm
+    partial class DoctorDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -50,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.logout_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.date_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -64,7 +65,6 @@
             this.doctor_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.date_label = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.profile_pic = new System.Windows.Forms.PictureBox();
             this.logout_out = new System.Windows.Forms.PictureBox();
@@ -209,6 +209,7 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "creer nouveau dossier medical";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button5
             // 
@@ -223,7 +224,7 @@
             // 
             this.button4.Location = new System.Drawing.Point(62, 419);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(162, 34);
+            this.button4.Size = new System.Drawing.Size(183, 34);
             this.button4.TabIndex = 12;
             this.button4.Text = "enregistrer consultation";
             this.button4.UseVisualStyleBackColor = true;
@@ -236,6 +237,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "ouvrir dossier medical complet";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox1
             // 
@@ -256,7 +258,7 @@
             this.panel7.Location = new System.Drawing.Point(0, 204);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.panel7.Size = new System.Drawing.Size(500, 30);
+            this.panel7.Size = new System.Drawing.Size(506, 30);
             this.panel7.TabIndex = 9;
             // 
             // label3
@@ -274,7 +276,7 @@
             // 
             this.richTextBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Location = new System.Drawing.Point(7, 240);
+            this.richTextBox2.Location = new System.Drawing.Point(7, 236);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(490, 173);
             this.richTextBox2.TabIndex = 10;
@@ -324,6 +326,17 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.panel2.Size = new System.Drawing.Size(266, 68);
             this.panel2.TabIndex = 3;
+            // 
+            // date_label
+            // 
+            this.date_label.AutoSize = true;
+            this.date_label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_label.Location = new System.Drawing.Point(13, 37);
+            this.date_label.Name = "date_label";
+            this.date_label.Size = new System.Drawing.Size(50, 20);
+            this.date_label.TabIndex = 1;
+            this.date_label.Text = "label2";
+            this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -481,17 +494,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
-            // date_label
-            // 
-            this.date_label.AutoSize = true;
-            this.date_label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(13, 37);
-            this.date_label.Name = "date_label";
-            this.date_label.Size = new System.Drawing.Size(50, 20);
-            this.date_label.TabIndex = 1;
-            this.date_label.Text = "label2";
-            this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_stéthoscope_32;
@@ -509,6 +511,7 @@
             this.profile_pic.Size = new System.Drawing.Size(56, 58);
             this.profile_pic.TabIndex = 7;
             this.profile_pic.TabStop = false;
+            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
             // 
             // logout_out
             // 
@@ -518,8 +521,9 @@
             this.logout_out.Size = new System.Drawing.Size(57, 58);
             this.logout_out.TabIndex = 6;
             this.logout_out.TabStop = false;
+            this.logout_out.Click += new System.EventHandler(this.logout_out_Click);
             // 
-            // DoctorDashboardForm
+            // DoctorDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -527,7 +531,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "DoctorDashboardForm";
+            this.Name = "DoctorDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DoctorDashboard";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -30,40 +30,56 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDossiers = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.logout_btn = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.generer_facture_btn = new System.Windows.Forms.Button();
+            this.modifier_paiement_btn = new System.Windows.Forms.Button();
+            this.ajouter_paiement_btn = new System.Windows.Forms.Button();
+            this.valider_paiement_btn = new System.Windows.Forms.Button();
+            this.button3supprimer_paiement_btn = new System.Windows.Forms.Button();
+            this.dataGridViewPaiements = new System.Windows.Forms.DataGridView();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.ajouter_rdv_btn = new System.Windows.Forms.Button();
+            this.modifier_rdv_btn = new System.Windows.Forms.Button();
+            this.supprimer_rdv_btn = new System.Windows.Forms.Button();
+            this.dataGridViewConfirmes = new System.Windows.Forms.DataGridView();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewDemandes = new System.Windows.Forms.DataGridView();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.date_label = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.profile_pic = new System.Windows.Forms.PictureBox();
-            this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dept = new System.Windows.Forms.Label();
             this.secretary_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rechercher_patient_btn = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.profile_pic = new System.Windows.Forms.PictureBox();
+            this.logout_out = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDossiers)).BeginInit();
             this.panel8.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaiements)).BeginInit();
+            this.panel11.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConfirmes)).BeginInit();
+            this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDemandes)).BeginInit();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
@@ -88,68 +104,36 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.panel10);
             this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.logout_btn);
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dataGridViewDemandes);
-            this.panel1.Controls.Add(this.panel9);
             this.panel1.Location = new System.Drawing.Point(3, 165);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1279, 492);
             this.panel1.TabIndex = 7;
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(934, 419);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(271, 34);
-            this.button7.TabIndex = 16;
-            this.button7.Text = "ajouter nouveau document medical";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // panel10
-            // 
-            this.panel10.AutoSize = true;
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Controls.Add(this.label8);
-            this.panel10.Location = new System.Drawing.Point(860, 210);
-            this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.panel10.Size = new System.Drawing.Size(398, 33);
-            this.panel10.TabIndex = 5;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(-1, 5);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(301, 23);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Historique des documents médicaux";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.dataGridView2);
+            this.panel5.Controls.Add(this.textBox1);
+            this.panel5.Controls.Add(this.rechercher_patient_btn);
+            this.panel5.Controls.Add(this.dataGridViewDossiers);
             this.panel5.Controls.Add(this.panel8);
-            this.panel5.Location = new System.Drawing.Point(863, 0);
+            this.panel5.Location = new System.Drawing.Point(498, 248);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(394, 186);
-            this.panel5.TabIndex = 7;
+            this.panel5.Size = new System.Drawing.Size(778, 230);
+            this.panel5.TabIndex = 23;
             // 
-            // dataGridView2
+            // dataGridViewDossiers
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 32);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(394, 154);
-            this.dataGridView2.TabIndex = 6;
+            this.dataGridViewDossiers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDossiers.Location = new System.Drawing.Point(0, 76);
+            this.dataGridViewDossiers.Name = "dataGridViewDossiers";
+            this.dataGridViewDossiers.RowHeadersWidth = 51;
+            this.dataGridViewDossiers.RowTemplate.Height = 24;
+            this.dataGridViewDossiers.Size = new System.Drawing.Size(778, 154);
+            this.dataGridViewDossiers.TabIndex = 6;
             // 
             // panel8
             // 
@@ -160,28 +144,192 @@
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.panel8.Size = new System.Drawing.Size(394, 38);
+            this.panel8.Size = new System.Drawing.Size(775, 28);
             this.panel8.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(2, 5);
+            this.label7.Location = new System.Drawing.Point(13, -1);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(236, 23);
+            this.label7.Size = new System.Drawing.Size(305, 23);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Historique des consultations";
+            this.label7.Text = "Dossiers administratives des patients";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // logout_btn
+            // panel7
             // 
-            this.logout_btn.Location = new System.Drawing.Point(44, 419);
-            this.logout_btn.Name = "logout_btn";
-            this.logout_btn.Size = new System.Drawing.Size(161, 34);
-            this.logout_btn.TabIndex = 4;
-            this.logout_btn.Text = "rechercher patient";
-            this.logout_btn.UseVisualStyleBackColor = true;
+            this.panel7.Controls.Add(this.generer_facture_btn);
+            this.panel7.Controls.Add(this.modifier_paiement_btn);
+            this.panel7.Controls.Add(this.ajouter_paiement_btn);
+            this.panel7.Controls.Add(this.valider_paiement_btn);
+            this.panel7.Controls.Add(this.button3supprimer_paiement_btn);
+            this.panel7.Controls.Add(this.dataGridViewPaiements);
+            this.panel7.Controls.Add(this.panel11);
+            this.panel7.Location = new System.Drawing.Point(498, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(778, 230);
+            this.panel7.TabIndex = 21;
+            // 
+            // generer_facture_btn
+            // 
+            this.generer_facture_btn.Location = new System.Drawing.Point(618, 184);
+            this.generer_facture_btn.Name = "generer_facture_btn";
+            this.generer_facture_btn.Size = new System.Drawing.Size(158, 34);
+            this.generer_facture_btn.TabIndex = 22;
+            this.generer_facture_btn.Text = "Generer Facture";
+            this.generer_facture_btn.UseVisualStyleBackColor = true;
+            // 
+            // modifier_paiement_btn
+            // 
+            this.modifier_paiement_btn.Location = new System.Drawing.Point(158, 184);
+            this.modifier_paiement_btn.Name = "modifier_paiement_btn";
+            this.modifier_paiement_btn.Size = new System.Drawing.Size(136, 34);
+            this.modifier_paiement_btn.TabIndex = 21;
+            this.modifier_paiement_btn.Text = "Modifier Paiement";
+            this.modifier_paiement_btn.UseVisualStyleBackColor = true;
+            // 
+            // ajouter_paiement_btn
+            // 
+            this.ajouter_paiement_btn.Location = new System.Drawing.Point(2, 184);
+            this.ajouter_paiement_btn.Name = "ajouter_paiement_btn";
+            this.ajouter_paiement_btn.Size = new System.Drawing.Size(136, 34);
+            this.ajouter_paiement_btn.TabIndex = 20;
+            this.ajouter_paiement_btn.Text = "Ajouter Paiement";
+            this.ajouter_paiement_btn.UseVisualStyleBackColor = true;
+            // 
+            // valider_paiement_btn
+            // 
+            this.valider_paiement_btn.Location = new System.Drawing.Point(300, 184);
+            this.valider_paiement_btn.Name = "valider_paiement_btn";
+            this.valider_paiement_btn.Size = new System.Drawing.Size(133, 34);
+            this.valider_paiement_btn.TabIndex = 18;
+            this.valider_paiement_btn.Text = "Valider Paiement";
+            this.valider_paiement_btn.UseVisualStyleBackColor = true;
+            // 
+            // button3supprimer_paiement_btn
+            // 
+            this.button3supprimer_paiement_btn.Location = new System.Drawing.Point(454, 184);
+            this.button3supprimer_paiement_btn.Name = "button3supprimer_paiement_btn";
+            this.button3supprimer_paiement_btn.Size = new System.Drawing.Size(158, 34);
+            this.button3supprimer_paiement_btn.TabIndex = 19;
+            this.button3supprimer_paiement_btn.Text = "Supprimer Paiement";
+            this.button3supprimer_paiement_btn.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewPaiements
+            // 
+            this.dataGridViewPaiements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPaiements.Location = new System.Drawing.Point(0, 25);
+            this.dataGridViewPaiements.Name = "dataGridViewPaiements";
+            this.dataGridViewPaiements.RowHeadersWidth = 51;
+            this.dataGridViewPaiements.RowTemplate.Height = 24;
+            this.dataGridViewPaiements.Size = new System.Drawing.Size(775, 154);
+            this.dataGridViewPaiements.TabIndex = 6;
+            // 
+            // panel11
+            // 
+            this.panel11.AutoSize = true;
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Controls.Add(this.label4);
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
+            this.panel11.Size = new System.Drawing.Size(775, 28);
+            this.panel11.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, -2);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(198, 23);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Liste paiements patient";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.ajouter_rdv_btn);
+            this.panel4.Controls.Add(this.modifier_rdv_btn);
+            this.panel4.Controls.Add(this.supprimer_rdv_btn);
+            this.panel4.Controls.Add(this.dataGridViewConfirmes);
+            this.panel4.Controls.Add(this.panel6);
+            this.panel4.Location = new System.Drawing.Point(11, 192);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(430, 289);
+            this.panel4.TabIndex = 17;
+            // 
+            // ajouter_rdv_btn
+            // 
+            this.ajouter_rdv_btn.Location = new System.Drawing.Point(11, 252);
+            this.ajouter_rdv_btn.Name = "ajouter_rdv_btn";
+            this.ajouter_rdv_btn.Size = new System.Drawing.Size(100, 34);
+            this.ajouter_rdv_btn.TabIndex = 20;
+            this.ajouter_rdv_btn.Text = "Ajouter RDV";
+            this.ajouter_rdv_btn.UseVisualStyleBackColor = true;
+            // 
+            // modifier_rdv_btn
+            // 
+            this.modifier_rdv_btn.Location = new System.Drawing.Point(145, 252);
+            this.modifier_rdv_btn.Name = "modifier_rdv_btn";
+            this.modifier_rdv_btn.Size = new System.Drawing.Size(105, 34);
+            this.modifier_rdv_btn.TabIndex = 18;
+            this.modifier_rdv_btn.Text = "Modifier RDV";
+            this.modifier_rdv_btn.UseVisualStyleBackColor = true;
+            // 
+            // supprimer_rdv_btn
+            // 
+            this.supprimer_rdv_btn.Location = new System.Drawing.Point(294, 252);
+            this.supprimer_rdv_btn.Name = "supprimer_rdv_btn";
+            this.supprimer_rdv_btn.Size = new System.Drawing.Size(134, 34);
+            this.supprimer_rdv_btn.TabIndex = 19;
+            this.supprimer_rdv_btn.Text = "Supprimer RDV";
+            this.supprimer_rdv_btn.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewConfirmes
+            // 
+            this.dataGridViewConfirmes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewConfirmes.Location = new System.Drawing.Point(0, 72);
+            this.dataGridViewConfirmes.Name = "dataGridViewConfirmes";
+            this.dataGridViewConfirmes.RowHeadersWidth = 51;
+            this.dataGridViewConfirmes.RowTemplate.Height = 24;
+            this.dataGridViewConfirmes.Size = new System.Drawing.Size(428, 154);
+            this.dataGridViewConfirmes.TabIndex = 6;
+            // 
+            // panel6
+            // 
+            this.panel6.AutoSize = true;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.comboBox1);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
+            this.panel6.Size = new System.Drawing.Size(428, 74);
+            this.panel6.TabIndex = 5;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(10, 38);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(401, 24);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(171, 23);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Liste RDV confirmés";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel2
             // 
@@ -192,47 +340,29 @@
             this.panel2.Location = new System.Drawing.Point(11, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(504, 31);
+            this.panel2.Size = new System.Drawing.Size(430, 31);
             this.panel2.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 6);
+            this.label1.Location = new System.Drawing.Point(12, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 23);
+            this.label1.Size = new System.Drawing.Size(221, 23);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Demandes en attente";
+            this.label1.Text = "Demandes RDV en attente";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dataGridViewDemandes
             // 
             this.dataGridViewDemandes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDemandes.Location = new System.Drawing.Point(11, 32);
+            this.dataGridViewDemandes.Location = new System.Drawing.Point(11, 28);
             this.dataGridViewDemandes.Name = "dataGridViewDemandes";
             this.dataGridViewDemandes.RowHeadersWidth = 51;
             this.dataGridViewDemandes.RowTemplate.Height = 24;
-            this.dataGridViewDemandes.Size = new System.Drawing.Size(504, 339);
+            this.dataGridViewDemandes.Size = new System.Drawing.Size(430, 158);
             this.dataGridViewDemandes.TabIndex = 2;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.dataGridView3);
-            this.panel9.Location = new System.Drawing.Point(860, 210);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(398, 187);
-            this.panel9.TabIndex = 8;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 32);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(398, 155);
-            this.dataGridView3.TabIndex = 6;
             // 
             // panel3
             // 
@@ -255,40 +385,12 @@
             // 
             this.date_label.AutoSize = true;
             this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(780, 78);
+            this.date_label.Location = new System.Drawing.Point(858, 75);
             this.date_label.Name = "date_label";
             this.date_label.Size = new System.Drawing.Size(23, 28);
             this.date_label.TabIndex = 9;
             this.date_label.Text = "0";
             this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::prjframe.Properties.Resources.secretaire__1_;
-            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(53, 41);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
-            // profile_pic
-            // 
-            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
-            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
-            this.profile_pic.Name = "profile_pic";
-            this.profile_pic.Size = new System.Drawing.Size(56, 58);
-            this.profile_pic.TabIndex = 7;
-            this.profile_pic.TabStop = false;
-            // 
-            // logout_out
-            // 
-            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
-            this.logout_out.Location = new System.Drawing.Point(1188, 9);
-            this.logout_out.Name = "logout_out";
-            this.logout_out.Size = new System.Drawing.Size(57, 58);
-            this.logout_out.TabIndex = 6;
-            this.logout_out.TabStop = false;
             // 
             // label6
             // 
@@ -304,7 +406,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(756, 39);
+            this.label5.Location = new System.Drawing.Point(832, 47);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 28);
             this.label5.TabIndex = 4;
@@ -326,7 +428,7 @@
             // 
             this.secretary_name.AutoSize = true;
             this.secretary_name.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.secretary_name.Location = new System.Drawing.Point(311, 26);
+            this.secretary_name.Location = new System.Drawing.Point(260, 26);
             this.secretary_name.Name = "secretary_name";
             this.secretary_name.Size = new System.Drawing.Size(255, 45);
             this.secretary_name.TabIndex = 3;
@@ -339,9 +441,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(72, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(243, 45);
+            this.label2.Size = new System.Drawing.Size(200, 45);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Bienvenue Dr. ";
+            this.label2.Text = "Bienvenue  ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanel1
@@ -352,6 +454,52 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
+            // rechercher_patient_btn
+            // 
+            this.rechercher_patient_btn.Location = new System.Drawing.Point(618, 37);
+            this.rechercher_patient_btn.Name = "rechercher_patient_btn";
+            this.rechercher_patient_btn.Size = new System.Drawing.Size(152, 28);
+            this.rechercher_patient_btn.TabIndex = 23;
+            this.rechercher_patient_btn.Text = "Rechercher Patient";
+            this.rechercher_patient_btn.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(4, 40);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(602, 22);
+            this.textBox1.TabIndex = 24;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.secretaire__1_;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(53, 41);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // profile_pic
+            // 
+            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
+            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
+            this.profile_pic.Name = "profile_pic";
+            this.profile_pic.Size = new System.Drawing.Size(56, 58);
+            this.profile_pic.TabIndex = 7;
+            this.profile_pic.TabStop = false;
+            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
+            // 
+            // logout_out
+            // 
+            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
+            this.logout_out.Location = new System.Drawing.Point(1188, 9);
+            this.logout_out.Name = "logout_out";
+            this.logout_out.Size = new System.Drawing.Size(57, 58);
+            this.logout_out.TabIndex = 6;
+            this.logout_out.TabStop = false;
+            this.logout_out.Click += new System.EventHandler(this.logout_out_Click_1);
+            // 
             // secretary_dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -359,24 +507,31 @@
             this.ClientSize = new System.Drawing.Size(1282, 655);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "secretary_dashboard";
-            this.Text = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Secretary Dashboard";
             this.Load += new System.EventHandler(this.secretary_dashboard_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDossiers)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaiements)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConfirmes)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDemandes)).EndInit();
-            this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -400,19 +555,32 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button logout_btn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label date_label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewDemandes;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button modifier_rdv_btn;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.DataGridView dataGridViewConfirmes;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button supprimer_rdv_btn;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button ajouter_rdv_btn;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button ajouter_paiement_btn;
+        private System.Windows.Forms.Button valider_paiement_btn;
+        private System.Windows.Forms.Button button3supprimer_paiement_btn;
+        private System.Windows.Forms.DataGridView dataGridViewPaiements;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button generer_facture_btn;
+        private System.Windows.Forms.Button modifier_paiement_btn;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.DataGridView dataGridViewDossiers;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button rechercher_patient_btn;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
