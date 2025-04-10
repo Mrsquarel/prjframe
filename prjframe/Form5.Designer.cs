@@ -56,16 +56,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.groupBoxDisponibilite = new System.Windows.Forms.GroupBox();
+            this.btnAnnulerDisponibilite = new System.Windows.Forms.Button();
+            this.btnValiderDisponibilite = new System.Windows.Forms.Button();
             this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxDisponibilite.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,7 +122,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_stéthoscope_32;
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_médecin_321;
             this.pictureBox3.Location = new System.Drawing.Point(22, 34);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(44, 41);
@@ -175,7 +175,7 @@
             // 
             this.doctor_name.AutoSize = true;
             this.doctor_name.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doctor_name.Location = new System.Drawing.Point(311, 26);
+            this.doctor_name.Location = new System.Drawing.Point(356, 26);
             this.doctor_name.Name = "doctor_name";
             this.doctor_name.Size = new System.Drawing.Size(224, 45);
             this.doctor_name.TabIndex = 3;
@@ -336,9 +336,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(61, 44);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 22);
+            this.label4.Size = new System.Drawing.Size(45, 22);
             this.label4.TabIndex = 2;
-            this.label4.Text = "ID:";
+            this.label4.Text = "CIN:";
             // 
             // label3
             // 
@@ -358,37 +358,38 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nom:";
             // 
-            // groupBox2
+            // groupBoxDisponibilite
             // 
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.dataGridViewSchedule);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(548, 164);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(722, 478);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Disponibilité Par Semaine";
+            this.groupBoxDisponibilite.Controls.Add(this.btnAnnulerDisponibilite);
+            this.groupBoxDisponibilite.Controls.Add(this.btnValiderDisponibilite);
+            this.groupBoxDisponibilite.Controls.Add(this.dataGridViewSchedule);
+            this.groupBoxDisponibilite.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxDisponibilite.Location = new System.Drawing.Point(548, 164);
+            this.groupBoxDisponibilite.Name = "groupBoxDisponibilite";
+            this.groupBoxDisponibilite.Size = new System.Drawing.Size(722, 478);
+            this.groupBoxDisponibilite.TabIndex = 3;
+            this.groupBoxDisponibilite.TabStop = false;
+            this.groupBoxDisponibilite.Text = "Disponibilité Par Semaine";
             // 
-            // button1
+            // btnAnnulerDisponibilite
             // 
-            this.button1.Location = new System.Drawing.Point(415, 431);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 41);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Annuler";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAnnulerDisponibilite.Location = new System.Drawing.Point(415, 431);
+            this.btnAnnulerDisponibilite.Name = "btnAnnulerDisponibilite";
+            this.btnAnnulerDisponibilite.Size = new System.Drawing.Size(121, 41);
+            this.btnAnnulerDisponibilite.TabIndex = 15;
+            this.btnAnnulerDisponibilite.Text = "Annuler";
+            this.btnAnnulerDisponibilite.UseVisualStyleBackColor = true;
+            this.btnAnnulerDisponibilite.Click += new System.EventHandler(this.btnAnnulerDisponibilite_Click);
             // 
-            // button2
+            // btnValiderDisponibilite
             // 
-            this.button2.Location = new System.Drawing.Point(180, 431);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 41);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Modifier";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnValiderDisponibilite.Location = new System.Drawing.Point(180, 431);
+            this.btnValiderDisponibilite.Name = "btnValiderDisponibilite";
+            this.btnValiderDisponibilite.Size = new System.Drawing.Size(139, 41);
+            this.btnValiderDisponibilite.TabIndex = 14;
+            this.btnValiderDisponibilite.Text = "Modifier";
+            this.btnValiderDisponibilite.UseVisualStyleBackColor = true;
+            this.btnValiderDisponibilite.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridViewSchedule
             // 
@@ -407,7 +408,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 655);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBoxDisponibilite);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel3);
             this.Name = "ProfileDoctor";
@@ -421,7 +422,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.groupBoxDisponibilite.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).EndInit();
             this.ResumeLayout(false);
 
@@ -455,11 +456,11 @@
         private System.Windows.Forms.Button annuler_btn;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxDisponibilite;
         private System.Windows.Forms.DataGridView dataGridViewSchedule;
         private System.Windows.Forms.Label date_label;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAnnulerDisponibilite;
+        private System.Windows.Forms.Button btnValiderDisponibilite;
     }
 }

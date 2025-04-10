@@ -12,14 +12,16 @@ namespace prjframe
 {
     public partial class ProfileSecretary : Form
     {
-        public ProfileSecretary()
+        private int _idUtilisateur; 
+        public ProfileSecretary(int idUtilisateur)
         {
             InitializeComponent();
+            _idUtilisateur = idUtilisateur;
         }
 
         private void profile_pic_Click(object sender, EventArgs e)
         {
-            secretary_dashboard dashboard = new secretary_dashboard();
+            secretary_dashboard dashboard = new secretary_dashboard(_idUtilisateur);
             dashboard.Show();
         }
         bool isEditMode = false;
@@ -54,7 +56,7 @@ namespace prjframe
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            secretary_dashboard dashboard = new secretary_dashboard();
+            secretary_dashboard dashboard = new secretary_dashboard(_idUtilisateur);
             dashboard.Show();
         }
 
@@ -75,6 +77,11 @@ namespace prjframe
                 // Close current dashboard
                 this.Close();
             }
+
+        }
+
+        private void ProfileSecretary_Load(object sender, EventArgs e)
+        {
 
         }
     }

@@ -63,6 +63,36 @@ namespace prjframe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap futuristec_medical_background_modern_medical_blue_wallpaper_vector {
+            get {
+                object obj = ResourceManager.GetObject("futuristec-medical-background-modern-medical-blue-wallpaper-vector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_administrateur_homme_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-administrateur-homme-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_administrateur_homme_321 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-administrateur-homme-321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_connexion_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-connexion-32", resourceCulture);
@@ -83,6 +113,26 @@ namespace prjframe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_identité_médicale_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-identité-médicale-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_identité_médicale_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-identité-médicale-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_invité_homme_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-invité-homme-32", resourceCulture);
@@ -93,9 +143,59 @@ namespace prjframe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_médecin_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-médecin-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_médecin_321 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-médecin-321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_menu_utilisateur_homme_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-menu-utilisateur-homme-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_objet_avec_durée_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-objet-avec-durée-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_patient_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-patient-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_statistiques_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-statistiques-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +216,16 @@ namespace prjframe.Properties {
         internal static System.Drawing.Bitmap icons8_stéthoscope_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-stéthoscope-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_utilisateur_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-utilisateur-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +256,26 @@ namespace prjframe.Properties {
         internal static System.Drawing.Bitmap secretaire__1_ {
             get {
                 object obj = ResourceManager.GetObject("secretaire (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vecteezy_abstract_medical_background_futuristic_polygon_10227192 {
+            get {
+                object obj = ResourceManager.GetObject("vecteezy_abstract-medical-background-futuristic-polygon_10227192", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vecteezy_molecules_or_dna_medical_structure_background_vector_design_9731054 {
+            get {
+                object obj = ResourceManager.GetObject("vecteezy_molecules-or-dna-medical-structure-background-vector-design_9731054", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

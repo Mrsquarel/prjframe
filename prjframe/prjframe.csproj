@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,11 +55,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form10.Designer.cs">
+      <DependentUpon>Form10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form11.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form11.Designer.cs">
       <DependentUpon>Form11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form12.Designer.cs">
+      <DependentUpon>Form12.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -84,11 +97,23 @@
     <Compile Include="Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form6.Designer.cs">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form7.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form7.Designer.cs">
       <DependentUpon>Form7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form8.Designer.cs">
+      <DependentUpon>Form8.cs</DependentUpon>
     </Compile>
     <Compile Include="Form9.cs">
       <SubType>Form</SubType>
@@ -107,8 +132,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form10.resx">
+      <DependentUpon>Form10.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form11.resx">
       <DependentUpon>Form11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form12.resx">
+      <DependentUpon>Form12.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
@@ -122,8 +153,14 @@
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form6.resx">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form7.resx">
       <DependentUpon>Form7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form8.resx">
+      <DependentUpon>Form8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form9.resx">
       <DependentUpon>Form9.cs</DependentUpon>
@@ -180,6 +217,53 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-menu-utilisateur-homme-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-utilisateur-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-objet-avec-durée-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-statistiques-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-administrateur-homme-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-administrateur-homme-321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-patient-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\futuristec-medical-background-modern-medical-blue-wallpaper-vector.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-médecin-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-médecin-321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-identité-médicale-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-identité-médicale-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vecteezy_abstract-medical-background-futuristic-polygon_10227192.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vecteezy_molecules-or-dna-medical-structure-background-vector-design_9731054.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DatabaseHealthApp.accdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HealthAppBD.accdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

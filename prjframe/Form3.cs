@@ -12,9 +12,11 @@ namespace prjframe
 {
     public partial class secretary_dashboard : Form
     {
-        public secretary_dashboard()
+        private int _idUtilisateur;
+        public secretary_dashboard(int idUtilisateur)
         {
             InitializeComponent();
+            _idUtilisateur = idUtilisateur;
         }
 
         private void secretary_dashboard_Load(object sender, EventArgs e)
@@ -110,7 +112,7 @@ namespace prjframe
 
         private void profile_pic_Click(object sender, EventArgs e)
         {
-            ProfileSecretary profile = new ProfileSecretary();
+            ProfileSecretary profile = new ProfileSecretary(_idUtilisateur);
             profile.Show();
 
         }

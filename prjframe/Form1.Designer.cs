@@ -59,15 +59,15 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.prochain_patient = new System.Windows.Forms.Label();
             this.nbr_cons = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.profile_pic = new System.Windows.Forms.PictureBox();
+            this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.specialite = new System.Windows.Forms.Label();
             this.doctor_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.profile_pic = new System.Windows.Forms.PictureBox();
-            this.logout_out = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -431,6 +431,35 @@
             this.nbr_cons.Text = "0";
             this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_médecin_32;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(44, 41);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // profile_pic
+            // 
+            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
+            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
+            this.profile_pic.Name = "profile_pic";
+            this.profile_pic.Size = new System.Drawing.Size(56, 58);
+            this.profile_pic.TabIndex = 7;
+            this.profile_pic.TabStop = false;
+            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
+            // 
+            // logout_out
+            // 
+            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
+            this.logout_out.Location = new System.Drawing.Point(1188, 9);
+            this.logout_out.Name = "logout_out";
+            this.logout_out.Size = new System.Drawing.Size(57, 58);
+            this.logout_out.TabIndex = 6;
+            this.logout_out.TabStop = false;
+            this.logout_out.Click += new System.EventHandler(this.logout_out_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -468,7 +497,7 @@
             // 
             this.doctor_name.AutoSize = true;
             this.doctor_name.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doctor_name.Location = new System.Drawing.Point(311, 26);
+            this.doctor_name.Location = new System.Drawing.Point(341, 26);
             this.doctor_name.Name = "doctor_name";
             this.doctor_name.Size = new System.Drawing.Size(224, 45);
             this.doctor_name.TabIndex = 3;
@@ -493,35 +522,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_stéthoscope_32;
-            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(44, 41);
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
-            // profile_pic
-            // 
-            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
-            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
-            this.profile_pic.Name = "profile_pic";
-            this.profile_pic.Size = new System.Drawing.Size(56, 58);
-            this.profile_pic.TabIndex = 7;
-            this.profile_pic.TabStop = false;
-            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
-            // 
-            // logout_out
-            // 
-            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
-            this.logout_out.Location = new System.Drawing.Point(1188, 9);
-            this.logout_out.Name = "logout_out";
-            this.logout_out.Size = new System.Drawing.Size(57, 58);
-            this.logout_out.TabIndex = 6;
-            this.logout_out.TabStop = false;
-            this.logout_out.Click += new System.EventHandler(this.logout_out_Click);
             // 
             // DoctorDashboard
             // 

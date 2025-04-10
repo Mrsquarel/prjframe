@@ -1,6 +1,6 @@
 ﻿namespace prjframe
 {
-    partial class Patient
+    partial class PatientDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,86 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBoxDate = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDoctors = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxSpecialite = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridViewHistorique = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.panel1.SuspendLayout();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.nbr_cons = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.profile_pic = new System.Windows.Forms.PictureBox();
+            this.logout_out = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.specialite = new System.Windows.Forms.Label();
+            this.doctor_name = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorique)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logout_out)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(812, 75);
-            this.panel1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(697, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "logout";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(174, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 32);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "patient name";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bienvenue";
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 408);
+            this.splitter1.Size = new System.Drawing.Size(3, 671);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
             // 
@@ -115,66 +80,75 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 84);
+            this.tabControl1.Location = new System.Drawing.Point(44, 154);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(498, 311);
+            this.tabControl1.Size = new System.Drawing.Size(770, 487);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.comboBox4);
+            this.tabPage1.Controls.Add(this.checkedListBox1);
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.comboBox3);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.comboBoxDate);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.comboBox2);
+            this.tabPage1.Controls.Add(this.comboBoxDoctors);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.comboBoxSpecialite);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(490, 282);
+            this.tabPage1.Size = new System.Drawing.Size(762, 458);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Prendre un rendez-vous";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // button2
+            // checkedListBox1
             // 
-            this.button2.Location = new System.Drawing.Point(22, 231);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(454, 30);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Reserver le rendez vous";
-            this.button2.UseVisualStyleBackColor = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(32, 269);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(584, 123);
+            this.checkedListBox1.TabIndex = 11;
             // 
-            // comboBox4
+            // button1
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(230, 178);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(148, 24);
-            this.comboBox4.TabIndex = 7;
+            this.button1.Location = new System.Drawing.Point(455, 183);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 30);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Valider";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 179);
+            this.label6.Location = new System.Drawing.Point(21, 236);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(167, 18);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Selectionner un creneau";
+            this.label6.Size = new System.Drawing.Size(168, 18);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Les horaires disponibles";
             // 
-            // comboBox3
+            // button2
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(230, 127);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(148, 24);
-            this.comboBox3.TabIndex = 5;
+            this.button2.Location = new System.Drawing.Point(439, 415);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(177, 30);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Reserver le rendez vous";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxDate
+            // 
+            this.comboBoxDate.FormattingEnabled = true;
+            this.comboBoxDate.Location = new System.Drawing.Point(230, 132);
+            this.comboBoxDate.Name = "comboBoxDate";
+            this.comboBoxDate.Size = new System.Drawing.Size(386, 24);
+            this.comboBoxDate.TabIndex = 5;
             // 
             // label5
             // 
@@ -186,13 +160,13 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Selectionner une date";
             // 
-            // comboBox2
+            // comboBoxDoctors
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(230, 85);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(246, 24);
-            this.comboBox2.TabIndex = 3;
+            this.comboBoxDoctors.FormattingEnabled = true;
+            this.comboBoxDoctors.Location = new System.Drawing.Point(230, 85);
+            this.comboBoxDoctors.Name = "comboBoxDoctors";
+            this.comboBoxDoctors.Size = new System.Drawing.Size(386, 24);
+            this.comboBoxDoctors.TabIndex = 3;
             // 
             // label4
             // 
@@ -204,13 +178,58 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Selectionner un medecin";
             // 
-            // comboBox1
+            // comboBoxSpecialite
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(230, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(246, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxSpecialite.FormattingEnabled = true;
+            this.comboBoxSpecialite.Items.AddRange(new object[] {
+            "Cardiologie",
+            "",
+            "",
+            "Dermatologie",
+            "",
+            "",
+            "Pédiatrie",
+            "",
+            "",
+            "Neurologie",
+            "",
+            "",
+            "Orthopédie",
+            "",
+            "",
+            "Gynécologie",
+            "",
+            "",
+            "Ophtalmologie",
+            "",
+            "",
+            "Psychiatrie",
+            "",
+            "",
+            "Endocrinologie",
+            "",
+            "",
+            "Gastroentérologie",
+            "",
+            "",
+            "Oncologie",
+            "",
+            "",
+            "Urologie",
+            "",
+            "",
+            "Rhumatologie",
+            "",
+            "",
+            "Chirurgie générale",
+            "",
+            "",
+            "Médecine interne"});
+            this.comboBoxSpecialite.Location = new System.Drawing.Point(230, 38);
+            this.comboBoxSpecialite.Name = "comboBoxSpecialite";
+            this.comboBoxSpecialite.Size = new System.Drawing.Size(386, 24);
+            this.comboBoxSpecialite.TabIndex = 1;
+            this.comboBoxSpecialite.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpecialite_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -218,41 +237,31 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(19, 44);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 18);
+            this.label3.Size = new System.Drawing.Size(183, 18);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Selectionner une Specialite";
+            this.label3.Text = "Selectionner une specialite";
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.dataGridViewHistorique);
             this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(490, 282);
+            this.tabPage2.Size = new System.Drawing.Size(762, 458);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mon dossier médical";
+            this.tabPage2.Text = "Mes consultations";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // dataGridViewHistorique
             // 
-            this.button4.Location = new System.Drawing.Point(226, 176);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(148, 49);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Telecharger PDF";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(38, 176);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 49);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Voir le document";
-            this.button3.UseVisualStyleBackColor = true;
+            this.dataGridViewHistorique.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHistorique.Location = new System.Drawing.Point(55, 52);
+            this.dataGridViewHistorique.Name = "dataGridViewHistorique";
+            this.dataGridViewHistorique.RowHeadersWidth = 51;
+            this.dataGridViewHistorique.RowTemplate.Height = 24;
+            this.dataGridViewHistorique.Size = new System.Drawing.Size(653, 387);
+            this.dataGridViewHistorique.TabIndex = 16;
             // 
             // label9
             // 
@@ -264,55 +273,12 @@
             this.label9.TabIndex = 13;
             this.label9.Text = "Historique des consultation";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 46);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(478, 112);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Name";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "specialite";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "edit";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "delete";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
-            // 
             // richTextBox1
             // 
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Location = new System.Drawing.Point(520, 132);
+            this.richTextBox1.Location = new System.Drawing.Point(861, 467);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(283, 100);
+            this.richTextBox1.Size = new System.Drawing.Size(381, 174);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -320,7 +286,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(516, 104);
+            this.label7.Location = new System.Drawing.Point(857, 179);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(201, 20);
             this.label7.TabIndex = 10;
@@ -330,66 +296,171 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(516, 247);
+            this.label8.Location = new System.Drawing.Point(857, 421);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(105, 20);
+            this.label8.Size = new System.Drawing.Size(115, 20);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Notification";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.label8.Text = "Notifications";
             // 
             // richTextBox2
             // 
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox2.Location = new System.Drawing.Point(516, 270);
+            this.richTextBox2.Location = new System.Drawing.Point(861, 214);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(287, 121);
+            this.richTextBox2.Size = new System.Drawing.Size(381, 174);
             this.richTextBox2.TabIndex = 11;
             this.richTextBox2.Text = "";
             // 
-            // Patient
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel3.Controls.Add(this.nbr_cons);
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.profile_pic);
+            this.panel3.Controls.Add(this.logout_out);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.specialite);
+            this.panel3.Controls.Add(this.doctor_name);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1284, 126);
+            this.panel3.TabIndex = 13;
+            // 
+            // nbr_cons
+            // 
+            this.nbr_cons.AutoSize = true;
+            this.nbr_cons.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nbr_cons.Location = new System.Drawing.Point(999, 39);
+            this.nbr_cons.Name = "nbr_cons";
+            this.nbr_cons.Size = new System.Drawing.Size(0, 28);
+            this.nbr_cons.TabIndex = 9;
+            this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.icons8_patient_32;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(44, 41);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // profile_pic
+            // 
+            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
+            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
+            this.profile_pic.Name = "profile_pic";
+            this.profile_pic.Size = new System.Drawing.Size(56, 58);
+            this.profile_pic.TabIndex = 7;
+            this.profile_pic.TabStop = false;
+            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
+            // 
+            // logout_out
+            // 
+            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
+            this.logout_out.Location = new System.Drawing.Point(1188, 9);
+            this.logout_out.Name = "logout_out";
+            this.logout_out.Size = new System.Drawing.Size(57, 58);
+            this.logout_out.TabIndex = 6;
+            this.logout_out.TabStop = false;
+            this.logout_out.Click += new System.EventHandler(this.logout_out_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(756, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 28);
+            this.label2.TabIndex = 4;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // specialite
+            // 
+            this.specialite.AutoSize = true;
+            this.specialite.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.specialite.Location = new System.Drawing.Point(75, 78);
+            this.specialite.Name = "specialite";
+            this.specialite.Size = new System.Drawing.Size(0, 28);
+            this.specialite.TabIndex = 2;
+            this.specialite.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // doctor_name
+            // 
+            this.doctor_name.AutoSize = true;
+            this.doctor_name.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doctor_name.Location = new System.Drawing.Point(260, 30);
+            this.doctor_name.Name = "doctor_name";
+            this.doctor_name.Size = new System.Drawing.Size(215, 45);
+            this.doctor_name.TabIndex = 3;
+            this.doctor_name.Text = "nom_patient";
+            this.doctor_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(72, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(200, 45);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Bienvenue  ";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1017, 172);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 28);
+            this.label1.TabIndex = 5;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PatientDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 408);
+            this.ClientSize = new System.Drawing.Size(1282, 671);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.panel1);
-            this.Name = "Patient";
-            this.Text = "Patient";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Name = "PatientDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Dashboard Patient";
+            this.Load += new System.EventHandler(this.Patient_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorique)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logout_out)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBoxSpecialite;
+        private System.Windows.Forms.ComboBox comboBoxDate;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxDoctors;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label8;
@@ -397,12 +468,19 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewButtonColumn Column3;
-        private System.Windows.Forms.DataGridViewButtonColumn Column4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label nbr_cons;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox profile_pic;
+        private System.Windows.Forms.PictureBox logout_out;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label specialite;
+        private System.Windows.Forms.Label doctor_name;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridViewHistorique;
     }
 }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +14,17 @@ namespace prjframe
 {
     public partial class DoctorDashboard : Form
     {
-
-        public DoctorDashboard()
+        private OleDbConnection connection;
+        private int _idUtilisateur;
+        public DoctorDashboard(int idUtilisateur)
         {
             InitializeComponent();
+            string dbPath = Path.Combine(Application.StartupPath, "DatabaseHealthApp.accdb");
+            string connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};Persist Security Info=False;";
+
+
+            connection = new OleDbConnection(connectionString);
+            _idUtilisateur = idUtilisateur;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,6 +98,38 @@ namespace prjframe
             dataGridView3.AllowUserToAddRows = false;
             dataGridView3.RowHeadersVisible = false;
             dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
+
+
+            string query = @"SELECT u.Nom, u.Prenom, m.Specialite 
+                    FROM Medecin m
+                    INNER JOIN Utilisateur u ON m.IdUtilisateur = u.IdUtilisateur
+                    WHERE m.IdUtilisateur = ?";
+
+            connection.Open();
+
+
+            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            {
+                // Use parameterized query to prevent SQL injection
+                cmd.Parameters.AddWithValue("?", _idUtilisateur);
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+
+                    if (reader.Read())
+                    {
+                        string nom = reader["Nom"].ToString();
+                        string specialiteValue = reader["Specialite"].ToString();
+
+                        doctor_name.Text = nom;
+                        specialite.Text = specialiteValue;
+
+                    }
+                }
+            }
+            connection.Close();
         }
 
         private void logout_out_Click(object sender, EventArgs e)
@@ -112,21 +153,23 @@ namespace prjframe
 
         private void profile_pic_Click(object sender, EventArgs e)
         {
-            ProfileDoctor profile = new ProfileDoctor();
+            ProfileDoctor profile = new ProfileDoctor(_idUtilisateur);
             profile.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            nv_patient patient = new nv_patient();
+            nv_patient patient = new nv_patient(_idUtilisateur);
             patient.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Patient_infos patient = new Patient_infos();
+            Patient_infos patient = new Patient_infos(_idUtilisateur);
             patient.Show();
         }
+
+       
     }
     
 }

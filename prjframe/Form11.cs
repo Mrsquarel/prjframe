@@ -13,8 +13,10 @@ namespace prjframe
 {
     public partial class Patient_infos : Form
     {
-        public Patient_infos()
+        private int _idUtilisateur;
+        public Patient_infos(int IdUtilisateur)
         {
+            _idUtilisateur = IdUtilisateur;
             InitializeComponent();
         }
 
@@ -75,7 +77,7 @@ namespace prjframe
 
         private void profile_pic_Click(object sender, EventArgs e)
         {
-            DoctorDashboard dashboard = new DoctorDashboard();
+            DoctorDashboard dashboard = new DoctorDashboard(_idUtilisateur);
             dashboard.Show();   
         }
 

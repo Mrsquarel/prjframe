@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.nbr_cons = new System.Windows.Forms.Label();
             this.date_label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dept = new System.Windows.Forms.Label();
             this.secretary_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.nbr_cons = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -54,14 +57,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.logout_out = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -83,6 +83,27 @@
             this.panel3.Size = new System.Drawing.Size(1285, 129);
             this.panel3.TabIndex = 1;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::prjframe.Properties.Resources.icons8_menu_utilisateur_homme_32;
+            this.pictureBox1.Location = new System.Drawing.Point(1108, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(56, 58);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // nbr_cons
+            // 
+            this.nbr_cons.AutoSize = true;
+            this.nbr_cons.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nbr_cons.Location = new System.Drawing.Point(1141, 89);
+            this.nbr_cons.Name = "nbr_cons";
+            this.nbr_cons.Size = new System.Drawing.Size(23, 28);
+            this.nbr_cons.TabIndex = 11;
+            this.nbr_cons.Text = "0";
+            this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // date_label
             // 
             this.date_label.AutoSize = true;
@@ -93,6 +114,37 @@
             this.date_label.TabIndex = 9;
             this.date_label.Text = "0";
             this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(777, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(348, 28);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Nombre de consultations Par Semaine:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.secretaire__1_;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(53, 41);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // logout_out
+            // 
+            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
+            this.logout_out.Location = new System.Drawing.Point(1188, 9);
+            this.logout_out.Name = "logout_out";
+            this.logout_out.Size = new System.Drawing.Size(57, 58);
+            this.logout_out.TabIndex = 6;
+            this.logout_out.TabStop = false;
+            this.logout_out.Click += new System.EventHandler(this.logout_out_Click_1);
             // 
             // label6
             // 
@@ -147,28 +199,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Bienvenue  ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // nbr_cons
-            // 
-            this.nbr_cons.AutoSize = true;
-            this.nbr_cons.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nbr_cons.Location = new System.Drawing.Point(1141, 89);
-            this.nbr_cons.Name = "nbr_cons";
-            this.nbr_cons.Size = new System.Drawing.Size(23, 28);
-            this.nbr_cons.TabIndex = 11;
-            this.nbr_cons.Text = "0";
-            this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(777, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 28);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Nombre de consultations Par Semaine:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox1
             // 
@@ -312,9 +342,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(61, 44);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 22);
+            this.label4.Size = new System.Drawing.Size(45, 22);
             this.label4.TabIndex = 2;
-            this.label4.Text = "ID:";
+            this.label4.Text = "CIN:";
             // 
             // label3
             // 
@@ -334,36 +364,6 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Nom:";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::prjframe.Properties.Resources.secretaire__1_;
-            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(53, 41);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
-            // logout_out
-            // 
-            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
-            this.logout_out.Location = new System.Drawing.Point(1188, 9);
-            this.logout_out.Name = "logout_out";
-            this.logout_out.Size = new System.Drawing.Size(57, 58);
-            this.logout_out.TabIndex = 6;
-            this.logout_out.TabStop = false;
-            this.logout_out.Click += new System.EventHandler(this.logout_out_Click_1);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::prjframe.Properties.Resources.icons8_menu_utilisateur_homme_32;
-            this.pictureBox1.Location = new System.Drawing.Point(1108, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(56, 58);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // ProfileSecretary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -374,13 +374,14 @@
             this.Name = "ProfileSecretary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form7";
+            this.Load += new System.EventHandler(this.ProfileSecretary_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }

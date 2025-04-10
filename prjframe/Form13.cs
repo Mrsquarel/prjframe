@@ -12,14 +12,16 @@ namespace prjframe
 {
     public partial class nv_patient : Form
     {
-        public nv_patient()
+        private int _idUtilisateur;
+        public nv_patient(int IdUtilisateur)
         {
             InitializeComponent();
+            _idUtilisateur = IdUtilisateur;
         }
 
         private void profile_pic_Click(object sender, EventArgs e)
         {
-            DoctorDashboard dashboard = new DoctorDashboard();
+            DoctorDashboard dashboard = new DoctorDashboard(_idUtilisateur);
             dashboard.Show();
         }
 
