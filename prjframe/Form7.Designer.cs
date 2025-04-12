@@ -37,20 +37,20 @@
             this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dept = new System.Windows.Forms.Label();
+            this.dept_label = new System.Windows.Forms.Label();
             this.secretary_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.comboBoxDept = new System.Windows.Forms.ComboBox();
+            this.txtMotDePasse = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.annuler_btn = new System.Windows.Forms.Button();
             this.modifier_btn = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtPrenom = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
+            this.txtCIN = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -75,7 +75,7 @@
             this.panel3.Controls.Add(this.logout_out);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.dept);
+            this.panel3.Controls.Add(this.dept_label);
             this.panel3.Controls.Add(this.secretary_name);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Location = new System.Drawing.Point(0, 1);
@@ -97,7 +97,7 @@
             // 
             this.nbr_cons.AutoSize = true;
             this.nbr_cons.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nbr_cons.Location = new System.Drawing.Point(1141, 89);
+            this.nbr_cons.Location = new System.Drawing.Point(1054, 89);
             this.nbr_cons.Name = "nbr_cons";
             this.nbr_cons.Size = new System.Drawing.Size(23, 28);
             this.nbr_cons.TabIndex = 11;
@@ -108,7 +108,7 @@
             // 
             this.date_label.AutoSize = true;
             this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(962, 47);
+            this.date_label.Location = new System.Drawing.Point(885, 50);
             this.date_label.Name = "date_label";
             this.date_label.Size = new System.Drawing.Size(23, 28);
             this.date_label.TabIndex = 9;
@@ -119,7 +119,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(777, 89);
+            this.label1.Location = new System.Drawing.Point(686, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(348, 28);
             this.label1.TabIndex = 10;
@@ -160,23 +160,23 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(777, 47);
+            this.label5.Location = new System.Drawing.Point(686, 50);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 28);
             this.label5.TabIndex = 4;
             this.label5.Text = "Date d\'aujourd\'hui:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dept
+            // dept_label
             // 
-            this.dept.AutoSize = true;
-            this.dept.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dept.Location = new System.Drawing.Point(81, 78);
-            this.dept.Name = "dept";
-            this.dept.Size = new System.Drawing.Size(127, 28);
-            this.dept.TabIndex = 2;
-            this.dept.Text = "Departement";
-            this.dept.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dept_label.AutoSize = true;
+            this.dept_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dept_label.Location = new System.Drawing.Point(81, 78);
+            this.dept_label.Name = "dept_label";
+            this.dept_label.Size = new System.Drawing.Size(127, 28);
+            this.dept_label.TabIndex = 2;
+            this.dept_label.Text = "Departement";
+            this.dept_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // secretary_name
             // 
@@ -202,16 +202,16 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.comboBoxDept);
+            this.groupBox1.Controls.Add(this.txtMotDePasse);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.annuler_btn);
             this.groupBox1.Controls.Add(this.modifier_btn);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtMail);
+            this.groupBox1.Controls.Add(this.txtTelephone);
+            this.groupBox1.Controls.Add(this.txtPrenom);
+            this.groupBox1.Controls.Add(this.txtNom);
+            this.groupBox1.Controls.Add(this.txtCIN);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -226,14 +226,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Personnelles";
             // 
-            // textBox7
+            // comboBoxDept
             // 
-            this.textBox7.Location = new System.Drawing.Point(215, 358);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.PasswordChar = '*';
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(259, 28);
-            this.textBox7.TabIndex = 15;
+            this.comboBoxDept.Enabled = false;
+            this.comboBoxDept.FormattingEnabled = true;
+            this.comboBoxDept.Items.AddRange(new object[] {
+            "Cardiologie",
+            "Dermatologie",
+            "Pédiatrie",
+            "Neurologie",
+            "Orthopédie",
+            "Gynécologie",
+            "Ophtalmologie",
+            "Psychiatrie",
+            "Endocrinologie",
+            "Gastroentérologie",
+            "Oncologie",
+            "Urologie",
+            "Rhumatologie"});
+            this.comboBoxDept.Location = new System.Drawing.Point(215, 296);
+            this.comboBoxDept.Name = "comboBoxDept";
+            this.comboBoxDept.Size = new System.Drawing.Size(259, 30);
+            this.comboBoxDept.TabIndex = 16;
+            // 
+            // txtMotDePasse
+            // 
+            this.txtMotDePasse.Location = new System.Drawing.Point(215, 358);
+            this.txtMotDePasse.Name = "txtMotDePasse";
+            this.txtMotDePasse.ReadOnly = true;
+            this.txtMotDePasse.Size = new System.Drawing.Size(259, 28);
+            this.txtMotDePasse.TabIndex = 15;
             // 
             // label10
             // 
@@ -252,6 +274,7 @@
             this.annuler_btn.TabIndex = 13;
             this.annuler_btn.Text = "Annuler";
             this.annuler_btn.UseVisualStyleBackColor = true;
+            this.annuler_btn.Click += new System.EventHandler(this.annuler_btn_Click);
             // 
             // modifier_btn
             // 
@@ -261,54 +284,47 @@
             this.modifier_btn.TabIndex = 12;
             this.modifier_btn.Text = "Modifier";
             this.modifier_btn.UseVisualStyleBackColor = true;
+            this.modifier_btn.Click += new System.EventHandler(this.modifier_btn_Click_1);
             // 
-            // textBox6
+            // txtMail
             // 
-            this.textBox6.Location = new System.Drawing.Point(215, 296);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(259, 28);
-            this.textBox6.TabIndex = 11;
+            this.txtMail.Location = new System.Drawing.Point(215, 243);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.ReadOnly = true;
+            this.txtMail.Size = new System.Drawing.Size(259, 28);
+            this.txtMail.TabIndex = 10;
             // 
-            // textBox5
+            // txtTelephone
             // 
-            this.textBox5.Location = new System.Drawing.Point(215, 243);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(259, 28);
-            this.textBox5.TabIndex = 10;
+            this.txtTelephone.Location = new System.Drawing.Point(215, 198);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.ReadOnly = true;
+            this.txtTelephone.Size = new System.Drawing.Size(259, 28);
+            this.txtTelephone.TabIndex = 9;
             // 
-            // textBox4
+            // txtPrenom
             // 
-            this.textBox4.Location = new System.Drawing.Point(215, 198);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(259, 28);
-            this.textBox4.TabIndex = 9;
+            this.txtPrenom.Location = new System.Drawing.Point(215, 149);
+            this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.ReadOnly = true;
+            this.txtPrenom.Size = new System.Drawing.Size(259, 28);
+            this.txtPrenom.TabIndex = 8;
             // 
-            // textBox3
+            // txtNom
             // 
-            this.textBox3.Location = new System.Drawing.Point(215, 149);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(259, 28);
-            this.textBox3.TabIndex = 8;
+            this.txtNom.Location = new System.Drawing.Point(215, 97);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.ReadOnly = true;
+            this.txtNom.Size = new System.Drawing.Size(259, 28);
+            this.txtNom.TabIndex = 7;
             // 
-            // textBox2
+            // txtCIN
             // 
-            this.textBox2.Location = new System.Drawing.Point(215, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(259, 28);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(215, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(259, 28);
-            this.textBox1.TabIndex = 6;
+            this.txtCIN.Location = new System.Drawing.Point(215, 41);
+            this.txtCIN.Name = "txtCIN";
+            this.txtCIN.ReadOnly = true;
+            this.txtCIN.Size = new System.Drawing.Size(259, 28);
+            this.txtCIN.TabIndex = 6;
             // 
             // label9
             // 
@@ -394,22 +410,21 @@
         private System.Windows.Forms.PictureBox logout_out;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label dept;
+        private System.Windows.Forms.Label dept_label;
         private System.Windows.Forms.Label secretary_name;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label nbr_cons;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtMotDePasse;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button annuler_btn;
         private System.Windows.Forms.Button modifier_btn;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtPrenom;
+        private System.Windows.Forms.TextBox txtNom;
+        private System.Windows.Forms.TextBox txtCIN;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -417,5 +432,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox comboBoxDept;
     }
 }

@@ -31,12 +31,11 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label_week = new System.Windows.Forms.Label();
+            this.checkedListBoxRDV = new System.Windows.Forms.CheckedListBox();
+            this.valider_btn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.comboBoxDate = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.comboBoxDoctors = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxSpecialite = new System.Windows.Forms.ComboBox();
@@ -88,12 +87,11 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkedListBox1);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.label_week);
+            this.tabPage1.Controls.Add(this.checkedListBoxRDV);
+            this.tabPage1.Controls.Add(this.valider_btn);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.comboBoxDate);
-            this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.comboBoxDoctors);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.comboBoxSpecialite);
@@ -106,28 +104,39 @@
             this.tabPage1.Text = "Prendre un rendez-vous";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox1
+            // label_week
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(32, 269);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(584, 123);
-            this.checkedListBox1.TabIndex = 11;
+            this.label_week.AutoSize = true;
+            this.label_week.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_week.Location = new System.Drawing.Point(227, 191);
+            this.label_week.Name = "label_week";
+            this.label_week.Size = new System.Drawing.Size(64, 18);
+            this.label_week.TabIndex = 12;
+            this.label_week.Text = "semaine";
             // 
-            // button1
+            // checkedListBoxRDV
             // 
-            this.button1.Location = new System.Drawing.Point(455, 183);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 30);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Valider";
-            this.button1.UseVisualStyleBackColor = true;
+            this.checkedListBoxRDV.FormattingEnabled = true;
+            this.checkedListBoxRDV.Location = new System.Drawing.Point(56, 212);
+            this.checkedListBoxRDV.Name = "checkedListBoxRDV";
+            this.checkedListBoxRDV.Size = new System.Drawing.Size(584, 174);
+            this.checkedListBoxRDV.TabIndex = 11;
+            // 
+            // valider_btn
+            // 
+            this.valider_btn.Location = new System.Drawing.Point(455, 127);
+            this.valider_btn.Name = "valider_btn";
+            this.valider_btn.Size = new System.Drawing.Size(161, 30);
+            this.valider_btn.TabIndex = 10;
+            this.valider_btn.Text = "Valider";
+            this.valider_btn.UseVisualStyleBackColor = true;
+            this.valider_btn.Click += new System.EventHandler(this.valider_btn_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(21, 236);
+            this.label6.Location = new System.Drawing.Point(29, 191);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(168, 18);
             this.label6.TabIndex = 9;
@@ -142,24 +151,6 @@
             this.button2.Text = "Reserver le rendez vous";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // comboBoxDate
-            // 
-            this.comboBoxDate.FormattingEnabled = true;
-            this.comboBoxDate.Location = new System.Drawing.Point(230, 132);
-            this.comboBoxDate.Name = "comboBoxDate";
-            this.comboBoxDate.Size = new System.Drawing.Size(386, 24);
-            this.comboBoxDate.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 133);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 18);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Selectionner une date";
-            // 
             // comboBoxDoctors
             // 
             this.comboBoxDoctors.FormattingEnabled = true;
@@ -167,6 +158,7 @@
             this.comboBoxDoctors.Name = "comboBoxDoctors";
             this.comboBoxDoctors.Size = new System.Drawing.Size(386, 24);
             this.comboBoxDoctors.TabIndex = 3;
+            this.comboBoxDoctors.SelectedIndexChanged += new System.EventHandler(this.comboBoxDoctors_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -458,8 +450,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxSpecialite;
-        private System.Windows.Forms.ComboBox comboBoxDate;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxDoctors;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
@@ -478,9 +468,10 @@
         private System.Windows.Forms.Label specialite;
         private System.Windows.Forms.Label doctor_name;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxRDV;
+        private System.Windows.Forms.Button valider_btn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridViewHistorique;
+        private System.Windows.Forms.Label label_week;
     }
 }

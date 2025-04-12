@@ -59,11 +59,24 @@ namespace prjframe
 
             dataGridViewHistorique.RowHeadersVisible = false;
 
+           //***************afficher la semaine**************************//
+            // Date d'aujourd'hui
+            DateTime aujourdHui = DateTime.Today;
 
+            // Calcul du lundi de la semaine actuelle
+            int joursDepuisLundi = (int)aujourdHui.DayOfWeek - 1;
+            if (joursDepuisLundi < 0) joursDepuisLundi = 6; // Si dimanche
 
-            //prendre rdv
+            DateTime lundi = aujourdHui.AddDays(-joursDepuisLundi);
+            DateTime samedi = lundi.AddDays(5); // Samedi = lundi + 5 jours
+
+            // Formatage des dates
+            string texte = $"DU {lundi:dddd d MMMM yyyy} au {samedi:dddd d MMMM yyyy}";
+
+            label_week.Text = texte;
+            //************************prendre rdv*******************************/
             LoadSpecialites();
-            LoadCurrentWeekDates();
+          
 
         }
         //charger les specilaites des docteurs pour prendre un rdv
@@ -85,18 +98,130 @@ namespace prjframe
             }
             connection.Close();
         }
-        private void LoadCurrentWeekDates()
+        //apres la selection d'une specialite , on charge la liste des medecins
+        private void comboBoxSpecialite_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DateTime today = DateTime.Today;
-            int daysToMonday = (int)today.DayOfWeek - (int)DayOfWeek.Monday;
-            if (daysToMonday < 0) daysToMonday += 7;
+            if (comboBoxSpecialite.SelectedItem == null) return;
+            string selectedSpecialty = comboBoxSpecialite.SelectedItem.ToString();
+            LoadDoctorNames(selectedSpecialty);
+        }
 
-            DateTime monday = today.AddDays(-daysToMonday);
+        private void LoadDoctorNames(string specialty)
+        {
+            string query = "SELECT m.IdMedecin, u.Nom, u.Prenom " +
+                           "FROM Medecin m " +
+                           "INNER JOIN Utilisateur u ON m.IdUtilisateur = u.IdUtilisateur " +
+                           "WHERE m.Specialite = ?";
 
-            for (int i = 0; i < 6; i++) 
+            OleDbCommand cmd = new OleDbCommand(query, connection);
+            cmd.Parameters.AddWithValue("?", specialty);
+
+            connection.Open();
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            comboBoxDoctors.Items.Clear();
+
+            while (reader.Read())
             {
-                comboBoxDate.Items.Add(monday.AddDays(i).ToString("dd/MM/yyyy"));
+                string doctorName = reader["Nom"].ToString() + " " + reader["Prenom"].ToString();
+                int doctorId = Convert.ToInt32(reader["IdMedecin"]);
+                comboBoxDoctors.Items.Add(new KeyValuePair<int, string>(doctorId, doctorName));
             }
+
+            reader.Close();
+            connection.Close();
+
+            if (comboBoxDoctors.Items.Count == 0)
+            {
+                MessageBox.Show("Aucun médecin trouvé.");
+            }
+
+            comboBoxDoctors.DisplayMember = "Value";
+            comboBoxDoctors.ValueMember = "Key";
+        }
+        //on recupere lid du docteur
+        private void comboBoxDoctors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxDoctors.SelectedItem == null) return;
+            KeyValuePair<int, string> selectedDoctor = (KeyValuePair<int, string>)comboBoxDoctors.SelectedItem;
+            int doctorId = selectedDoctor.Key;
+        }
+        //on charge ses dispo
+        private void LoadAvailableRDVs(int doctorId)
+        {
+            checkedListBoxRDV.Items.Clear();
+
+            DateTime now = DateTime.Now;
+            DateTime tomorrow = now.Date.AddDays(1); // le patient peut prendre un rdv à partir de demain
+            int daysLeft = 6 - (int)now.DayOfWeek;
+
+            Dictionary<string, int> frenchDayToIndex = new Dictionary<string, int>
+                    {
+                        { "Dimanche", 0 },
+                        { "Lundi", 1 },
+                        { "Mardi", 2 },
+                        { "Mercredi", 3 },
+                        { "Jeudi", 4 },
+                        { "Vendredi", 5 },
+                        { "Samedi", 6 }
+                    };
+
+            string query = "SELECT Jour, HeureDebut, HeureFin " +
+                           "FROM PlageHoraire " +
+                           "WHERE IdMedecin = ? AND EstValide = true AND Prise = false";
+
+            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("?", doctorId);
+                connection.Open();
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string jour = reader["Jour"].ToString();
+                        string heureDebutStr = reader["HeureDebut"].ToString();
+                        string heureFin = reader["HeureFin"].ToString();
+
+                        if (frenchDayToIndex.ContainsKey(jour))
+                        {
+                            int jourIndex = frenchDayToIndex[jour];
+                            int todayIndex = (int)now.DayOfWeek;
+                            int dayOffset = (jourIndex - todayIndex + 7) % 7;
+
+                            DateTime rdvDate = now.Date.AddDays(dayOffset);
+
+                           
+                            if (dayOffset > 0 && dayOffset <= daysLeft)
+                            {
+                                string rdv = $"{jour} ({heureDebutStr} - {heureFin})";
+                                checkedListBoxRDV.Items.Add(rdv);
+                            }
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            if (checkedListBoxRDV.Items.Count == 0)
+                MessageBox.Show("Aucun rendez-vous disponible à réserver pour les jours suivants.");
+        }
+
+
+        //choix d'un rdv 
+        private void valider_btn_Click(object sender, EventArgs e)
+        {
+            if (comboBoxDoctors.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un médecin.");
+                return;
+            }
+
+            KeyValuePair<int, string> selectedDoctor = (KeyValuePair<int, string>)comboBoxDoctors.SelectedItem;
+            int doctorId = selectedDoctor.Key;
+
+            LoadAvailableRDVs(doctorId);
         }
         private void profile_pic_Click(object sender, EventArgs e)
         {
@@ -124,43 +249,9 @@ namespace prjframe
             }
         }
 
-        private void comboBoxSpecialite_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxSpecialite.SelectedItem == null) return;
+        
+        
 
-            string selectedSpecialty = comboBoxSpecialite.SelectedItem.ToString();
-
-            string query = "SELECT m.IdMedecin, u.Nom, u.Prenom " +
-                           "FROM Medecin m " +
-                           "INNER JOIN Utilisateur u ON m.IdUtilisateur = u.IdUtilisateur " +
-                           "WHERE m.Specialite = ? " +
-                           "ORDER BY u.Nom, u.Prenom";
-
-            comboBoxDoctors.Items.Clear();
-
-            connection.Open();
-            OleDbCommand cmd = new OleDbCommand(query, connection);
-            cmd.Parameters.AddWithValue("?", selectedSpecialty);
-            OleDbDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                string doctorName = $"{reader["Nom"]} {reader["Prenom"]}";
-                int doctorId = Convert.ToInt32(reader["IdMedecin"]);
-                comboBoxDoctors.Items.Add(new KeyValuePair<int, string>(doctorId, doctorName));
-            }
-
-            reader.Close();
-            connection.Close();
-
-            // Configure combobox to display doctor names
-            comboBoxDoctors.DisplayMember = "Value";
-            comboBoxDoctors.ValueMember = "Key";
-
-            if (comboBoxDoctors.Items.Count == 0)
-            {
-                MessageBox.Show("Aucun médecin trouvé dans cette spécialité.");
-            }
-        }
+       
     }
 }

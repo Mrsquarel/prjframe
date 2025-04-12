@@ -31,6 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.rechercher_patient_btn = new System.Windows.Forms.Button();
             this.dataGridViewDossiers = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -56,17 +58,15 @@
             this.dataGridViewDemandes = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.date_label = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.profile_pic = new System.Windows.Forms.PictureBox();
+            this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dept = new System.Windows.Forms.Label();
             this.secretary_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.rechercher_patient_btn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.profile_pic = new System.Windows.Forms.PictureBox();
-            this.logout_out = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -124,6 +124,22 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(778, 230);
             this.panel5.TabIndex = 23;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(4, 40);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(602, 22);
+            this.textBox1.TabIndex = 24;
+            // 
+            // rechercher_patient_btn
+            // 
+            this.rechercher_patient_btn.Location = new System.Drawing.Point(618, 37);
+            this.rechercher_patient_btn.Name = "rechercher_patient_btn";
+            this.rechercher_patient_btn.Size = new System.Drawing.Size(152, 28);
+            this.rechercher_patient_btn.TabIndex = 23;
+            this.rechercher_patient_btn.Text = "Rechercher Patient";
+            this.rechercher_patient_btn.UseVisualStyleBackColor = true;
             // 
             // dataGridViewDossiers
             // 
@@ -385,12 +401,42 @@
             // 
             this.date_label.AutoSize = true;
             this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(858, 75);
+            this.date_label.Location = new System.Drawing.Point(1013, 78);
             this.date_label.Name = "date_label";
             this.date_label.Size = new System.Drawing.Size(23, 28);
             this.date_label.TabIndex = 9;
             this.date_label.Text = "0";
             this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::prjframe.Properties.Resources.secretaire__1_;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(53, 41);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // profile_pic
+            // 
+            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
+            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
+            this.profile_pic.Name = "profile_pic";
+            this.profile_pic.Size = new System.Drawing.Size(56, 58);
+            this.profile_pic.TabIndex = 7;
+            this.profile_pic.TabStop = false;
+            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
+            // 
+            // logout_out
+            // 
+            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
+            this.logout_out.Location = new System.Drawing.Point(1188, 9);
+            this.logout_out.Name = "logout_out";
+            this.logout_out.Size = new System.Drawing.Size(57, 58);
+            this.logout_out.TabIndex = 6;
+            this.logout_out.TabStop = false;
+            this.logout_out.Click += new System.EventHandler(this.logout_out_Click_1);
             // 
             // label6
             // 
@@ -406,7 +452,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(832, 47);
+            this.label5.Location = new System.Drawing.Point(817, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 28);
             this.label5.TabIndex = 4;
@@ -453,52 +499,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
-            // 
-            // rechercher_patient_btn
-            // 
-            this.rechercher_patient_btn.Location = new System.Drawing.Point(618, 37);
-            this.rechercher_patient_btn.Name = "rechercher_patient_btn";
-            this.rechercher_patient_btn.Size = new System.Drawing.Size(152, 28);
-            this.rechercher_patient_btn.TabIndex = 23;
-            this.rechercher_patient_btn.Text = "Rechercher Patient";
-            this.rechercher_patient_btn.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(4, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(602, 22);
-            this.textBox1.TabIndex = 24;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::prjframe.Properties.Resources.secretaire__1_;
-            this.pictureBox3.Location = new System.Drawing.Point(22, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(53, 41);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
-            // profile_pic
-            // 
-            this.profile_pic.Image = global::prjframe.Properties.Resources.icons8_invité_homme_32;
-            this.profile_pic.Location = new System.Drawing.Point(1116, 9);
-            this.profile_pic.Name = "profile_pic";
-            this.profile_pic.Size = new System.Drawing.Size(56, 58);
-            this.profile_pic.TabIndex = 7;
-            this.profile_pic.TabStop = false;
-            this.profile_pic.Click += new System.EventHandler(this.profile_pic_Click);
-            // 
-            // logout_out
-            // 
-            this.logout_out.Image = global::prjframe.Properties.Resources.icons8_connexion_32;
-            this.logout_out.Location = new System.Drawing.Point(1188, 9);
-            this.logout_out.Name = "logout_out";
-            this.logout_out.Size = new System.Drawing.Size(57, 58);
-            this.logout_out.TabIndex = 6;
-            this.logout_out.TabStop = false;
-            this.logout_out.Click += new System.EventHandler(this.logout_out_Click_1);
             // 
             // secretary_dashboard
             // 

@@ -360,7 +360,6 @@
             this.Name = "ProfilePatient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Profile Patient";
-            this.Load += new System.EventHandler(this.ProfilePatient_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);

@@ -28,42 +28,15 @@ namespace prjframe
 
             connection = new OleDbConnection(connectionString);
         }
-        bool isEditMode = false;
-        private void modifier_btn_Click(object sender, EventArgs e)
-        {
-            if (!isEditMode)
-            {
-                // pour mofifier
-                textBox4.ReadOnly = false;
-                textBox5.ReadOnly = false;
-                textBox6.ReadOnly = false;
-                textBox7.ReadOnly = false;
-                modifier_btn.Text = "Sauvegarder";
-                isEditMode = true;
-            }
-            else
-            {
-
-
-                textBox4.ReadOnly = true;
-                textBox5.ReadOnly = true;
-                textBox6.ReadOnly = true;
-                textBox7.ReadOnly = true;
-                modifier_btn.Text = "Modifier";
-
-                isEditMode = false;
-
-                MessageBox.Show("Profil mis à jour avec succès !");
-            }
-        }
-
+        
+        
         private void ProfileDoctor_Load(object sender, EventArgs e)
-        {
+        {//afficher la date d'aujourd'hui
             date_label.Text = DateTime.Today.ToLongDateString();
 
             dataGridViewSchedule.Columns.Clear();
             dataGridViewSchedule.Rows.Clear();
-
+            //tableau des dispos
 
             DataGridViewTextBoxColumn heureCol = new DataGridViewTextBoxColumn();
             heureCol.HeaderText = "Heure";
@@ -114,17 +87,7 @@ namespace prjframe
             groupBoxDisponibilite.Text = texte;
 
 
-            //quand le ledecin peut remplir sa disponibilité
-            if (EstSamediDerniereSemaine())
-            {
-                // Le médecin peut modifier/remplir sa dispo pour la semaine courante
-                dataGridViewSchedule.ReadOnly = false;
-            }
-            else
-            {
-                // Lecture seule
-                dataGridViewSchedule.ReadOnly = true;
-            }
+            //recuperer id medecin
             string query2 = "SELECT IdMedecin from Medecin WHERE IdUtilisateur = ?";
             connection.Open();
             OleDbCommand cmd2 = new OleDbCommand(query2, connection);
@@ -137,52 +100,78 @@ namespace prjframe
             connection.Close();
 
             LoadDisponibiliteFromDatabase();
-
+            //afficher nom et specialite du medecin 
             string query = @"SELECT u.Nom, u.Prenom, m.Specialite 
                     FROM Medecin m
                     INNER JOIN Utilisateur u ON m.IdUtilisateur = u.IdUtilisateur
                     WHERE m.IdUtilisateur = ?";
 
             connection.Open();
-                
 
-                using (OleDbCommand cmd = new OleDbCommand(query, connection))
+
+            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            {
+
+                cmd.Parameters.AddWithValue("?", _IdUtilisateur);
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
                 {
-                    
-                    cmd.Parameters.AddWithValue("?", _IdUtilisateur);
 
-                    using (OleDbDataReader reader = cmd.ExecuteReader())
+                    if (reader.Read())
                     {
+                        string nom = reader["Nom"].ToString();
+                        string specialiteValue = reader["Specialite"].ToString();
 
-                        if (reader.Read())
-                        {
-                            string nom = reader["Nom"].ToString();
-                            string specialiteValue = reader["Specialite"].ToString();
+                        doctor_name.Text = nom;
+                        specialite.Text = specialiteValue;
 
-                            doctor_name.Text = nom;
-                            specialite.Text = specialiteValue;
-
-                        }
                     }
                 }
-           connection.Close();
-
+            }
+            connection.Close();
+            LoadDoctorInfo();
         }
-        //pour determnier quand le medecin peut remplir sa disponibilité
-        bool EstSamediDerniereSemaine()
+
+
+
+        //************charger les informations du medecin***********************//
+
+        private void LoadDoctorInfo()
         {
-            DateTime aujourdHui = DateTime.Today;
+            string query = @"SELECT u.Nom, u.Prenom, u.CIN, u.Telephone, u.Email, u.MotDePasse, m.Specialite
+             FROM Utilisateur u
+             INNER JOIN Medecin m ON u.IdUtilisateur = m.IdUtilisateur
+             WHERE u.IdUtilisateur = ?";
 
-            // Trouver le lundi de cette semaine
-            int joursDepuisLundi = (int)aujourdHui.DayOfWeek - 1;
-            if (joursDepuisLundi < 0) joursDepuisLundi = 6;
-            DateTime lundiSemaineActuelle = aujourdHui.AddDays(-joursDepuisLundi);
+            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("?", _IdUtilisateur);
+                connection.Open();
 
-            // Le samedi de la semaine dernière
-            DateTime samediDerniereSemaine = lundiSemaineActuelle.AddDays(-2); // (lundi - 2 = samedi précédent)
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        txtNom.Text = reader["Nom"].ToString();
+                        txtPrenom.Text = reader["Prenom"].ToString();
+                        txtCIN.Text = reader["CIN"].ToString();
+                        txtTelephone.Text = reader["Telephone"].ToString();
+                        txtMail.Text = reader["Email"].ToString();
+                        txtMotDePasse.Text = reader["MotDePasse"].ToString();
 
-            return aujourdHui == samediDerniereSemaine;
+                        string specialite = reader["Specialite"].ToString();
+                        comboBoxSpecialite.SelectedItem = specialite;
+                    }
+                }
+
+                connection.Close();
+            }
         }
+
+
+
+
+        //************charger les dispos du medecin***********************//
         private void LoadDisponibiliteFromDatabase()
         {
             bool dataFound = false;
@@ -243,67 +232,96 @@ namespace prjframe
             }
             connection.Close();
         }
-
-           
-         
-       
-
-
-
-
-
-        private void profile_pic_Click(object sender, EventArgs e)
+        /// <summary>
+        ///modifier , annuler les modifications des informations personnelles
+        /// </summary>
+        private void UpdateDoctorInfo()
         {
-            DoctorDashboard dashboard = new DoctorDashboard(_IdUtilisateur);
-            dashboard.Show();
-        }
+            string updateQuery = @"UPDATE Utilisateur u
+                           INNER JOIN Medecin m ON u.IdUtilisateur = m.IdUtilisateur
+                           SET u.Telephone = ?, u.Email = ?, u.MotDePasse = ?, m.Specialite = ?
+                           WHERE u.IdUtilisateur = ?";
 
-        private void logout_out_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-       "Voulez-vous vraiment vous déconnecter ?",
-       "Déconnexion",
-       MessageBoxButtons.YesNo,
-       MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            using (OleDbCommand cmd = new OleDbCommand(updateQuery, connection))
             {
+                connection.Open();
 
-                MenuForm menu = new MenuForm();
-                menu.Show();
+                // Add parameters for the update query
+                cmd.Parameters.AddWithValue("?", txtTelephone.Text.Trim());
+                cmd.Parameters.AddWithValue("?", txtMail.Text.Trim());
+                cmd.Parameters.AddWithValue("?", txtMotDePasse.Text.Trim());
+                cmd.Parameters.AddWithValue("?", comboBoxSpecialite.SelectedItem?.ToString() ?? "");
+                cmd.Parameters.AddWithValue("?", _IdUtilisateur);
 
+                // Execute the update query
+                cmd.ExecuteNonQuery();
 
-                this.Close();
+                connection.Close();
+                MessageBox.Show("Informations mises à jour avec succès.");
             }
         }
+
+
+
+        bool isEditMode = false;
+        private void modifier_btn_Click(object sender, EventArgs e)
+        {
+            if (!isEditMode)
+            {
+                // Activer le mode modification
+                txtTelephone.ReadOnly = false;
+                txtMail.ReadOnly = false;
+                txtMotDePasse.ReadOnly = false;
+                comboBoxSpecialite.Enabled = true;
+
+                modifier_btn.Text = "Sauvegarder";
+                isEditMode = true;
+            }
+            else
+            {
+                // Mettre à jour les données en base
+                UpdateDoctorInfo();
+
+                // Désactiver les champs après mise à jour
+                txtTelephone.ReadOnly = true;
+                txtMail.ReadOnly = true;
+                txtMotDePasse.ReadOnly = true;
+                comboBoxSpecialite.Enabled = false;
+
+                modifier_btn.Text = "Modifier";
+                isEditMode = false;
+            }
+        }
+
+        private void annuler_btn_Click(object sender, EventArgs e)
+        {
+            // Remettre les champs en lecture seule
+            txtTelephone.ReadOnly = true;
+            txtMail.ReadOnly = true;
+            txtMotDePasse.ReadOnly = true;
+            comboBoxSpecialite.Enabled = false;
+
+            // Réinitialiser le bouton Modifier
+            modifier_btn.Text = "Modifier";
+            isEditMode = false;
+
+            // Recharger les données depuis la base
+            LoadDoctorInfo();
+
+            MessageBox.Show("Modifications annulées.");
+        }
+
+
+        /// <summary>
+        /// remplir la table de dipos , modifier ou annuler 
+        /// </summary>
+
         bool isEditMode2 = false;
         private OleDbConnection connection;
 
         private void button2_Click(object sender, EventArgs e)
         {
-           /* if (EstSamediDerniereSemaine())
-            {
-                if (!isEditMode2) //changer en sauvgarder
-                {
-                    dataGridViewSchedule.ReadOnly = false;
-                    isEditMode2 = true;
-                    btnValiderDisponibilite.Text = "Sauvegarder";
-                }
-                else //retour a modifier
-                {
-                    SaveChanges();
-                    dataGridViewSchedule.ReadOnly = true;
-                    isEditMode2 = false;
-                    btnValiderDisponibilite.Text = "Modifier";
-                    MessageBox.Show("Disponibilité sauvegardée/Mise à jour avec succès!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Consultation uniquement.Vous pourrez modifier votre planning samedi prochain.", "Information",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Information);
-            }*/
+           
             if (!isEditMode2) //changer en sauvgarder
             {
                 dataGridViewSchedule.ReadOnly = false;
@@ -455,6 +473,32 @@ namespace prjframe
         {
             LoadDisponibiliteFromDatabase();
         }
+        private void profile_pic_Click(object sender, EventArgs e)
+        {
+            DoctorDashboard dashboard = new DoctorDashboard(_IdUtilisateur);
+            dashboard.Show();
+        }
+
+        private void logout_out_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+       "Voulez-vous vraiment vous déconnecter ?",
+       "Déconnexion",
+       MessageBoxButtons.YesNo,
+       MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+
+                MenuForm menu = new MenuForm();
+                menu.Show();
+
+
+                this.Close();
+            }
+        }
+
+       
     }
 }
 

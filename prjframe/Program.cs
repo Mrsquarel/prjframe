@@ -16,7 +16,7 @@ namespace prjframe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           
+            //Application.Run(new Form14());
             Application.Run(new MenuForm());
             
 

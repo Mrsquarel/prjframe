@@ -32,7 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.specialite = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxSpecialite = new System.Windows.Forms.ComboBox();
@@ -61,10 +60,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCIN = new System.Windows.Forms.TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -109,15 +109,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Bienvenue à HealthApp! ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::prjframe.Properties.Resources.vecteezy_molecules_or_dna_medical_structure_background_vector_design_9731054;
-            this.pictureBox2.Location = new System.Drawing.Point(-308, -321);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(2018, 1276);
-            this.pictureBox2.TabIndex = 13;
-            this.pictureBox2.TabStop = false;
             // 
             // panel1
             // 
@@ -166,36 +157,19 @@
             // 
             this.comboBoxSpecialite.FormattingEnabled = true;
             this.comboBoxSpecialite.Items.AddRange(new object[] {
-            "",
-            "",
+            "Cardiologie",
+            "Dermatologie",
+            "Pédiatrie",
+            "Neurologie",
+            "Orthopédie",
             "Gynécologie",
-            "",
-            "",
             "Ophtalmologie",
-            "",
-            "",
             "Psychiatrie",
-            "",
-            "",
             "Endocrinologie",
-            "",
-            "",
             "Gastroentérologie",
-            "",
-            "",
             "Oncologie",
-            "",
-            "",
             "Urologie",
-            "",
-            "",
-            "Rhumatologie",
-            "",
-            "",
-            "Chirurgie générale",
-            "",
-            "",
-            "Médecine interne"});
+            "Rhumatologie"});
             this.comboBoxSpecialite.Location = new System.Drawing.Point(266, 451);
             this.comboBoxSpecialite.Name = "comboBoxSpecialite";
             this.comboBoxSpecialite.Size = new System.Drawing.Size(257, 24);
@@ -207,42 +181,19 @@
             this.comboDepartement.FormattingEnabled = true;
             this.comboDepartement.Items.AddRange(new object[] {
             "Cardiologie",
-            "",
-            "",
             "Dermatologie",
-            "",
-            "",
             "Pédiatrie",
-            "",
-            "",
             "Neurologie",
-            "",
-            "",
             "Orthopédie",
-            "",
-            "",
             "Gynécologie",
-            "",
-            "",
             "Ophtalmologie",
-            "",
-            "",
             "Psychiatrie",
-            "",
-            "",
             "Endocrinologie",
-            "",
-            "",
             "Gastroentérologie",
-            "",
-            "",
             "Oncologie",
-            "",
-            "",
             "Urologie",
-            "",
-            "",
             "Rhumatologie",
+            "",
             "",
             "",
             "Chirurgie générale",
@@ -474,6 +425,16 @@
             this.txtCIN.Size = new System.Drawing.Size(259, 22);
             this.txtCIN.TabIndex = 22;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::prjframe.Properties.Resources.vecteezy_molecules_or_dna_medical_structure_background_vector_design_9731054;
+            this.pictureBox2.Location = new System.Drawing.Point(-308, -321);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(2018, 1276);
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // signin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -489,9 +450,9 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

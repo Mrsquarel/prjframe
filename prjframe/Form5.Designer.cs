@@ -40,16 +40,15 @@
             this.doctor_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtMotDePasse = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.annuler_btn = new System.Windows.Forms.Button();
             this.modifier_btn = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtPrenom = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
+            this.txtCIN = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@
             this.btnAnnulerDisponibilite = new System.Windows.Forms.Button();
             this.btnValiderDisponibilite = new System.Windows.Forms.Button();
             this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
+            this.comboBoxSpecialite = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
@@ -195,16 +195,16 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.comboBoxSpecialite);
+            this.groupBox1.Controls.Add(this.txtMotDePasse);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.annuler_btn);
             this.groupBox1.Controls.Add(this.modifier_btn);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtMail);
+            this.groupBox1.Controls.Add(this.txtTelephone);
+            this.groupBox1.Controls.Add(this.txtPrenom);
+            this.groupBox1.Controls.Add(this.txtNom);
+            this.groupBox1.Controls.Add(this.txtCIN);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -219,14 +219,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Personnelles";
             // 
-            // textBox7
+            // txtMotDePasse
             // 
-            this.textBox7.Location = new System.Drawing.Point(215, 358);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.PasswordChar = '*';
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(259, 28);
-            this.textBox7.TabIndex = 15;
+            this.txtMotDePasse.Location = new System.Drawing.Point(215, 358);
+            this.txtMotDePasse.Name = "txtMotDePasse";
+            this.txtMotDePasse.ReadOnly = true;
+            this.txtMotDePasse.Size = new System.Drawing.Size(259, 28);
+            this.txtMotDePasse.TabIndex = 15;
             // 
             // label10
             // 
@@ -245,6 +244,7 @@
             this.annuler_btn.TabIndex = 13;
             this.annuler_btn.Text = "Annuler";
             this.annuler_btn.UseVisualStyleBackColor = true;
+            this.annuler_btn.Click += new System.EventHandler(this.annuler_btn_Click);
             // 
             // modifier_btn
             // 
@@ -256,53 +256,45 @@
             this.modifier_btn.UseVisualStyleBackColor = true;
             this.modifier_btn.Click += new System.EventHandler(this.modifier_btn_Click);
             // 
-            // textBox6
+            // txtMail
             // 
-            this.textBox6.Location = new System.Drawing.Point(215, 296);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(259, 28);
-            this.textBox6.TabIndex = 11;
+            this.txtMail.Location = new System.Drawing.Point(215, 243);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.ReadOnly = true;
+            this.txtMail.Size = new System.Drawing.Size(259, 28);
+            this.txtMail.TabIndex = 10;
             // 
-            // textBox5
+            // txtTelephone
             // 
-            this.textBox5.Location = new System.Drawing.Point(215, 243);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(259, 28);
-            this.textBox5.TabIndex = 10;
+            this.txtTelephone.Location = new System.Drawing.Point(215, 198);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.ReadOnly = true;
+            this.txtTelephone.Size = new System.Drawing.Size(259, 28);
+            this.txtTelephone.TabIndex = 9;
             // 
-            // textBox4
+            // txtPrenom
             // 
-            this.textBox4.Location = new System.Drawing.Point(215, 198);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(259, 28);
-            this.textBox4.TabIndex = 9;
+            this.txtPrenom.Location = new System.Drawing.Point(215, 149);
+            this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.ReadOnly = true;
+            this.txtPrenom.Size = new System.Drawing.Size(259, 28);
+            this.txtPrenom.TabIndex = 8;
             // 
-            // textBox3
+            // txtNom
             // 
-            this.textBox3.Location = new System.Drawing.Point(215, 149);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(259, 28);
-            this.textBox3.TabIndex = 8;
+            this.txtNom.Location = new System.Drawing.Point(215, 97);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.ReadOnly = true;
+            this.txtNom.Size = new System.Drawing.Size(259, 28);
+            this.txtNom.TabIndex = 7;
             // 
-            // textBox2
+            // txtCIN
             // 
-            this.textBox2.Location = new System.Drawing.Point(215, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(259, 28);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(215, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(259, 28);
-            this.textBox1.TabIndex = 6;
+            this.txtCIN.Location = new System.Drawing.Point(215, 41);
+            this.txtCIN.Name = "txtCIN";
+            this.txtCIN.ReadOnly = true;
+            this.txtCIN.Size = new System.Drawing.Size(259, 28);
+            this.txtCIN.TabIndex = 6;
             // 
             // label9
             // 
@@ -403,6 +395,29 @@
             this.dataGridViewSchedule.Size = new System.Drawing.Size(709, 397);
             this.dataGridViewSchedule.TabIndex = 0;
             // 
+            // comboBoxSpecialite
+            // 
+            this.comboBoxSpecialite.Enabled = false;
+            this.comboBoxSpecialite.FormattingEnabled = true;
+            this.comboBoxSpecialite.Items.AddRange(new object[] {
+            "Cardiologie",
+            "Dermatologie",
+            "Pédiatrie",
+            "Neurologie",
+            "Orthopédie",
+            "Gynécologie",
+            "Ophtalmologie",
+            "Psychiatrie",
+            "Endocrinologie",
+            "Gastroentérologie",
+            "Oncologie",
+            "Urologie",
+            "Rhumatologie"});
+            this.comboBoxSpecialite.Location = new System.Drawing.Point(215, 296);
+            this.comboBoxSpecialite.Name = "comboBoxSpecialite";
+            this.comboBoxSpecialite.Size = new System.Drawing.Size(259, 30);
+            this.comboBoxSpecialite.TabIndex = 16;
+            // 
             // ProfileDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -445,16 +460,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button modifier_btn;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtPrenom;
+        private System.Windows.Forms.TextBox txtNom;
+        private System.Windows.Forms.TextBox txtCIN;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button annuler_btn;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtMotDePasse;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBoxDisponibilite;
         private System.Windows.Forms.DataGridView dataGridViewSchedule;
@@ -462,5 +476,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAnnulerDisponibilite;
         private System.Windows.Forms.Button btnValiderDisponibilite;
+        private System.Windows.Forms.ComboBox comboBoxSpecialite;
     }
 }

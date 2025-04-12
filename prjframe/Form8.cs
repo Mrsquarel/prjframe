@@ -75,9 +75,6 @@ namespace prjframe
             }
         }
 
-        private void ProfilePatient_Load(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
