@@ -40,7 +40,7 @@ namespace prjframe
                 // Email exists, check password
                 if (reader["MotDePasse"].ToString() == mdptxt.Text)
                 {
-                    MessageBox.Show("Bienvenue !");
+                    
                     this.Hide();
                     IdUtilisateur = Convert.ToInt32(reader["IdUtilisateur"]);
 

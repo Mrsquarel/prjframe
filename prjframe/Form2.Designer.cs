@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.date_label = new System.Windows.Forms.Label();
@@ -64,6 +64,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dataGridViewDisponibilites = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
+            this.ajouter_btn = new System.Windows.Forms.Button();
+            this.supprimer_btn = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
@@ -198,16 +200,16 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(25, 121);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(373, 244);
             this.chart1.TabIndex = 13;
             this.chart1.Text = "chart1";
@@ -310,10 +312,12 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.supprimer_btn);
+            this.panel5.Controls.Add(this.ajouter_btn);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.dataGridViewUsers);
             this.panel5.Controls.Add(this.label8);
-            this.panel5.Location = new System.Drawing.Point(12, 8);
+            this.panel5.Location = new System.Drawing.Point(52, 6);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1107, 435);
             this.panel5.TabIndex = 13;
@@ -330,11 +334,11 @@
             // dataGridViewUsers
             // 
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsers.Location = new System.Drawing.Point(25, 66);
+            this.dataGridViewUsers.Location = new System.Drawing.Point(72, 57);
             this.dataGridViewUsers.Name = "dataGridViewUsers";
             this.dataGridViewUsers.RowHeadersWidth = 51;
             this.dataGridViewUsers.RowTemplate.Height = 24;
-            this.dataGridViewUsers.Size = new System.Drawing.Size(1056, 347);
+            this.dataGridViewUsers.Size = new System.Drawing.Size(981, 311);
             this.dataGridViewUsers.TabIndex = 9;
             // 
             // label8
@@ -413,11 +417,11 @@
             // dataGridViewDisponibilites
             // 
             this.dataGridViewDisponibilites.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDisponibilites.Location = new System.Drawing.Point(45, 83);
+            this.dataGridViewDisponibilites.Location = new System.Drawing.Point(76, 83);
             this.dataGridViewDisponibilites.Name = "dataGridViewDisponibilites";
             this.dataGridViewDisponibilites.RowHeadersWidth = 51;
             this.dataGridViewDisponibilites.RowTemplate.Height = 24;
-            this.dataGridViewDisponibilites.Size = new System.Drawing.Size(1070, 345);
+            this.dataGridViewDisponibilites.Size = new System.Drawing.Size(1029, 345);
             this.dataGridViewDisponibilites.TabIndex = 9;
             this.dataGridViewDisponibilites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDisponibilites_CellContentClick);
             // 
@@ -430,6 +434,26 @@
             this.label9.Size = new System.Drawing.Size(306, 31);
             this.label9.TabIndex = 4;
             this.label9.Text = "Disponibilité Des Médecins";
+            // 
+            // ajouter_btn
+            // 
+            this.ajouter_btn.Location = new System.Drawing.Point(297, 386);
+            this.ajouter_btn.Name = "ajouter_btn";
+            this.ajouter_btn.Size = new System.Drawing.Size(153, 37);
+            this.ajouter_btn.TabIndex = 11;
+            this.ajouter_btn.Text = "Ajouter Utilisateur";
+            this.ajouter_btn.UseVisualStyleBackColor = true;
+            this.ajouter_btn.Click += new System.EventHandler(this.ajouter_btn_Click);
+            // 
+            // supprimer_btn
+            // 
+            this.supprimer_btn.Location = new System.Drawing.Point(629, 386);
+            this.supprimer_btn.Name = "supprimer_btn";
+            this.supprimer_btn.Size = new System.Drawing.Size(170, 37);
+            this.supprimer_btn.TabIndex = 12;
+            this.supprimer_btn.Text = "Supprimer Utilisateur";
+            this.supprimer_btn.UseVisualStyleBackColor = true;
+            this.supprimer_btn.Click += new System.EventHandler(this.supprimer_btn_Click);
             // 
             // adminpanel
             // 
@@ -508,5 +532,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridView dataGridViewDisponibilites;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button supprimer_btn;
+        private System.Windows.Forms.Button ajouter_btn;
     }
 }

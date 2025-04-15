@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace prjframe
     {
         private int _idUtilisateur;
         private OleDbConnection connection;
+        private int? newRowIndex = null;
 
         public adminpanel(int IdUtilisateur)
         {
@@ -50,30 +52,31 @@ namespace prjframe
                     {
                         string nom = reader["Nom"].ToString();
                         admin_name.Text = nom;
-                        
+
 
                     }
                 }
             }
             connection.Close();
             // data grid view for users
-            dataGridViewUsers.ColumnCount = 6;
-            dataGridViewUsers.Columns[0].Name = "CIN";
+
+            dataGridViewUsers.ColumnCount = 7;
+            dataGridViewUsers.Columns[0].Name = "IdUTILISATEUR";
             dataGridViewUsers.Columns[1].Name = "Nom";
             dataGridViewUsers.Columns[2].Name = "Prénom";
             dataGridViewUsers.Columns[3].Name = "Email";
-            dataGridViewUsers.Columns[4].Name = "Téléphone";
-            dataGridViewUsers.Columns[5].Name = "Rôle";
+            dataGridViewUsers.Columns[4].Name = "Rôle";
+            dataGridViewUsers.Columns[5].Name = "Téléphone";
+            dataGridViewUsers.Columns[6].Name = "CIN";
 
             dataGridViewUsers.RowHeadersVisible = false;
+            dataGridViewUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewUsers.MultiSelect = false;
+            dataGridViewUsers.AllowUserToAddRows = false;
+            dataGridViewUsers.Columns["IdUTILISATEUR"].ReadOnly = true;
 
-
-            // Example data
-            string[] row1 = { "12345678", "Dupont", "Alice", "alice@example.com", "20234567", "Admin" };
-            string[] row2 = { "11223344", "Ben Ali", "Karim", "karim@example.com", "98765432", "Médecin" };
-            dataGridViewUsers.Rows.Add(row1);
-            dataGridViewUsers.Rows.Add(row2);
-
+            //charger les utilisateurs
+            LoadUsers();
 
             //data grid view for disponibilites 
             dataGridViewDisponibilites.Columns.Clear();
@@ -85,7 +88,7 @@ namespace prjframe
             dataGridViewDisponibilites.Columns.Add("HeureDebut", "Heure Début");
             dataGridViewDisponibilites.Columns.Add("HeureFin", "Heure Fin");
 
-            dataGridViewDisponibilites.Columns["SemaineDebut"].Width = 250;  
+            dataGridViewDisponibilites.Columns["SemaineDebut"].Width = 250;
             dataGridViewDisponibilites.Columns["Jour"].Width = 120;
             dataGridViewDisponibilites.Columns["HeureDebut"].Width = 100;
             dataGridViewDisponibilites.Columns["HeureFin"].Width = 100;
@@ -136,6 +139,44 @@ namespace prjframe
             dataGridViewConsultations.RowHeadersVisible = false;
 
 
+        }
+        private void LoadUsers()
+        {
+            dataGridViewUsers.Rows.Clear();
+
+            string query = "SELECT IdUtilisateur, Nom, Prenom, Email , Role, Telephone, CIN " +
+                          "FROM Utilisateur";
+
+            connection.Open();
+
+            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            {
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int rowIndex = dataGridViewUsers.Rows.Add();
+
+                        dataGridViewUsers.Rows[rowIndex].Cells["IdUTILISATEUR"].Value = reader["IdUtilisateur"];
+                        dataGridViewUsers.Rows[rowIndex].Cells["Nom"].Value = reader["Nom"];
+                        dataGridViewUsers.Rows[rowIndex].Cells["Prénom"].Value = reader["Prenom"];
+                        dataGridViewUsers.Rows[rowIndex].Cells["Email"].Value = reader["Email"];
+                        dataGridViewUsers.Rows[rowIndex].Cells["Rôle"].Value = reader["Role"];
+                        dataGridViewUsers.Rows[rowIndex].Cells["Téléphone"].Value = reader["Telephone"];
+                        dataGridViewUsers.Rows[rowIndex].Cells["CIN"].Value = reader["CIN"];
+                    }
+
+                    if (dataGridViewUsers.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Aucun utilisateur trouvé.",
+                                        "Information",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                    }
+                }
+            }
+
+            connection.Close();
         }
         private void LoadDoctorNames()
         {
@@ -285,7 +326,7 @@ namespace prjframe
             }
             //si admin click sur supprimer
             else if (grid.Columns[e.ColumnIndex].Name == "Supprimer")
-            { 
+            {
                 if (MessageBox.Show("Supprimer cette disponibilité?", "Confirmation",
                                   MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {//si oui supprimer la ligne 
@@ -305,7 +346,96 @@ namespace prjframe
             }
         }
 
-      
+        private void ajouter_btn_Click(object sender, EventArgs e)
+        {
+            if (ajouter_btn.Text == "Ajouter Utilisateur")
+            {
+                // Remove any previous unsaved row
+                if (newRowIndex.HasValue && newRowIndex.Value < dataGridViewUsers.Rows.Count)
+                {
+                    dataGridViewUsers.Rows.RemoveAt(newRowIndex.Value);
+                }
+
+                // Add a new row to the DataGridView and allow the admin to edit it
+                newRowIndex = dataGridViewUsers.Rows.Add();
+                dataGridViewUsers.CurrentCell = dataGridViewUsers.Rows[newRowIndex.Value].Cells["Nom"]; // Set focus to the first editable cell
+                dataGridViewUsers.BeginEdit(true); // Start editing mode
+                ajouter_btn.Text = "Enregistrer"; // Change button text to "Save"
+            }
+            else // Button text is "Enregistrer"
+            {
+                if (!newRowIndex.HasValue || newRowIndex.Value >= dataGridViewUsers.Rows.Count)
+                {
+                    MessageBox.Show("No new row to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ajouter_btn.Text = "Ajouter Utilisateur"; // Reset button text
+                    newRowIndex = null;
+                    return;
+                }
+
+                // Validate the new row
+                DataGridViewRow row = dataGridViewUsers.Rows[newRowIndex.Value];
+                if (string.IsNullOrWhiteSpace(row.Cells["Nom"].Value?.ToString()) ||
+                    string.IsNullOrWhiteSpace(row.Cells["Prénom"].Value?.ToString()) ||
+                    string.IsNullOrWhiteSpace(row.Cells["Email"].Value?.ToString()) ||
+                    string.IsNullOrWhiteSpace(row.Cells["Rôle"].Value?.ToString()) ||
+                    string.IsNullOrWhiteSpace(row.Cells["Téléphone"].Value?.ToString()) ||
+                    string.IsNullOrWhiteSpace(row.Cells["CIN"].Value?.ToString()))
+                {
+                    MessageBox.Show("All fields are required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dataGridViewUsers.Rows.Remove(row); // Remove the incomplete row
+                    newRowIndex = null;
+                    ajouter_btn.Text = "Ajouter Utilisateur"; // Reset button text
+                    return;
+                }
+
+                // Insert the new user into the database, setting MotDePasse to the Email value
+                connection.Open();
+                string query = "INSERT INTO Utilisateur (Nom, Prenom, Email, MotDePasse, Role, Telephone, CIN) " +
+                               "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("?", row.Cells["Nom"].Value.ToString());
+                    cmd.Parameters.AddWithValue("?", row.Cells["Prénom"].Value.ToString());
+                    cmd.Parameters.AddWithValue("?", row.Cells["Email"].Value.ToString());
+                    cmd.Parameters.AddWithValue("?", row.Cells["Email"].Value.ToString()); // MotDePasse (same as Email)
+                    cmd.Parameters.AddWithValue("?", row.Cells["Rôle"].Value.ToString());
+                    cmd.Parameters.AddWithValue("?", row.Cells["Téléphone"].Value.ToString());
+                    cmd.Parameters.AddWithValue("?", row.Cells["CIN"].Value.ToString());
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+
+                newRowIndex = null; // Clear the new row index
+                ajouter_btn.Text = "Ajouter Utilisateur"; // Reset button text to "Ajouter Utilisateur"
+                LoadUsers(); // Refresh DataGridView
+            }
+        }
+
+        private void supprimer_btn_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewUsers.SelectedRows.Count > 0)
+            {
+                var result = MessageBox.Show("Vous etes sure de supprimer cet utilisateur", "Confirmer Suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    int userId = Convert.ToInt32(dataGridViewUsers.SelectedRows[0].Cells["IdUTILISATEUR"].Value);
+                    connection.Open();
+                    string query = "DELETE FROM Utilisateur WHERE IdUtilisateur = ?";
+                    using (OleDbCommand cmd = new OleDbCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("?", userId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    connection.Close();
+
+                    LoadUsers();
+                }
+                else
+                {
+                    MessageBox.Show("Selectionnez un utlisateur à supprimer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
 

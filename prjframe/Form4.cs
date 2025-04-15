@@ -17,12 +17,16 @@ namespace prjframe
     public partial class PatientDashboard : Form
     {
         private int _idUtilisateur;
+        private int idPatient = 0;
+        private int DoctorId = 0;
         private OleDbConnection connection;
+       
 
         public PatientDashboard(int idUtilisateur)
         {
             InitializeComponent();
             _idUtilisateur = idUtilisateur;
+           
             string dbPath = Path.Combine(Application.StartupPath, "DatabaseHealthApp.accdb");
             string connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};Persist Security Info=False;";
             connection = new OleDbConnection(connectionString);
@@ -32,12 +36,11 @@ namespace prjframe
         {
             dataGridViewHistorique.Columns.Clear();
 
-            // Add normal text columns
+           
             dataGridViewHistorique.Columns.Add("colDocteur", "Nom du Docteur");
             dataGridViewHistorique.Columns.Add("colConsultation", "Nom de Consultation");
             dataGridViewHistorique.Columns.Add("colNotes", "Notes");
 
-            // Add Dossier button column
             DataGridViewButtonColumn dossierBtn = new DataGridViewButtonColumn();
             dossierBtn.Name = "colDossier";
             dossierBtn.HeaderText = "Dossier";
@@ -45,7 +48,6 @@ namespace prjframe
             dossierBtn.UseColumnTextForButtonValue = true;
             dataGridViewHistorique.Columns.Add(dossierBtn);
 
-            // Add Prescription button column
             DataGridViewButtonColumn prescriptionBtn = new DataGridViewButtonColumn();
             prescriptionBtn.Name = "colPrescription";
             prescriptionBtn.HeaderText = "Prescription";
@@ -59,7 +61,7 @@ namespace prjframe
 
             dataGridViewHistorique.RowHeadersVisible = false;
 
-           //***************afficher la semaine**************************//
+            //***************afficher la semaine**************************//
             // Date d'aujourd'hui
             DateTime aujourdHui = DateTime.Today;
 
@@ -74,9 +76,23 @@ namespace prjframe
             string texte = $"DU {lundi:dddd d MMMM yyyy} au {samedi:dddd d MMMM yyyy}";
 
             label_week.Text = texte;
+
+            // Charger idPatient
+            
+
+            string query = "SELECT IdPatient FROM Patient WHERE IdUtilisateur = ?";
+            connection.Open();
+            OleDbCommand cmd2 = new OleDbCommand(query, connection);
+            cmd2.Parameters.AddWithValue("?", _idUtilisateur);
+            OleDbDataReader reader2 = cmd2.ExecuteReader();
+            if (reader2.Read())
+            {
+                idPatient = (int)reader2["IdPatient"];
+            }
+            connection.Close();
             //************************prendre rdv*******************************/
             LoadSpecialites();
-          
+
 
         }
         //charger les specilaites des docteurs pour prendre un rdv
@@ -109,9 +125,9 @@ namespace prjframe
         private void LoadDoctorNames(string specialty)
         {
             string query = "SELECT m.IdMedecin, u.Nom, u.Prenom " +
-                           "FROM Medecin m " +
-                           "INNER JOIN Utilisateur u ON m.IdUtilisateur = u.IdUtilisateur " +
-                           "WHERE m.Specialite = ?";
+                            "FROM Medecin m " +
+                            "INNER JOIN Utilisateur u ON m.IdUtilisateur = u.IdUtilisateur " +
+                            "WHERE m.Specialite = ?";
 
             OleDbCommand cmd = new OleDbCommand(query, connection);
             cmd.Parameters.AddWithValue("?", specialty);
@@ -144,71 +160,9 @@ namespace prjframe
         {
             if (comboBoxDoctors.SelectedItem == null) return;
             KeyValuePair<int, string> selectedDoctor = (KeyValuePair<int, string>)comboBoxDoctors.SelectedItem;
-            int doctorId = selectedDoctor.Key;
+            DoctorId = selectedDoctor.Key; 
+            LoadAvailableRDVs(DoctorId);
         }
-        //on charge ses dispo
-        private void LoadAvailableRDVs(int doctorId)
-        {
-            checkedListBoxRDV.Items.Clear();
-
-            DateTime now = DateTime.Now;
-            DateTime tomorrow = now.Date.AddDays(1); // le patient peut prendre un rdv à partir de demain
-            int daysLeft = 6 - (int)now.DayOfWeek;
-
-            Dictionary<string, int> frenchDayToIndex = new Dictionary<string, int>
-                    {
-                        { "Dimanche", 0 },
-                        { "Lundi", 1 },
-                        { "Mardi", 2 },
-                        { "Mercredi", 3 },
-                        { "Jeudi", 4 },
-                        { "Vendredi", 5 },
-                        { "Samedi", 6 }
-                    };
-
-            string query = "SELECT Jour, HeureDebut, HeureFin " +
-                           "FROM PlageHoraire " +
-                           "WHERE IdMedecin = ? AND EstValide = true AND Prise = false";
-
-            using (OleDbCommand cmd = new OleDbCommand(query, connection))
-            {
-                cmd.Parameters.AddWithValue("?", doctorId);
-                connection.Open();
-
-                using (OleDbDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        string jour = reader["Jour"].ToString();
-                        string heureDebutStr = reader["HeureDebut"].ToString();
-                        string heureFin = reader["HeureFin"].ToString();
-
-                        if (frenchDayToIndex.ContainsKey(jour))
-                        {
-                            int jourIndex = frenchDayToIndex[jour];
-                            int todayIndex = (int)now.DayOfWeek;
-                            int dayOffset = (jourIndex - todayIndex + 7) % 7;
-
-                            DateTime rdvDate = now.Date.AddDays(dayOffset);
-
-                           
-                            if (dayOffset > 0 && dayOffset <= daysLeft)
-                            {
-                                string rdv = $"{jour} ({heureDebutStr} - {heureFin})";
-                                checkedListBoxRDV.Items.Add(rdv);
-                            }
-                        }
-                    }
-                }
-
-                connection.Close();
-            }
-
-            if (checkedListBoxRDV.Items.Count == 0)
-                MessageBox.Show("Aucun rendez-vous disponible à réserver pour les jours suivants.");
-        }
-
-
         //choix d'un rdv 
         private void valider_btn_Click(object sender, EventArgs e)
         {
@@ -219,10 +173,137 @@ namespace prjframe
             }
 
             KeyValuePair<int, string> selectedDoctor = (KeyValuePair<int, string>)comboBoxDoctors.SelectedItem;
-            int doctorId = selectedDoctor.Key;
-
-            LoadAvailableRDVs(doctorId);
+            DoctorId = selectedDoctor.Key;
+            LoadAvailableRDVs(DoctorId); ;
         }
+        private void LoadAvailableRDVs(int doctorId)
+        {
+            checkedListBoxRDV.Items.Clear(); 
+            checkedListBoxRDV.DisplayMember = "Display"; 
+
+            DateTime now = DateTime.Now;
+            DateTime tomorrow = now.Date.AddDays(1); // le patient peut prendre un rdv à partir de demain
+            int daysLeft = 6 - (int)now.DayOfWeek;
+
+            Dictionary<string, int> frenchDayToIndex = new Dictionary<string, int>
+            {
+                { "Dimanche", 0 },
+                { "Lundi", 1 },
+                { "Mardi", 2 },
+                { "Mercredi", 3 },
+                { "Jeudi", 4 },
+                { "Vendredi", 5 },
+                { "Samedi", 6 }
+            };
+
+            
+            string query = "SELECT IdPlage, Jour, HeureDebut, HeureFin, SemaineDebut " +
+                           "FROM PlageHoraire " +
+                           "WHERE IdMedecin = ? AND EstValide = true AND Prise = false AND SemaineDebut = ?";
+
+            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("?", doctorId);
+                cmd.Parameters.AddWithValue("?", label_week.Text); 
+                connection.Open();
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int idPlage = Convert.ToInt32(reader["IdPlage"]);
+                        string jour = reader["Jour"].ToString();
+                        string heureDebutStr = reader["HeureDebut"].ToString();
+                        string heureFinStr = reader["HeureFin"].ToString();
+
+                        if (frenchDayToIndex.ContainsKey(jour))
+                        {
+                            int jourIndex = frenchDayToIndex[jour];
+                            int todayIndex = (int)now.DayOfWeek;
+                            int dayOffset = (jourIndex - todayIndex + 7) % 7;
+
+                            DateTime rdvDate = now.Date.AddDays(dayOffset);
+
+                            if (dayOffset > 0 && dayOffset <= daysLeft)
+                            {
+                                // Parse HeureDebut et HeureFin pour extraire seulement la partie des heures (HH:mm)
+                                DateTime heureDebut = Convert.ToDateTime(heureDebutStr);
+                                DateTime heureFin = Convert.ToDateTime(heureFinStr);
+
+                                string formattedHeureDebut = heureDebut.ToString("H:mm");
+                                string formattedHeureFin = heureFin.ToString("H:mm");
+
+                               
+                                string rdv = $"{jour} {formattedHeureDebut} - {formattedHeureFin}";
+
+                                // stocker lidplage avec la chiane du rdv pour faciliter la reservation
+                                checkedListBoxRDV.Items.Add(new { Display = rdv, IdPlage = idPlage }, false);
+                            }
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            checkedListBoxRDV.Refresh(); 
+
+            if (checkedListBoxRDV.Items.Count == 0)
+                MessageBox.Show("Aucun rendez-vous disponible à réserver pour les jours suivants.");
+        }
+
+        private void checkedListBoxRDV_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if(e.NewValue == CheckState.Checked)
+            {
+                for (int i = 0; i < checkedListBoxRDV.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        checkedListBoxRDV.SetItemChecked(i, false);
+                    }
+                }
+            }
+        }
+
+        /****reserver un rdv****/
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (checkedListBoxRDV.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Veuillez sélectionner un rendez-vous.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            
+            var selectedItem = checkedListBoxRDV.CheckedItems[0];
+            int idPlage = (int)selectedItem.GetType().GetProperty("IdPlage").GetValue(selectedItem);
+
+            connection.Open();
+            string updateQuery = "UPDATE PlageHoraire SET Prise = true WHERE IdPlage = ?";
+            using (OleDbCommand updateCmd = new OleDbCommand(updateQuery, connection))
+            {
+                updateCmd.Parameters.AddWithValue("?", idPlage);
+                updateCmd.ExecuteNonQuery();
+            }
+
+            string insertQuery = "INSERT INTO RendezVous (IdMedecin, IdPatient, IdPlage) " +
+                                 "VALUES (?, ?, ?)";
+            using (OleDbCommand insertCmd = new OleDbCommand(insertQuery, connection))
+            {
+                insertCmd.Parameters.AddWithValue("?", DoctorId); 
+                insertCmd.Parameters.AddWithValue("?", idPatient); 
+                insertCmd.Parameters.AddWithValue("?", idPlage);
+                insertCmd.ExecuteNonQuery();
+            }
+
+            connection.Close();
+
+            MessageBox.Show("Vous seriez notifés de la reservation de votre rdv!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadAvailableRDVs(DoctorId); 
+        }
+
+
         private void profile_pic_Click(object sender, EventArgs e)
         {
             ProfilePatient profile = new ProfilePatient(_idUtilisateur);
@@ -232,26 +313,25 @@ namespace prjframe
         private void logout_out_Click(object sender, EventArgs e)
         {
 
-            DialogResult result = MessageBox.Show(
-      "Voulez-vous vraiment vous déconnecter ?",
-      "Déconnexion",
-      MessageBoxButtons.YesNo,
-      MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show(
+          "Voulez-vous vraiment vous déconnecter ?",
+          "Déconnexion",
+          MessageBoxButtons.YesNo,
+          MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                // Open MenuForm
+                
                 MenuForm menu = new MenuForm();
                 menu.Show();
 
-                // Close current dashboard
+                
                 this.Close();
             }
         }
 
         
-        
 
-       
+
     }
 }

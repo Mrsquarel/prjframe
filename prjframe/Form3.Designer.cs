@@ -46,12 +46,8 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.ajouter_rdv_btn = new System.Windows.Forms.Button();
-            this.modifier_rdv_btn = new System.Windows.Forms.Button();
-            this.supprimer_rdv_btn = new System.Windows.Forms.Button();
             this.dataGridViewConfirmes = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,6 +63,7 @@
             this.secretary_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.semaine_label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -268,42 +265,12 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.ajouter_rdv_btn);
-            this.panel4.Controls.Add(this.modifier_rdv_btn);
-            this.panel4.Controls.Add(this.supprimer_rdv_btn);
             this.panel4.Controls.Add(this.dataGridViewConfirmes);
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Location = new System.Drawing.Point(11, 192);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(430, 289);
             this.panel4.TabIndex = 17;
-            // 
-            // ajouter_rdv_btn
-            // 
-            this.ajouter_rdv_btn.Location = new System.Drawing.Point(11, 252);
-            this.ajouter_rdv_btn.Name = "ajouter_rdv_btn";
-            this.ajouter_rdv_btn.Size = new System.Drawing.Size(100, 34);
-            this.ajouter_rdv_btn.TabIndex = 20;
-            this.ajouter_rdv_btn.Text = "Ajouter RDV";
-            this.ajouter_rdv_btn.UseVisualStyleBackColor = true;
-            // 
-            // modifier_rdv_btn
-            // 
-            this.modifier_rdv_btn.Location = new System.Drawing.Point(145, 252);
-            this.modifier_rdv_btn.Name = "modifier_rdv_btn";
-            this.modifier_rdv_btn.Size = new System.Drawing.Size(105, 34);
-            this.modifier_rdv_btn.TabIndex = 18;
-            this.modifier_rdv_btn.Text = "Modifier RDV";
-            this.modifier_rdv_btn.UseVisualStyleBackColor = true;
-            // 
-            // supprimer_rdv_btn
-            // 
-            this.supprimer_rdv_btn.Location = new System.Drawing.Point(294, 252);
-            this.supprimer_rdv_btn.Name = "supprimer_rdv_btn";
-            this.supprimer_rdv_btn.Size = new System.Drawing.Size(134, 34);
-            this.supprimer_rdv_btn.TabIndex = 19;
-            this.supprimer_rdv_btn.Text = "Supprimer RDV";
-            this.supprimer_rdv_btn.UseVisualStyleBackColor = true;
             // 
             // dataGridViewConfirmes
             // 
@@ -312,7 +279,7 @@
             this.dataGridViewConfirmes.Name = "dataGridViewConfirmes";
             this.dataGridViewConfirmes.RowHeadersWidth = 51;
             this.dataGridViewConfirmes.RowTemplate.Height = 24;
-            this.dataGridViewConfirmes.Size = new System.Drawing.Size(428, 154);
+            this.dataGridViewConfirmes.Size = new System.Drawing.Size(428, 217);
             this.dataGridViewConfirmes.TabIndex = 6;
             // 
             // panel6
@@ -320,21 +287,13 @@
             this.panel6.AutoSize = true;
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.comboBox1);
+            this.panel6.Controls.Add(this.semaine_label);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.panel6.Size = new System.Drawing.Size(428, 74);
             this.panel6.TabIndex = 5;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(401, 24);
-            this.comboBox1.TabIndex = 1;
             // 
             // label3
             // 
@@ -379,6 +338,7 @@
             this.dataGridViewDemandes.RowTemplate.Height = 24;
             this.dataGridViewDemandes.Size = new System.Drawing.Size(430, 158);
             this.dataGridViewDemandes.TabIndex = 2;
+            this.dataGridViewDemandes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDemandes_CellContentClick);
             // 
             // panel3
             // 
@@ -500,6 +460,17 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
+            // semaine_label
+            // 
+            this.semaine_label.AutoSize = true;
+            this.semaine_label.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.semaine_label.Location = new System.Drawing.Point(13, 28);
+            this.semaine_label.Name = "semaine_label";
+            this.semaine_label.Size = new System.Drawing.Size(73, 23);
+            this.semaine_label.TabIndex = 10;
+            this.semaine_label.Text = "semaine";
+            this.semaine_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // secretary_dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -559,14 +530,10 @@
         private System.Windows.Forms.Label date_label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewDemandes;
-        private System.Windows.Forms.Button modifier_rdv_btn;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridViewConfirmes;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button supprimer_rdv_btn;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button ajouter_rdv_btn;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button ajouter_paiement_btn;
         private System.Windows.Forms.Button valider_paiement_btn;
@@ -582,5 +549,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button rechercher_patient_btn;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label semaine_label;
     }
 }

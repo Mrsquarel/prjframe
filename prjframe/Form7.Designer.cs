@@ -221,7 +221,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(22, 151);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(511, 479);
+            this.groupBox1.Size = new System.Drawing.Size(1148, 479);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Personnelles";
@@ -244,14 +244,14 @@
             "Oncologie",
             "Urologie",
             "Rhumatologie"});
-            this.comboBoxDept.Location = new System.Drawing.Point(215, 296);
+            this.comboBoxDept.Location = new System.Drawing.Point(746, 100);
             this.comboBoxDept.Name = "comboBoxDept";
             this.comboBoxDept.Size = new System.Drawing.Size(259, 30);
             this.comboBoxDept.TabIndex = 16;
             // 
             // txtMotDePasse
             // 
-            this.txtMotDePasse.Location = new System.Drawing.Point(215, 358);
+            this.txtMotDePasse.Location = new System.Drawing.Point(746, 162);
             this.txtMotDePasse.Name = "txtMotDePasse";
             this.txtMotDePasse.ReadOnly = true;
             this.txtMotDePasse.Size = new System.Drawing.Size(259, 28);
@@ -260,7 +260,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(61, 358);
+            this.label10.Location = new System.Drawing.Point(592, 162);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 22);
             this.label10.TabIndex = 14;
@@ -268,7 +268,7 @@
             // 
             // annuler_btn
             // 
-            this.annuler_btn.Location = new System.Drawing.Point(353, 410);
+            this.annuler_btn.Location = new System.Drawing.Point(680, 356);
             this.annuler_btn.Name = "annuler_btn";
             this.annuler_btn.Size = new System.Drawing.Size(121, 41);
             this.annuler_btn.TabIndex = 13;
@@ -278,7 +278,7 @@
             // 
             // modifier_btn
             // 
-            this.modifier_btn.Location = new System.Drawing.Point(118, 410);
+            this.modifier_btn.Location = new System.Drawing.Point(404, 356);
             this.modifier_btn.Name = "modifier_btn";
             this.modifier_btn.Size = new System.Drawing.Size(132, 41);
             this.modifier_btn.TabIndex = 12;
@@ -288,7 +288,7 @@
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(215, 243);
+            this.txtMail.Location = new System.Drawing.Point(746, 47);
             this.txtMail.Name = "txtMail";
             this.txtMail.ReadOnly = true;
             this.txtMail.Size = new System.Drawing.Size(259, 28);
@@ -329,7 +329,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(61, 299);
+            this.label9.Location = new System.Drawing.Point(592, 103);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 22);
             this.label9.TabIndex = 5;
@@ -338,7 +338,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(61, 246);
+            this.label8.Location = new System.Drawing.Point(592, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 22);
             this.label8.TabIndex = 4;
