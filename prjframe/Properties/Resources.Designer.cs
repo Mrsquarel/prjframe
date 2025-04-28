@@ -63,6 +63,16 @@ namespace prjframe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Blue_Minimalist_Business_letterhead {
+            get {
+                object obj = ResourceManager.GetObject("Blue Minimalist Business letterhead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap futuristec_medical_background_modern_medical_blue_wallpaper_vector {
             get {
                 object obj = ResourceManager.GetObject("futuristec-medical-background-modern-medical-blue-wallpaper-vector", resourceCulture);

@@ -31,23 +31,19 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.rechercher_patient_btn = new System.Windows.Forms.Button();
+            this.textBox_search = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridViewDossiers = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.generer_facture_btn = new System.Windows.Forms.Button();
-            this.modifier_paiement_btn = new System.Windows.Forms.Button();
-            this.ajouter_paiement_btn = new System.Windows.Forms.Button();
-            this.valider_paiement_btn = new System.Windows.Forms.Button();
-            this.button3supprimer_paiement_btn = new System.Windows.Forms.Button();
             this.dataGridViewPaiements = new System.Windows.Forms.DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridViewConfirmes = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.semaine_label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,11 +55,10 @@
             this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dept = new System.Windows.Forms.Label();
+            this.dept_label = new System.Windows.Forms.Label();
             this.secretary_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.semaine_label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -113,8 +108,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.textBox1);
-            this.panel5.Controls.Add(this.rechercher_patient_btn);
+            this.panel5.Controls.Add(this.textBox_search);
+            this.panel5.Controls.Add(this.btnSearch);
             this.panel5.Controls.Add(this.dataGridViewDossiers);
             this.panel5.Controls.Add(this.panel8);
             this.panel5.Location = new System.Drawing.Point(498, 248);
@@ -122,27 +117,29 @@
             this.panel5.Size = new System.Drawing.Size(778, 230);
             this.panel5.TabIndex = 23;
             // 
-            // textBox1
+            // textBox_search
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(602, 22);
-            this.textBox1.TabIndex = 24;
+            this.textBox_search.Location = new System.Drawing.Point(4, 40);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(602, 22);
+            this.textBox_search.TabIndex = 24;
             // 
-            // rechercher_patient_btn
+            // btnSearch
             // 
-            this.rechercher_patient_btn.Location = new System.Drawing.Point(618, 37);
-            this.rechercher_patient_btn.Name = "rechercher_patient_btn";
-            this.rechercher_patient_btn.Size = new System.Drawing.Size(152, 28);
-            this.rechercher_patient_btn.TabIndex = 23;
-            this.rechercher_patient_btn.Text = "Rechercher Patient";
-            this.rechercher_patient_btn.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(618, 37);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(152, 28);
+            this.btnSearch.TabIndex = 23;
+            this.btnSearch.Text = "Rechercher Patient";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dataGridViewDossiers
             // 
             this.dataGridViewDossiers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDossiers.Location = new System.Drawing.Point(0, 76);
             this.dataGridViewDossiers.Name = "dataGridViewDossiers";
+            this.dataGridViewDossiers.ReadOnly = true;
             this.dataGridViewDossiers.RowHeadersWidth = 51;
             this.dataGridViewDossiers.RowTemplate.Height = 24;
             this.dataGridViewDossiers.Size = new System.Drawing.Size(778, 154);
@@ -173,11 +170,6 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.generer_facture_btn);
-            this.panel7.Controls.Add(this.modifier_paiement_btn);
-            this.panel7.Controls.Add(this.ajouter_paiement_btn);
-            this.panel7.Controls.Add(this.valider_paiement_btn);
-            this.panel7.Controls.Add(this.button3supprimer_paiement_btn);
             this.panel7.Controls.Add(this.dataGridViewPaiements);
             this.panel7.Controls.Add(this.panel11);
             this.panel7.Location = new System.Drawing.Point(498, 3);
@@ -185,60 +177,17 @@
             this.panel7.Size = new System.Drawing.Size(778, 230);
             this.panel7.TabIndex = 21;
             // 
-            // generer_facture_btn
-            // 
-            this.generer_facture_btn.Location = new System.Drawing.Point(618, 184);
-            this.generer_facture_btn.Name = "generer_facture_btn";
-            this.generer_facture_btn.Size = new System.Drawing.Size(158, 34);
-            this.generer_facture_btn.TabIndex = 22;
-            this.generer_facture_btn.Text = "Generer Facture";
-            this.generer_facture_btn.UseVisualStyleBackColor = true;
-            // 
-            // modifier_paiement_btn
-            // 
-            this.modifier_paiement_btn.Location = new System.Drawing.Point(158, 184);
-            this.modifier_paiement_btn.Name = "modifier_paiement_btn";
-            this.modifier_paiement_btn.Size = new System.Drawing.Size(136, 34);
-            this.modifier_paiement_btn.TabIndex = 21;
-            this.modifier_paiement_btn.Text = "Modifier Paiement";
-            this.modifier_paiement_btn.UseVisualStyleBackColor = true;
-            // 
-            // ajouter_paiement_btn
-            // 
-            this.ajouter_paiement_btn.Location = new System.Drawing.Point(2, 184);
-            this.ajouter_paiement_btn.Name = "ajouter_paiement_btn";
-            this.ajouter_paiement_btn.Size = new System.Drawing.Size(136, 34);
-            this.ajouter_paiement_btn.TabIndex = 20;
-            this.ajouter_paiement_btn.Text = "Ajouter Paiement";
-            this.ajouter_paiement_btn.UseVisualStyleBackColor = true;
-            // 
-            // valider_paiement_btn
-            // 
-            this.valider_paiement_btn.Location = new System.Drawing.Point(300, 184);
-            this.valider_paiement_btn.Name = "valider_paiement_btn";
-            this.valider_paiement_btn.Size = new System.Drawing.Size(133, 34);
-            this.valider_paiement_btn.TabIndex = 18;
-            this.valider_paiement_btn.Text = "Valider Paiement";
-            this.valider_paiement_btn.UseVisualStyleBackColor = true;
-            // 
-            // button3supprimer_paiement_btn
-            // 
-            this.button3supprimer_paiement_btn.Location = new System.Drawing.Point(454, 184);
-            this.button3supprimer_paiement_btn.Name = "button3supprimer_paiement_btn";
-            this.button3supprimer_paiement_btn.Size = new System.Drawing.Size(158, 34);
-            this.button3supprimer_paiement_btn.TabIndex = 19;
-            this.button3supprimer_paiement_btn.Text = "Supprimer Paiement";
-            this.button3supprimer_paiement_btn.UseVisualStyleBackColor = true;
-            // 
             // dataGridViewPaiements
             // 
             this.dataGridViewPaiements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPaiements.Location = new System.Drawing.Point(0, 25);
             this.dataGridViewPaiements.Name = "dataGridViewPaiements";
+            this.dataGridViewPaiements.ReadOnly = true;
             this.dataGridViewPaiements.RowHeadersWidth = 51;
             this.dataGridViewPaiements.RowTemplate.Height = 24;
-            this.dataGridViewPaiements.Size = new System.Drawing.Size(775, 154);
+            this.dataGridViewPaiements.Size = new System.Drawing.Size(775, 205);
             this.dataGridViewPaiements.TabIndex = 6;
+            this.dataGridViewPaiements.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPaiements_CellContentClick);
             // 
             // panel11
             // 
@@ -277,6 +226,7 @@
             this.dataGridViewConfirmes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewConfirmes.Location = new System.Drawing.Point(0, 72);
             this.dataGridViewConfirmes.Name = "dataGridViewConfirmes";
+            this.dataGridViewConfirmes.ReadOnly = true;
             this.dataGridViewConfirmes.RowHeadersWidth = 51;
             this.dataGridViewConfirmes.RowTemplate.Height = 24;
             this.dataGridViewConfirmes.Size = new System.Drawing.Size(428, 217);
@@ -294,6 +244,17 @@
             this.panel6.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.panel6.Size = new System.Drawing.Size(428, 74);
             this.panel6.TabIndex = 5;
+            // 
+            // semaine_label
+            // 
+            this.semaine_label.AutoSize = true;
+            this.semaine_label.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.semaine_label.Location = new System.Drawing.Point(13, 28);
+            this.semaine_label.Name = "semaine_label";
+            this.semaine_label.Size = new System.Drawing.Size(73, 23);
+            this.semaine_label.TabIndex = 10;
+            this.semaine_label.Text = "semaine";
+            this.semaine_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
@@ -349,7 +310,7 @@
             this.panel3.Controls.Add(this.logout_out);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.dept);
+            this.panel3.Controls.Add(this.dept_label);
             this.panel3.Controls.Add(this.secretary_name);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Location = new System.Drawing.Point(3, 3);
@@ -419,16 +380,16 @@
             this.label5.Text = "Date d\'aujourd\'hui:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dept
+            // dept_label
             // 
-            this.dept.AutoSize = true;
-            this.dept.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dept.Location = new System.Drawing.Point(81, 78);
-            this.dept.Name = "dept";
-            this.dept.Size = new System.Drawing.Size(127, 28);
-            this.dept.TabIndex = 2;
-            this.dept.Text = "Departement";
-            this.dept.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dept_label.AutoSize = true;
+            this.dept_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dept_label.Location = new System.Drawing.Point(81, 78);
+            this.dept_label.Name = "dept_label";
+            this.dept_label.Size = new System.Drawing.Size(127, 28);
+            this.dept_label.TabIndex = 2;
+            this.dept_label.Text = "Departement";
+            this.dept_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // secretary_name
             // 
@@ -459,17 +420,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
-            // 
-            // semaine_label
-            // 
-            this.semaine_label.AutoSize = true;
-            this.semaine_label.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.semaine_label.Location = new System.Drawing.Point(13, 28);
-            this.semaine_label.Name = "semaine_label";
-            this.semaine_label.Size = new System.Drawing.Size(73, 23);
-            this.semaine_label.TabIndex = 10;
-            this.semaine_label.Text = "semaine";
-            this.semaine_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // secretary_dashboard
             // 
@@ -521,7 +471,7 @@
         private System.Windows.Forms.PictureBox logout_out;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label dept;
+        private System.Windows.Forms.Label dept_label;
         private System.Windows.Forms.Label secretary_name;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -535,20 +485,15 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button ajouter_paiement_btn;
-        private System.Windows.Forms.Button valider_paiement_btn;
-        private System.Windows.Forms.Button button3supprimer_paiement_btn;
         private System.Windows.Forms.DataGridView dataGridViewPaiements;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button generer_facture_btn;
-        private System.Windows.Forms.Button modifier_paiement_btn;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataGridView dataGridViewDossiers;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button rechercher_patient_btn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox textBox_search;
         private System.Windows.Forms.Label semaine_label;
     }
 }

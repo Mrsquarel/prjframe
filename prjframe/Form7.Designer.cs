@@ -30,9 +30,7 @@
         {
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nbr_cons = new System.Windows.Forms.Label();
             this.date_label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.logout_out = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -68,9 +66,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel3.Controls.Add(this.pictureBox1);
-            this.panel3.Controls.Add(this.nbr_cons);
             this.panel3.Controls.Add(this.date_label);
-            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.logout_out);
             this.panel3.Controls.Add(this.label6);
@@ -93,38 +89,16 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // nbr_cons
-            // 
-            this.nbr_cons.AutoSize = true;
-            this.nbr_cons.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nbr_cons.Location = new System.Drawing.Point(1054, 89);
-            this.nbr_cons.Name = "nbr_cons";
-            this.nbr_cons.Size = new System.Drawing.Size(23, 28);
-            this.nbr_cons.TabIndex = 11;
-            this.nbr_cons.Text = "0";
-            this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // date_label
             // 
             this.date_label.AutoSize = true;
             this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(885, 50);
+            this.date_label.Location = new System.Drawing.Point(1062, 78);
             this.date_label.Name = "date_label";
             this.date_label.Size = new System.Drawing.Size(23, 28);
             this.date_label.TabIndex = 9;
             this.date_label.Text = "0";
             this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(686, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 28);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Nombre de consultations Par Semaine:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -150,7 +124,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(756, 78);
+            this.label6.Location = new System.Drawing.Point(933, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 28);
             this.label6.TabIndex = 5;
@@ -160,7 +134,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(686, 50);
+            this.label5.Location = new System.Drawing.Point(863, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 28);
             this.label5.TabIndex = 4;
@@ -413,8 +387,6 @@
         private System.Windows.Forms.Label dept_label;
         private System.Windows.Forms.Label secretary_name;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label nbr_cons;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtMotDePasse;
         private System.Windows.Forms.Label label10;

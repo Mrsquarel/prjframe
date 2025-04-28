@@ -6,11 +6,17 @@ using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace prjframe
 {
@@ -127,17 +133,40 @@ namespace prjframe
             dataGridViewConsultations.Columns[3].Width = 150;
 
 
-            // Example rows
-            string[] row5 = { "Semaine 1", "Dr. Martin", "Fatma A.", "08/04/2025" };
-            string[] row6 = { "Semaine 1", "Dr. Karim", "Sofien B.", "10/04/2025" };
-            string[] row7 = { "Semaine 2", "Dr. Martin", "Anis C.", "15/04/2025" };
-
-            dataGridViewConsultations.Rows.Add(row5);
-            dataGridViewConsultations.Rows.Add(row6);
-            dataGridViewConsultations.Rows.Add(row7);
-
+            foreach (DataGridViewColumn col in dataGridViewConsultations.Columns)
+            {
+                col.ReadOnly = true;
+            }
+            dataGridViewConsultations.AllowUserToAddRows = false;
+            dataGridViewConsultations.AllowUserToDeleteRows = false;
             dataGridViewConsultations.RowHeadersVisible = false;
 
+
+            LoadSemaineDebutComboBox();
+
+
+            // Configure the chart
+            chartConsultations.Series.Clear();
+            chartConsultations.ChartAreas.Clear();
+
+            ChartArea chartArea = new ChartArea("MainArea");
+            chartConsultations.ChartAreas.Add(chartArea);
+
+            Series series = new Series("Consultations")
+            {
+                ChartType = SeriesChartType.Column,
+                XValueType = ChartValueType.String,
+                YValueType = ChartValueType.Int32
+            };
+            chartConsultations.Series.Add(series);
+
+            chartConsultations.ChartAreas[0].AxisX.Title = "Semaine";
+            chartConsultations.ChartAreas[0].AxisY.Title = "Nombre de Consultations";
+            chartConsultations.ChartAreas[0].AxisX.Interval = 1;
+            chartConsultations.ChartAreas[0].AxisY.Minimum = 0;
+
+           
+            UpdateChart();
 
         }
         private void LoadUsers()
@@ -213,6 +242,154 @@ namespace prjframe
 
 
         }
+        private void LoadSemaineDebutComboBox()
+        {
+            try
+            {
+                const string sqlLoadSemaineDebut = @"
+                SELECT DISTINCT SemaineDebut
+                FROM PlageHoraire
+                ORDER BY SemaineDebut";
+
+                using (var cmd = new OleDbCommand(sqlLoadSemaineDebut, connection))
+                {
+                    Console.WriteLine("Executing sqlLoadSemaineDebut to load SemaineDebut values.");
+                    connection.Open();
+                    Console.WriteLine("Connection opened for sqlLoadSemaineDebut.");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        comboBoxSemaineDebut.Items.Clear();
+                        comboBoxSemaineDebut.Items.Add("All"); // Option to show all consultations
+                        while (reader.Read())
+                        {
+                            string semaineDebut = reader["SemaineDebut"].ToString();
+                            comboBoxSemaineDebut.Items.Add(semaineDebut);
+                            Console.WriteLine($"SemaineDebut added to comboBox: {semaineDebut}");
+                        }
+                    }
+                    connection.Close();
+                    Console.WriteLine("Connection closed after sqlLoadSemaineDebut.");
+                }
+
+                // Select "All" by default
+                comboBoxSemaineDebut.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in LoadSemaineDebutComboBox: {ex.Message}");
+                MessageBox.Show($"Une erreur est survenue lors du chargement des semaines : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                    Console.WriteLine("Connection closed after error.");
+                }
+            }
+        }
+        private void LoadConsultations(string semaineDebutFilter)
+        {
+            // 1) Récupérer la liste brute des rendez-vous + dates + SemaineDebut
+            var consults = new List<(int RdvId, DateTime Date, string SemaineDebut)>();
+            string sqlRaw = @"
+SELECT 
+    c.IdRendezVous, 
+    c.ConsultationDate,
+    ph.SemaineDebut
+FROM 
+    (Consultation AS c
+     INNER JOIN RendezVous   AS r  ON c.IdRendezVous = r.IdRendezVous)
+    INNER JOIN PlageHoraire AS ph ON r.IdPlage       = ph.IdPlage";
+            if (!string.IsNullOrEmpty(semaineDebutFilter) && semaineDebutFilter != "All")
+                sqlRaw += " WHERE ph.SemaineDebut = ?";
+
+            using (var cmd = new OleDbCommand(sqlRaw, connection))
+            {
+                if (sqlRaw.Contains("WHERE"))
+                    cmd.Parameters.AddWithValue("?", semaineDebutFilter);
+
+                connection.Open();
+                using (var rd = cmd.ExecuteReader())
+                    while (rd.Read())
+                        consults.Add((
+                            RdvId: Convert.ToInt32(rd["IdRendezVous"]),
+                            Date: Convert.ToDateTime(rd["ConsultationDate"]),
+                            SemaineDebut: rd["SemaineDebut"].ToString()
+                        ));
+                connection.Close();
+            }
+
+            dataGridViewConsultations.Rows.Clear();
+            if (consults.Count == 0) return;
+
+            // 2) Récupérer les noms des médecins
+            var rdvIds = consults.Select(c => c.RdvId).Distinct().ToList();
+            string inRdv = "(" + string.Join(",", rdvIds) + ")";
+            var medNames = new Dictionary<int, string>();
+            string sqlMed = $@"
+            SELECT 
+                r.IdRendezVous,
+                u.Nom & ' ' & u.Prenom AS FullName
+            FROM (RendezVous AS r
+                  INNER JOIN Medecin    AS m   ON r.IdMedecin    = m.IdMedecin)
+                 INNER JOIN Utilisateur AS u   ON m.IdUtilisateur = u.IdUtilisateur
+            WHERE r.IdRendezVous IN {inRdv}";
+            using (var cmd = new OleDbCommand(sqlMed, connection))
+            {
+                connection.Open();
+                using (var rd = cmd.ExecuteReader())
+                    while (rd.Read())
+                        medNames[(int)rd["IdRendezVous"]] = rd["FullName"].ToString();
+                connection.Close();
+            }
+
+            // 3) Récupérer les noms des patients
+            var rdvToPat = new Dictionary<int, int>();
+            string sqlRdvPat = $@"
+            SELECT IdRendezVous, IdPatient
+            FROM RendezVous
+            WHERE IdRendezVous IN {inRdv}";
+            using (var cmd = new OleDbCommand(sqlRdvPat, connection))
+            {
+                connection.Open();
+                using (var rd = cmd.ExecuteReader())
+                    while (rd.Read())
+                        rdvToPat[(int)rd["IdRendezVous"]] = Convert.ToInt32(rd["IdPatient"]);
+                connection.Close();
+            }
+
+            var patIds = rdvToPat.Values.Distinct().ToList();
+            string inPat = "(" + string.Join(",", patIds) + ")";
+            var patNames = new Dictionary<int, string>();
+            string sqlPat = $@"
+            SELECT 
+                p.IdPatient,
+                u.Nom & ' ' & u.Prenom AS FullName
+            FROM Patient      AS p
+            INNER JOIN Utilisateur AS u ON p.IdUtilisateur = u.IdUtilisateur
+            WHERE p.IdPatient IN {inPat}";
+            using (var cmd = new OleDbCommand(sqlPat, connection))
+            {
+                connection.Open();
+                using (var rd = cmd.ExecuteReader())
+                    while (rd.Read())
+                        patNames[(int)rd["IdPatient"]] = rd["FullName"].ToString();
+                connection.Close();
+            }
+
+            // 4) Construire les lignes du DataGridView, en utilisant SemaineDebut
+            foreach (var (rdvId, date, semDebut) in consults)
+            {
+                string semaine = semDebut;  // <-- directement depuis la colonne SemaineDebut
+                string medName = medNames.TryGetValue(rdvId, out var m) ? m : "—";
+                int patId = rdvToPat.TryGetValue(rdvId, out var pid) ? pid : 0;
+                string patName = patNames.TryGetValue(patId, out var p) ? p : "—";
+                string formattedDate = date.ToString("dd/MM/yyyy");
+
+                dataGridViewConsultations.Rows.Add(
+                    semaine, medName, patName, formattedDate
+                );
+            }
+        }
+
 
 
 
@@ -436,6 +613,198 @@ namespace prjframe
                 }
             }
         }
-    }
-}
 
+        private void comboBoxSemaineDebut_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedSemaineDebut = comboBoxSemaineDebut.SelectedItem?.ToString();
+            Console.WriteLine($"ComboBoxSemaineDebut selection changed: {selectedSemaineDebut}");
+            LoadConsultations(selectedSemaineDebut);
+        }
+
+
+        private void UpdateChart()
+        {
+            try
+            {
+                string sql = @"
+                SELECT 
+                    m.Specialite,
+                    COUNT(*) AS ConsultationCount
+                FROM (Consultation AS c
+                INNER JOIN RendezVous AS r ON c.IdRendezVous = r.IdRendezVous)
+                INNER JOIN Medecin AS m ON r.IdMedecin = m.IdMedecin
+                GROUP BY m.Specialite";
+
+                var consultationsByDept = new Dictionary<string, int>();
+
+                using (var cmd = new OleDbCommand(sql, connection))
+                {
+                    connection.Open();
+                    Console.WriteLine("Connection opened for UpdateChart.");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string dept = reader["Specialite"].ToString();
+                            int count = Convert.ToInt32(reader["ConsultationCount"]);
+                            consultationsByDept[dept] = count;
+                            Console.WriteLine($"Consultation counted: Dept={dept}, Count={count}");
+                        }
+                    }
+                    connection.Close();
+                    Console.WriteLine("Connection closed after UpdateChart query.");
+                }
+
+                // Update the chart
+                chartConsultations.Series["Consultations"].Points.Clear();
+                foreach (var kvp in consultationsByDept.OrderBy(k => k.Key))
+                {
+                    chartConsultations.Series["Consultations"].Points.AddXY(kvp.Key, kvp.Value);
+                    Console.WriteLine($"Chart point added: Dept={kvp.Key}, Count={kvp.Value}");
+                }
+
+                chartConsultations.Refresh();
+                Console.WriteLine($"Chart updated. Total departments displayed: {consultationsByDept.Count}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in UpdateChart: {ex.Message}");
+                MessageBox.Show($"Une erreur est survenue lors de la mise à jour du graphique : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                    Console.WriteLine("Connection closed after error.");
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create a SaveFileDialog to let the user choose where to save the PDF
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                    saveFileDialog.Title = "Export Chart as PDF";
+                    saveFileDialog.FileName = "ConsultationsByDepartment.pdf";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Save the chart as a temporary PNG file
+                        string tempImagePath = Path.Combine(Path.GetTempPath(), "chart.png");
+                        chartConsultations.SaveImage(tempImagePath, ChartImageFormat.Png);
+                        Console.WriteLine($"Chart saved as image: {tempImagePath}");
+
+                        // Create a new PDF document
+                        using (Document document = new Document(PageSize.A4, 50, 50, 50, 50))
+                        {
+                            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(saveFileDialog.FileName, FileMode.Create));
+                            document.Open();
+
+                            // Add a title to the PDF using FontFactory
+                            iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA, 18f, iTextSharp.text.Font.BOLD);
+                            Paragraph title = new Paragraph("Consultations by Department", titleFont);
+                            title.Alignment = Element.ALIGN_CENTER;
+                            document.Add(title);
+                            document.Add(new Paragraph("\n"));
+
+                            // Add the chart image to the PDF
+                            iTextSharp.text.Image chartImage = iTextSharp.text.Image.GetInstance(tempImagePath);
+                            chartImage.ScaleToFit(document.PageSize.Width - 100, document.PageSize.Height - 100);
+                            chartImage.Alignment = Element.ALIGN_CENTER;
+                            document.Add(chartImage);
+
+                            document.Close();
+                            writer.Close();
+                            Console.WriteLine($"PDF exported successfully: {saveFileDialog.FileName}");
+                        }
+
+                        // Clean up the temporary image file
+                        if (File.Exists(tempImagePath))
+                        {
+                            File.Delete(tempImagePath);
+                            Console.WriteLine($"Temporary image deleted: {tempImagePath}");
+                        }
+
+                        MessageBox.Show("Chart exported as PDF successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in BtnExportPDF_Click: {ex.Message}");
+                MessageBox.Show($"Une erreur est survenue lors de l'exportation en PDF : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Check if the DataGridView has data
+                if (dataGridViewConsultations.Rows.Count == 0)
+                {
+                    MessageBox.Show("Aucune donnée à exporter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Create a SaveFileDialog to let the user choose where to save the Excel file
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Export Consultations as Excel";
+                    saveFileDialog.FileName = "Consultations.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Create a new Excel application
+                        Excel.Application excelApp = new Excel.Application();
+                        Excel.Workbook workbook = excelApp.Workbooks.Add();
+                        Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+                        worksheet.Name = "Consultations";
+
+                        // Export column headers
+                        for (int i = 0; i < dataGridViewConsultations.Columns.Count; i++)
+                        {
+                            worksheet.Cells[1, i + 1] = dataGridViewConsultations.Columns[i].HeaderText;
+                            worksheet.Cells[1, i + 1].Font.Bold = true;
+                        }
+
+                        // Export data rows
+                        for (int i = 0; i < dataGridViewConsultations.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < dataGridViewConsultations.Columns.Count; j++)
+                            {
+                                var cellValue = dataGridViewConsultations.Rows[i].Cells[j].Value;
+                                worksheet.Cells[i + 2, j + 1] = cellValue != null ? cellValue.ToString() : "";
+                            }
+                        }
+
+                        // Auto-fit columns
+                        worksheet.Columns.AutoFit();
+
+                        // Save the Excel file
+                        workbook.SaveAs(saveFileDialog.FileName);
+                        workbook.Close();
+                        excelApp.Quit();
+
+                        // Release COM objects to avoid memory leaks
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+                        Console.WriteLine($"Excel file exported successfully: {saveFileDialog.FileName}");
+                        MessageBox.Show("Consultations exported as Excel successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in BtnExportExcel_Click: {ex.Message}");
+                MessageBox.Show($"Une erreur est survenue lors de l'exportation en Excel : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+    
+}

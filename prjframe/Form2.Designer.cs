@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.date_label = new System.Windows.Forms.Label();
@@ -41,18 +41,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.chartConsultations = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.dataGridViewConsultations = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.supprimer_btn = new System.Windows.Forms.Button();
+            this.ajouter_btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
@@ -64,14 +63,13 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dataGridViewDisponibilites = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.ajouter_btn = new System.Windows.Forms.Button();
-            this.supprimer_btn = new System.Windows.Forms.Button();
+            this.comboBoxSemaineDebut = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).BeginInit();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartConsultations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -179,9 +177,7 @@
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.button2);
-            this.panel7.Controls.Add(this.chart1);
-            this.panel7.Controls.Add(this.comboBox3);
-            this.panel7.Controls.Add(this.comboBox2);
+            this.panel7.Controls.Add(this.chartConsultations);
             this.panel7.Controls.Add(this.pictureBox3);
             this.panel7.Controls.Add(this.label10);
             this.panel7.Location = new System.Drawing.Point(13, 666);
@@ -197,38 +193,23 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Exporter en PDF";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // chart1
+            // chartConsultations
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
-            this.chart1.Location = new System.Drawing.Point(25, 121);
-            this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(373, 244);
-            this.chart1.TabIndex = 13;
-            this.chart1.Text = "chart1";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(76, 83);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(322, 24);
-            this.comboBox3.TabIndex = 12;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(76, 53);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(322, 24);
-            this.comboBox2.TabIndex = 11;
+            chartArea3.Name = "ChartArea1";
+            this.chartConsultations.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartConsultations.Legends.Add(legend3);
+            this.chartConsultations.Location = new System.Drawing.Point(25, 65);
+            this.chartConsultations.Name = "chartConsultations";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartConsultations.Series.Add(series3);
+            this.chartConsultations.Size = new System.Drawing.Size(373, 300);
+            this.chartConsultations.TabIndex = 13;
+            this.chartConsultations.Text = "chart1";
             // 
             // pictureBox3
             // 
@@ -252,9 +233,9 @@
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.comboBoxSemaineDebut);
             this.panel8.Controls.Add(this.button1);
             this.panel8.Controls.Add(this.pictureBox5);
-            this.panel8.Controls.Add(this.comboBox4);
             this.panel8.Controls.Add(this.dataGridViewConsultations);
             this.panel8.Controls.Add(this.label11);
             this.panel8.Location = new System.Drawing.Point(453, 666);
@@ -270,6 +251,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "Exporter en Excel";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox5
             // 
@@ -279,14 +261,6 @@
             this.pictureBox5.Size = new System.Drawing.Size(53, 45);
             this.pictureBox5.TabIndex = 12;
             this.pictureBox5.TabStop = false;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(72, 53);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(322, 24);
-            this.comboBox4.TabIndex = 14;
             // 
             // dataGridViewConsultations
             // 
@@ -321,6 +295,26 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1107, 435);
             this.panel5.TabIndex = 13;
+            // 
+            // supprimer_btn
+            // 
+            this.supprimer_btn.Location = new System.Drawing.Point(629, 386);
+            this.supprimer_btn.Name = "supprimer_btn";
+            this.supprimer_btn.Size = new System.Drawing.Size(170, 37);
+            this.supprimer_btn.TabIndex = 12;
+            this.supprimer_btn.Text = "Supprimer Utilisateur";
+            this.supprimer_btn.UseVisualStyleBackColor = true;
+            this.supprimer_btn.Click += new System.EventHandler(this.supprimer_btn_Click);
+            // 
+            // ajouter_btn
+            // 
+            this.ajouter_btn.Location = new System.Drawing.Point(297, 386);
+            this.ajouter_btn.Name = "ajouter_btn";
+            this.ajouter_btn.Size = new System.Drawing.Size(153, 37);
+            this.ajouter_btn.TabIndex = 11;
+            this.ajouter_btn.Text = "Ajouter Utilisateur";
+            this.ajouter_btn.UseVisualStyleBackColor = true;
+            this.ajouter_btn.Click += new System.EventHandler(this.ajouter_btn_Click);
             // 
             // pictureBox1
             // 
@@ -435,25 +429,14 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Disponibilité Des Médecins";
             // 
-            // ajouter_btn
+            // comboBoxSemaineDebut
             // 
-            this.ajouter_btn.Location = new System.Drawing.Point(297, 386);
-            this.ajouter_btn.Name = "ajouter_btn";
-            this.ajouter_btn.Size = new System.Drawing.Size(153, 37);
-            this.ajouter_btn.TabIndex = 11;
-            this.ajouter_btn.Text = "Ajouter Utilisateur";
-            this.ajouter_btn.UseVisualStyleBackColor = true;
-            this.ajouter_btn.Click += new System.EventHandler(this.ajouter_btn_Click);
-            // 
-            // supprimer_btn
-            // 
-            this.supprimer_btn.Location = new System.Drawing.Point(629, 386);
-            this.supprimer_btn.Name = "supprimer_btn";
-            this.supprimer_btn.Size = new System.Drawing.Size(170, 37);
-            this.supprimer_btn.TabIndex = 12;
-            this.supprimer_btn.Text = "Supprimer Utilisateur";
-            this.supprimer_btn.UseVisualStyleBackColor = true;
-            this.supprimer_btn.Click += new System.EventHandler(this.supprimer_btn_Click);
+            this.comboBoxSemaineDebut.FormattingEnabled = true;
+            this.comboBoxSemaineDebut.Location = new System.Drawing.Point(72, 53);
+            this.comboBoxSemaineDebut.Name = "comboBoxSemaineDebut";
+            this.comboBoxSemaineDebut.Size = new System.Drawing.Size(322, 24);
+            this.comboBoxSemaineDebut.TabIndex = 14;
+            this.comboBoxSemaineDebut.SelectedIndexChanged += new System.EventHandler(this.comboBoxSemaineDebut_SelectedIndexChanged);
             // 
             // adminpanel
             // 
@@ -476,7 +459,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartConsultations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -503,16 +486,13 @@
         private System.Windows.Forms.Label admin_name;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartConsultations;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.DataGridView dataGridViewConsultations;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -534,5 +514,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button supprimer_btn;
         private System.Windows.Forms.Button ajouter_btn;
+        private System.Windows.Forms.ComboBox comboBoxSemaineDebut;
     }
 }

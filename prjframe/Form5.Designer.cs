@@ -31,15 +31,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.date_label = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.nbr_cons = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.profile_pic = new System.Windows.Forms.PictureBox();
             this.logout_out = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.specialite = new System.Windows.Forms.Label();
             this.doctor_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxSpecialite = new System.Windows.Forms.ComboBox();
             this.txtMotDePasse = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.annuler_btn = new System.Windows.Forms.Button();
@@ -59,7 +58,6 @@
             this.btnAnnulerDisponibilite = new System.Windows.Forms.Button();
             this.btnValiderDisponibilite = new System.Windows.Forms.Button();
             this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
-            this.comboBoxSpecialite = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
@@ -74,11 +72,9 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel3.Controls.Add(this.date_label);
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.nbr_cons);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.profile_pic);
             this.panel3.Controls.Add(this.logout_out);
-            this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.specialite);
             this.panel3.Controls.Add(this.doctor_name);
             this.panel3.Controls.Add(this.label2);
@@ -91,7 +87,7 @@
             // 
             this.date_label.AutoSize = true;
             this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(932, 39);
+            this.date_label.Location = new System.Drawing.Point(1008, 78);
             this.date_label.Name = "date_label";
             this.date_label.Size = new System.Drawing.Size(23, 28);
             this.date_label.TabIndex = 11;
@@ -102,23 +98,12 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(747, 39);
+            this.label6.Location = new System.Drawing.Point(823, 78);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(179, 28);
             this.label6.TabIndex = 10;
             this.label6.Text = "Date d\'aujourd\'hui:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // nbr_cons
-            // 
-            this.nbr_cons.AutoSize = true;
-            this.nbr_cons.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nbr_cons.Location = new System.Drawing.Point(1111, 78);
-            this.nbr_cons.Name = "nbr_cons";
-            this.nbr_cons.Size = new System.Drawing.Size(23, 28);
-            this.nbr_cons.TabIndex = 9;
-            this.nbr_cons.Text = "0";
-            this.nbr_cons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
             // 
@@ -148,17 +133,6 @@
             this.logout_out.TabIndex = 6;
             this.logout_out.TabStop = false;
             this.logout_out.Click += new System.EventHandler(this.logout_out_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(747, 78);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(348, 28);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Nombre de consultations Par Semaine:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // specialite
             // 
@@ -218,6 +192,29 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Personnelles";
+            // 
+            // comboBoxSpecialite
+            // 
+            this.comboBoxSpecialite.Enabled = false;
+            this.comboBoxSpecialite.FormattingEnabled = true;
+            this.comboBoxSpecialite.Items.AddRange(new object[] {
+            "Cardiologie",
+            "Dermatologie",
+            "Pédiatrie",
+            "Neurologie",
+            "Orthopédie",
+            "Gynécologie",
+            "Ophtalmologie",
+            "Psychiatrie",
+            "Endocrinologie",
+            "Gastroentérologie",
+            "Oncologie",
+            "Urologie",
+            "Rhumatologie"});
+            this.comboBoxSpecialite.Location = new System.Drawing.Point(215, 296);
+            this.comboBoxSpecialite.Name = "comboBoxSpecialite";
+            this.comboBoxSpecialite.Size = new System.Drawing.Size(259, 30);
+            this.comboBoxSpecialite.TabIndex = 16;
             // 
             // txtMotDePasse
             // 
@@ -395,29 +392,6 @@
             this.dataGridViewSchedule.Size = new System.Drawing.Size(709, 397);
             this.dataGridViewSchedule.TabIndex = 0;
             // 
-            // comboBoxSpecialite
-            // 
-            this.comboBoxSpecialite.Enabled = false;
-            this.comboBoxSpecialite.FormattingEnabled = true;
-            this.comboBoxSpecialite.Items.AddRange(new object[] {
-            "Cardiologie",
-            "Dermatologie",
-            "Pédiatrie",
-            "Neurologie",
-            "Orthopédie",
-            "Gynécologie",
-            "Ophtalmologie",
-            "Psychiatrie",
-            "Endocrinologie",
-            "Gastroentérologie",
-            "Oncologie",
-            "Urologie",
-            "Rhumatologie"});
-            this.comboBoxSpecialite.Location = new System.Drawing.Point(215, 296);
-            this.comboBoxSpecialite.Name = "comboBoxSpecialite";
-            this.comboBoxSpecialite.Size = new System.Drawing.Size(259, 30);
-            this.comboBoxSpecialite.TabIndex = 16;
-            // 
             // ProfileDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -446,11 +420,9 @@
         #endregion
 
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label nbr_cons;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox profile_pic;
         private System.Windows.Forms.PictureBox logout_out;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label specialite;
         private System.Windows.Forms.Label doctor_name;
         private System.Windows.Forms.Label label2;

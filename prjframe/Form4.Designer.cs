@@ -43,20 +43,17 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewHistorique = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.date_label = new System.Windows.Forms.Label();
             this.nbr_cons = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.profile_pic = new System.Windows.Forms.PictureBox();
             this.logout_out = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.specialite = new System.Windows.Forms.Label();
-            this.doctor_name = new System.Windows.Forms.Label();
+            this.patient_name = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -79,10 +76,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(44, 154);
+            this.tabControl1.Location = new System.Drawing.Point(35, 172);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(770, 487);
+            this.tabControl1.Size = new System.Drawing.Size(1210, 487);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -99,7 +96,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(762, 458);
+            this.tabPage1.Size = new System.Drawing.Size(1202, 458);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Prendre un rendez-vous";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -108,7 +105,7 @@
             // 
             this.label_week.AutoSize = true;
             this.label_week.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_week.Location = new System.Drawing.Point(227, 191);
+            this.label_week.Location = new System.Drawing.Point(486, 183);
             this.label_week.Name = "label_week";
             this.label_week.Size = new System.Drawing.Size(64, 18);
             this.label_week.TabIndex = 12;
@@ -117,14 +114,14 @@
             // checkedListBoxRDV
             // 
             this.checkedListBoxRDV.FormattingEnabled = true;
-            this.checkedListBoxRDV.Location = new System.Drawing.Point(56, 212);
+            this.checkedListBoxRDV.Location = new System.Drawing.Point(291, 213);
             this.checkedListBoxRDV.Name = "checkedListBoxRDV";
             this.checkedListBoxRDV.Size = new System.Drawing.Size(584, 174);
             this.checkedListBoxRDV.TabIndex = 11;
             // 
             // valider_btn
             // 
-            this.valider_btn.Location = new System.Drawing.Point(455, 127);
+            this.valider_btn.Location = new System.Drawing.Point(714, 119);
             this.valider_btn.Name = "valider_btn";
             this.valider_btn.Size = new System.Drawing.Size(161, 30);
             this.valider_btn.TabIndex = 10;
@@ -136,7 +133,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 191);
+            this.label6.Location = new System.Drawing.Point(288, 183);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(168, 18);
             this.label6.TabIndex = 9;
@@ -144,7 +141,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(439, 415);
+            this.button2.Location = new System.Drawing.Point(698, 407);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(177, 30);
             this.button2.TabIndex = 8;
@@ -155,7 +152,7 @@
             // comboBoxDoctors
             // 
             this.comboBoxDoctors.FormattingEnabled = true;
-            this.comboBoxDoctors.Location = new System.Drawing.Point(230, 85);
+            this.comboBoxDoctors.Location = new System.Drawing.Point(489, 77);
             this.comboBoxDoctors.Name = "comboBoxDoctors";
             this.comboBoxDoctors.Size = new System.Drawing.Size(386, 24);
             this.comboBoxDoctors.TabIndex = 3;
@@ -165,7 +162,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 86);
+            this.label4.Location = new System.Drawing.Point(278, 78);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(170, 18);
             this.label4.TabIndex = 2;
@@ -176,49 +173,21 @@
             this.comboBoxSpecialite.FormattingEnabled = true;
             this.comboBoxSpecialite.Items.AddRange(new object[] {
             "Cardiologie",
-            "",
-            "",
             "Dermatologie",
-            "",
-            "",
             "Pédiatrie",
-            "",
-            "",
             "Neurologie",
-            "",
-            "",
             "Orthopédie",
-            "",
-            "",
             "Gynécologie",
-            "",
-            "",
             "Ophtalmologie",
-            "",
-            "",
             "Psychiatrie",
-            "",
-            "",
             "Endocrinologie",
-            "",
-            "",
             "Gastroentérologie",
-            "",
-            "",
             "Oncologie",
-            "",
-            "",
             "Urologie",
-            "",
-            "",
             "Rhumatologie",
-            "",
-            "",
             "Chirurgie générale",
-            "",
-            "",
             "Médecine interne"});
-            this.comboBoxSpecialite.Location = new System.Drawing.Point(230, 38);
+            this.comboBoxSpecialite.Location = new System.Drawing.Point(489, 30);
             this.comboBoxSpecialite.Name = "comboBoxSpecialite";
             this.comboBoxSpecialite.Size = new System.Drawing.Size(386, 24);
             this.comboBoxSpecialite.TabIndex = 1;
@@ -228,7 +197,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(19, 44);
+            this.label3.Location = new System.Drawing.Point(278, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(183, 18);
             this.label3.TabIndex = 0;
@@ -241,7 +210,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(762, 458);
+            this.tabPage2.Size = new System.Drawing.Size(1202, 458);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mes consultations";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -249,12 +218,14 @@
             // dataGridViewHistorique
             // 
             this.dataGridViewHistorique.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistorique.Location = new System.Drawing.Point(55, 52);
+            this.dataGridViewHistorique.Location = new System.Drawing.Point(46, 52);
             this.dataGridViewHistorique.Name = "dataGridViewHistorique";
+            this.dataGridViewHistorique.ReadOnly = true;
             this.dataGridViewHistorique.RowHeadersWidth = 51;
             this.dataGridViewHistorique.RowTemplate.Height = 24;
-            this.dataGridViewHistorique.Size = new System.Drawing.Size(653, 387);
+            this.dataGridViewHistorique.Size = new System.Drawing.Size(1102, 387);
             this.dataGridViewHistorique.TabIndex = 16;
+            this.dataGridViewHistorique.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHistorique_CellContentClick);
             // 
             // label9
             // 
@@ -266,59 +237,46 @@
             this.label9.TabIndex = 13;
             this.label9.Text = "Historique des consultation";
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Location = new System.Drawing.Point(861, 467);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(381, 174);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(857, 179);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(201, 20);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Prochains rendez vous";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(857, 421);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 20);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Notifications";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox2.Location = new System.Drawing.Point(861, 214);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(381, 174);
-            this.richTextBox2.TabIndex = 11;
-            this.richTextBox2.Text = "";
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.date_label);
             this.panel3.Controls.Add(this.nbr_cons);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.profile_pic);
             this.panel3.Controls.Add(this.logout_out);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.specialite);
-            this.panel3.Controls.Add(this.doctor_name);
+            this.panel3.Controls.Add(this.patient_name);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1284, 126);
             this.panel3.TabIndex = 13;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.Location = new System.Drawing.Point(815, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(184, 28);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Date d\'aujourd\'hui :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // date_label
+            // 
+            this.date_label.AutoSize = true;
+            this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.date_label.Location = new System.Drawing.Point(1058, 78);
+            this.date_label.Name = "date_label";
+            this.date_label.Size = new System.Drawing.Size(23, 28);
+            this.date_label.TabIndex = 10;
+            this.date_label.Text = "0";
+            this.date_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // nbr_cons
             // 
@@ -379,16 +337,16 @@
             this.specialite.TabIndex = 2;
             this.specialite.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // doctor_name
+            // patient_name
             // 
-            this.doctor_name.AutoSize = true;
-            this.doctor_name.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doctor_name.Location = new System.Drawing.Point(260, 30);
-            this.doctor_name.Name = "doctor_name";
-            this.doctor_name.Size = new System.Drawing.Size(215, 45);
-            this.doctor_name.TabIndex = 3;
-            this.doctor_name.Text = "nom_patient";
-            this.doctor_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.patient_name.AutoSize = true;
+            this.patient_name.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patient_name.Location = new System.Drawing.Point(263, 26);
+            this.patient_name.Name = "patient_name";
+            this.patient_name.Size = new System.Drawing.Size(215, 45);
+            this.patient_name.TabIndex = 3;
+            this.patient_name.Text = "nom_patient";
+            this.patient_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label10
             // 
@@ -401,29 +359,14 @@
             this.label10.Text = "Bienvenue  ";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1017, 172);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 28);
-            this.label1.TabIndex = 5;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // PatientDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 671);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.richTextBox1);
             this.Name = "PatientDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard Patient";
@@ -440,7 +383,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -454,25 +396,22 @@
         private System.Windows.Forms.ComboBox comboBoxDoctors;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label nbr_cons;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox profile_pic;
         private System.Windows.Forms.PictureBox logout_out;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label specialite;
-        private System.Windows.Forms.Label doctor_name;
+        private System.Windows.Forms.Label patient_name;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckedListBox checkedListBoxRDV;
         private System.Windows.Forms.Button valider_btn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridViewHistorique;
         private System.Windows.Forms.Label label_week;
+        private System.Windows.Forms.Label date_label;
+        private System.Windows.Forms.Label label1;
     }
 }

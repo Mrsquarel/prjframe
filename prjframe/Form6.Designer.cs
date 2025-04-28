@@ -235,7 +235,7 @@
             // 
             this.date_label.AutoSize = true;
             this.date_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_label.Location = new System.Drawing.Point(823, 96);
+            this.date_label.Location = new System.Drawing.Point(1018, 90);
             this.date_label.Name = "date_label";
             this.date_label.Size = new System.Drawing.Size(23, 28);
             this.date_label.TabIndex = 9;
@@ -276,7 +276,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(777, 68);
+            this.label5.Location = new System.Drawing.Point(821, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 28);
             this.label5.TabIndex = 4;

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -48,7 +48,6 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.logout_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.date_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,7 +56,7 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.prochain_patient = new System.Windows.Forms.Label();
+            this.lblNextPatient = new System.Windows.Forms.Label();
             this.nbr_cons = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.profile_pic = new System.Windows.Forms.PictureBox();
@@ -68,6 +67,7 @@
             this.doctor_name = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -89,12 +89,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.panel10);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.logout_btn);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.panel9);
@@ -102,15 +100,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1230, 484);
             this.panel1.TabIndex = 0;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(906, 419);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(271, 34);
-            this.button7.TabIndex = 16;
-            this.button7.Text = "ajouter nouveau document medical";
-            this.button7.UseVisualStyleBackColor = true;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel10
             // 
@@ -134,6 +124,7 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Historique des documents médicaux";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // button3
             // 
@@ -155,9 +146,12 @@
             // 
             // dataGridView2
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.ColumnHeadersHeight = 29;
             this.dataGridView2.Location = new System.Drawing.Point(1, 28);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(393, 158);
@@ -217,8 +211,9 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(188, 34);
             this.button5.TabIndex = 13;
-            this.button5.Text = "generer prescription PDF";
+            this.button5.Text = "donner prescription";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -228,6 +223,7 @@
             this.button4.TabIndex = 12;
             this.button4.Text = "enregistrer consultation";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button1
             // 
@@ -245,6 +241,7 @@
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Location = new System.Drawing.Point(7, 38);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(490, 108);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
@@ -305,15 +302,6 @@
             this.label4.Text = "Dossier médical patient";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // logout_btn
-            // 
-            this.logout_btn.Location = new System.Drawing.Point(44, 419);
-            this.logout_btn.Name = "logout_btn";
-            this.logout_btn.Size = new System.Drawing.Size(161, 34);
-            this.logout_btn.TabIndex = 4;
-            this.logout_btn.Text = "rechercher patient";
-            this.logout_btn.UseVisualStyleBackColor = true;
-            // 
             // panel2
             // 
             this.panel2.AutoSize = true;
@@ -354,10 +342,12 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 74);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(266, 339);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel9
             // 
@@ -372,10 +362,12 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(0, 32);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.Size = new System.Drawing.Size(398, 171);
             this.dataGridView3.TabIndex = 6;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // tableLayoutPanel1
             // 
@@ -394,7 +386,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel3.Controls.Add(this.prochain_patient);
+            this.panel3.Controls.Add(this.lblNextPatient);
             this.panel3.Controls.Add(this.nbr_cons);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.profile_pic);
@@ -409,16 +401,16 @@
             this.panel3.Size = new System.Drawing.Size(1280, 126);
             this.panel3.TabIndex = 0;
             // 
-            // prochain_patient
+            // lblNextPatient
             // 
-            this.prochain_patient.AutoSize = true;
-            this.prochain_patient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prochain_patient.Location = new System.Drawing.Point(980, 78);
-            this.prochain_patient.Name = "prochain_patient";
-            this.prochain_patient.Size = new System.Drawing.Size(119, 28);
-            this.prochain_patient.TabIndex = 10;
-            this.prochain_patient.Text = "nom patient";
-            this.prochain_patient.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNextPatient.AutoSize = true;
+            this.lblNextPatient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNextPatient.Location = new System.Drawing.Point(919, 78);
+            this.lblNextPatient.Name = "lblNextPatient";
+            this.lblNextPatient.Size = new System.Drawing.Size(119, 28);
+            this.lblNextPatient.TabIndex = 10;
+            this.lblNextPatient.Text = "nom patient";
+            this.lblNextPatient.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // nbr_cons
             // 
@@ -466,9 +458,9 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(756, 78);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(218, 28);
+            this.label6.Size = new System.Drawing.Size(157, 28);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Prochaine Consultation:\r\n";
+            this.label6.Text = "Prochain Patient:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
@@ -523,6 +515,11 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Interval = 1800000;
+            this.refreshTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // DoctorDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -573,7 +570,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button logout_btn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label doctor_name;
         private System.Windows.Forms.Label label2;
@@ -603,11 +599,11 @@
         private System.Windows.Forms.PictureBox profile_pic;
         private System.Windows.Forms.PictureBox logout_out;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label prochain_patient;
+        private System.Windows.Forms.Label lblNextPatient;
         private System.Windows.Forms.Label nbr_cons;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label date_label;
+        private System.Windows.Forms.Timer refreshTimer;
     }
 }
 

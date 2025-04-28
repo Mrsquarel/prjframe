@@ -29,47 +29,50 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtSexe = new System.Windows.Forms.TextBox();
+            this.txtAssurance = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtDateNaisance = new System.Windows.Forms.TextBox();
+            this.txtPrenom = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.annuler_btn = new System.Windows.Forms.Button();
-            this.modifier_btn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.specialite = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridViewHistorique = new System.Windows.Forms.DataGridView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.profile_pic = new System.Windows.Forms.PictureBox();
             this.logout_out = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnAddDocument = new System.Windows.Forms.Button();
+            this.btnAddHistory = new System.Windows.Forms.Button();
+            this.btnDeleteHistory = new System.Windows.Forms.Button();
+            this.dataGridViewDocuments = new System.Windows.Forms.DataGridView();
+            this.dataGridViewHistorique = new System.Windows.Forms.DataGridView();
+            this.btnDeleteDocument = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorique)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorique)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.txtSexe);
+            this.groupBox1.Controls.Add(this.txtAssurance);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtNom);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtTelephone);
+            this.groupBox1.Controls.Add(this.txtDateNaisance);
+            this.groupBox1.Controls.Add(this.txtPrenom);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label3);
@@ -82,24 +85,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Personnelles";
             // 
-            // comboBox1
+            // txtSexe
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Masculin",
-            "Feminin"});
-            this.comboBox1.Location = new System.Drawing.Point(818, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(259, 30);
-            this.comboBox1.TabIndex = 14;
+            this.txtSexe.Location = new System.Drawing.Point(818, 39);
+            this.txtSexe.Name = "txtSexe";
+            this.txtSexe.ReadOnly = true;
+            this.txtSexe.Size = new System.Drawing.Size(259, 28);
+            this.txtSexe.TabIndex = 15;
             // 
-            // textBox6
+            // txtAssurance
             // 
-            this.textBox6.Location = new System.Drawing.Point(818, 142);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(259, 28);
-            this.textBox6.TabIndex = 14;
+            this.txtAssurance.Location = new System.Drawing.Point(818, 142);
+            this.txtAssurance.Name = "txtAssurance";
+            this.txtAssurance.ReadOnly = true;
+            this.txtAssurance.Size = new System.Drawing.Size(259, 28);
+            this.txtAssurance.TabIndex = 14;
             // 
             // label5
             // 
@@ -110,13 +110,13 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "Assurance:";
             // 
-            // textBox1
+            // txtNom
             // 
-            this.textBox1.Location = new System.Drawing.Point(190, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(259, 28);
-            this.textBox1.TabIndex = 12;
+            this.txtNom.Location = new System.Drawing.Point(190, 42);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.ReadOnly = true;
+            this.txtNom.Size = new System.Drawing.Size(259, 28);
+            this.txtNom.TabIndex = 12;
             // 
             // label4
             // 
@@ -127,29 +127,29 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Télèphone:";
             // 
-            // textBox4
+            // txtTelephone
             // 
-            this.textBox4.Location = new System.Drawing.Point(818, 93);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(259, 28);
-            this.textBox4.TabIndex = 9;
+            this.txtTelephone.Location = new System.Drawing.Point(818, 93);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.ReadOnly = true;
+            this.txtTelephone.Size = new System.Drawing.Size(259, 28);
+            this.txtTelephone.TabIndex = 9;
             // 
-            // textBox3
+            // txtDateNaisance
             // 
-            this.textBox3.Location = new System.Drawing.Point(190, 142);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(259, 28);
-            this.textBox3.TabIndex = 8;
+            this.txtDateNaisance.Location = new System.Drawing.Point(190, 142);
+            this.txtDateNaisance.Name = "txtDateNaisance";
+            this.txtDateNaisance.ReadOnly = true;
+            this.txtDateNaisance.Size = new System.Drawing.Size(259, 28);
+            this.txtDateNaisance.TabIndex = 8;
             // 
-            // textBox2
+            // txtPrenom
             // 
-            this.textBox2.Location = new System.Drawing.Point(190, 87);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(259, 28);
-            this.textBox2.TabIndex = 7;
+            this.txtPrenom.Location = new System.Drawing.Point(190, 87);
+            this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.ReadOnly = true;
+            this.txtPrenom.Size = new System.Drawing.Size(259, 28);
+            this.txtPrenom.TabIndex = 7;
             // 
             // label8
             // 
@@ -187,82 +187,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nom:";
             // 
-            // annuler_btn
-            // 
-            this.annuler_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.annuler_btn.Location = new System.Drawing.Point(806, 691);
-            this.annuler_btn.Name = "annuler_btn";
-            this.annuler_btn.Size = new System.Drawing.Size(121, 41);
-            this.annuler_btn.TabIndex = 13;
-            this.annuler_btn.Text = "Annuler";
-            this.annuler_btn.UseVisualStyleBackColor = true;
-            // 
-            // modifier_btn
-            // 
-            this.modifier_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifier_btn.Location = new System.Drawing.Point(301, 691);
-            this.modifier_btn.Name = "modifier_btn";
-            this.modifier_btn.Size = new System.Drawing.Size(139, 41);
-            this.modifier_btn.TabIndex = 12;
-            this.modifier_btn.Text = "Modifier";
-            this.modifier_btn.UseVisualStyleBackColor = true;
-            this.modifier_btn.Click += new System.EventHandler(this.modifier_btn_Click);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.profile_pic);
             this.panel3.Controls.Add(this.logout_out);
-            this.panel3.Controls.Add(this.specialite);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Location = new System.Drawing.Point(-3, 1);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1295, 123);
             this.panel3.TabIndex = 4;
-            // 
-            // specialite
-            // 
-            this.specialite.AutoSize = true;
-            this.specialite.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.specialite.Location = new System.Drawing.Point(81, 78);
-            this.specialite.Name = "specialite";
-            this.specialite.Size = new System.Drawing.Size(96, 28);
-            this.specialite.TabIndex = 2;
-            this.specialite.Text = "Spécialité";
-            this.specialite.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(72, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(340, 45);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Informations Patient";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dataGridViewHistorique);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 342);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1240, 319);
-            this.groupBox2.TabIndex = 14;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Historique Médical";
-            // 
-            // dataGridViewHistorique
-            // 
-            this.dataGridViewHistorique.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistorique.Location = new System.Drawing.Point(24, 39);
-            this.dataGridViewHistorique.Name = "dataGridViewHistorique";
-            this.dataGridViewHistorique.RowHeadersWidth = 51;
-            this.dataGridViewHistorique.RowTemplate.Height = 24;
-            this.dataGridViewHistorique.Size = new System.Drawing.Size(1190, 259);
-            this.dataGridViewHistorique.TabIndex = 0;
             // 
             // pictureBox3
             // 
@@ -293,14 +228,104 @@
             this.logout_out.TabStop = false;
             this.logout_out.Click += new System.EventHandler(this.logout_out_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(72, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(340, 45);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Informations Patient";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnAddDocument);
+            this.groupBox2.Controls.Add(this.btnAddHistory);
+            this.groupBox2.Controls.Add(this.btnDeleteHistory);
+            this.groupBox2.Controls.Add(this.dataGridViewDocuments);
+            this.groupBox2.Controls.Add(this.dataGridViewHistorique);
+            this.groupBox2.Controls.Add(this.btnDeleteDocument);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(12, 342);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1240, 412);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Historique Médical";
+            // 
+            // btnAddDocument
+            // 
+            this.btnAddDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddDocument.Location = new System.Drawing.Point(732, 354);
+            this.btnAddDocument.Name = "btnAddDocument";
+            this.btnAddDocument.Size = new System.Drawing.Size(113, 33);
+            this.btnAddDocument.TabIndex = 19;
+            this.btnAddDocument.Text = "Ajouter";
+            this.btnAddDocument.UseVisualStyleBackColor = true;
+            this.btnAddDocument.Click += new System.EventHandler(this.btnAddDocument_Click);
+            // 
+            // btnAddHistory
+            // 
+            this.btnAddHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddHistory.Location = new System.Drawing.Point(151, 354);
+            this.btnAddHistory.Name = "btnAddHistory";
+            this.btnAddHistory.Size = new System.Drawing.Size(118, 33);
+            this.btnAddHistory.TabIndex = 18;
+            this.btnAddHistory.Text = "Ajouter";
+            this.btnAddHistory.UseVisualStyleBackColor = true;
+            this.btnAddHistory.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnDeleteHistory
+            // 
+            this.btnDeleteHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteHistory.Location = new System.Drawing.Point(335, 354);
+            this.btnDeleteHistory.Name = "btnDeleteHistory";
+            this.btnDeleteHistory.Size = new System.Drawing.Size(130, 33);
+            this.btnDeleteHistory.TabIndex = 17;
+            this.btnDeleteHistory.Text = "Supprimer";
+            this.btnDeleteHistory.UseVisualStyleBackColor = true;
+            this.btnDeleteHistory.Click += new System.EventHandler(this.btnDeleteHistory_Click);
+            // 
+            // dataGridViewDocuments
+            // 
+            this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDocuments.Location = new System.Drawing.Point(641, 49);
+            this.dataGridViewDocuments.Name = "dataGridViewDocuments";
+            this.dataGridViewDocuments.RowHeadersWidth = 51;
+            this.dataGridViewDocuments.RowTemplate.Height = 24;
+            this.dataGridViewDocuments.Size = new System.Drawing.Size(589, 288);
+            this.dataGridViewDocuments.TabIndex = 15;
+            this.dataGridViewDocuments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocuments_CellContentClick);
+            // 
+            // dataGridViewHistorique
+            // 
+            this.dataGridViewHistorique.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHistorique.Location = new System.Drawing.Point(24, 49);
+            this.dataGridViewHistorique.Name = "dataGridViewHistorique";
+            this.dataGridViewHistorique.RowHeadersWidth = 51;
+            this.dataGridViewHistorique.RowTemplate.Height = 24;
+            this.dataGridViewHistorique.Size = new System.Drawing.Size(569, 288);
+            this.dataGridViewHistorique.TabIndex = 14;
+            // 
+            // btnDeleteDocument
+            // 
+            this.btnDeleteDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteDocument.Location = new System.Drawing.Point(969, 354);
+            this.btnDeleteDocument.Name = "btnDeleteDocument";
+            this.btnDeleteDocument.Size = new System.Drawing.Size(126, 33);
+            this.btnDeleteDocument.TabIndex = 13;
+            this.btnDeleteDocument.Text = "Supprimer";
+            this.btnDeleteDocument.UseVisualStyleBackColor = true;
+            this.btnDeleteDocument.Click += new System.EventHandler(this.btnDeleteDocument_Click);
+            // 
             // Patient_infos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 757);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.annuler_btn);
-            this.Controls.Add(this.modifier_btn);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.groupBox1);
             this.Name = "Patient_infos";
@@ -311,11 +336,12 @@
             this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorique)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout_out)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorique)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -323,11 +349,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button annuler_btn;
-        private System.Windows.Forms.Button modifier_btn;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtDateNaisance;
+        private System.Windows.Forms.TextBox txtPrenom;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
@@ -336,14 +360,18 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox profile_pic;
         private System.Windows.Forms.PictureBox logout_out;
-        private System.Windows.Forms.Label specialite;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtAssurance;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtSexe;
+        private System.Windows.Forms.Button btnDeleteDocument;
+        private System.Windows.Forms.DataGridView dataGridViewDocuments;
         private System.Windows.Forms.DataGridView dataGridViewHistorique;
+        private System.Windows.Forms.Button btnAddDocument;
+        private System.Windows.Forms.Button btnAddHistory;
+        private System.Windows.Forms.Button btnDeleteHistory;
     }
 }
