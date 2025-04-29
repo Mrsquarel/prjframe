@@ -223,13 +223,7 @@ namespace prjframe
                         }
                     }
                 }
-            if (!dataFound)
-            {
-                MessageBox.Show("Aucune disponibilité trouvée pour cette semaine.\nLe tableau a été réinitialisé.",
-                                     "Information",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Information);
-            }
+           
             connection.Close();
         }
         /// <summary>
@@ -246,14 +240,13 @@ namespace prjframe
             {
                 connection.Open();
 
-                // Add parameters for the update query
+               
                 cmd.Parameters.AddWithValue("?", txtTelephone.Text.Trim());
                 cmd.Parameters.AddWithValue("?", txtMail.Text.Trim());
                 cmd.Parameters.AddWithValue("?", txtMotDePasse.Text.Trim());
                 cmd.Parameters.AddWithValue("?", comboBoxSpecialite.SelectedItem?.ToString() ?? "");
                 cmd.Parameters.AddWithValue("?", _IdUtilisateur);
 
-                // Execute the update query
                 cmd.ExecuteNonQuery();
 
                 connection.Close();
@@ -393,7 +386,7 @@ namespace prjframe
                         }
                         connection.Close();
 
-                        // Perform appropriate action
+                        
                         if (isChecked)
                         {
                             if (slotExists)

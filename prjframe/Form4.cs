@@ -150,7 +150,7 @@ namespace prjframe
             // Faire remplir les colonnes tout l'espace du DataGridView
             dataGridViewHistorique.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Optionnel : Ajuster les proportions des colonnes (si vous voulez des largeurs spécifiques)
+            // Ajuster les proportions des colonnes (si vous voulez des largeurs spécifiques)
             dataGridViewHistorique.Columns["colDocteur"].FillWeight = 30; // 30% de l'espace
             dataGridViewHistorique.Columns["colConsultation"].FillWeight = 20; // 20% de l'espace
             dataGridViewHistorique.Columns["colNotes"].FillWeight = 30; // 30% de l'espace
@@ -243,7 +243,7 @@ namespace prjframe
                     MessageBox.Show("Aucune consultation trouvée pour ce dossier.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                // Étape 4 : Pour chaque consultation, récupérer le médecin et remplir le DataGridView
+                // Étape 3: Pour chaque consultation, récupérer le médecin et remplir le DataGridView
                 const string sqlDoctor = @"
             SELECT
                 uDoc.Nom      AS DoctorNom,
@@ -400,7 +400,7 @@ namespace prjframe
             checkedListBoxRDV.DisplayMember = "Display";
 
             DateTime now = DateTime.Now;
-            // Nombre de jours restants jusqu'à la fin de la semaine (Samedi)
+            // Nombre de jours restants jusqu'à la fin de la semaine
             int daysLeft = 6 - (int)now.DayOfWeek;
 
             var frenchDayToIndex = new Dictionary<string, int>
@@ -449,7 +449,7 @@ namespace prjframe
                         // On recrée un DateTime complet pour comparer avec 'now'
                         DateTime heureDebutDate = now.Date.Add(heureDebutTime.TimeOfDay);
 
-                        // Nouveau filtre :
+                   
                         // - même jour (dayOffset == 0) si l'heure de début est encore à venir
                         // - ou jour futur dans la semaine (dayOffset > 0 && dayOffset <= daysLeft)
                         if ((dayOffset == 0 && heureDebutDate > now) ||

@@ -49,7 +49,6 @@ namespace prjframe
             using (var cmd = new OleDbCommand(doctorSql, connection))
             {
                 cmd.Parameters.AddWithValue("?", _idDocteur);
-                MessageBox.Show(_idDocteur.ToString());
                 using (var reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())

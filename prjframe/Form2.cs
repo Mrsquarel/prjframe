@@ -259,7 +259,7 @@ namespace prjframe
                     using (var reader = cmd.ExecuteReader())
                     {
                         comboBoxSemaineDebut.Items.Clear();
-                        comboBoxSemaineDebut.Items.Add("All"); // Option to show all consultations
+                        comboBoxSemaineDebut.Items.Add("All"); 
                         while (reader.Read())
                         {
                             string semaineDebut = reader["SemaineDebut"].ToString();
@@ -271,7 +271,7 @@ namespace prjframe
                     Console.WriteLine("Connection closed after sqlLoadSemaineDebut.");
                 }
 
-                // Select "All" by default
+                // selectionner all par defaut
                 comboBoxSemaineDebut.SelectedIndex = 0;
             }
             catch (Exception ex)
@@ -287,17 +287,16 @@ namespace prjframe
         }
         private void LoadConsultations(string semaineDebutFilter)
         {
-            // 1) Récupérer la liste brute des rendez-vous + dates + SemaineDebut
             var consults = new List<(int RdvId, DateTime Date, string SemaineDebut)>();
             string sqlRaw = @"
-SELECT 
-    c.IdRendezVous, 
-    c.ConsultationDate,
-    ph.SemaineDebut
-FROM 
-    (Consultation AS c
-     INNER JOIN RendezVous   AS r  ON c.IdRendezVous = r.IdRendezVous)
-    INNER JOIN PlageHoraire AS ph ON r.IdPlage       = ph.IdPlage";
+        SELECT 
+            c.IdRendezVous, 
+            c.ConsultationDate,
+            ph.SemaineDebut
+        FROM 
+            (Consultation AS c
+             INNER JOIN RendezVous   AS r  ON c.IdRendezVous = r.IdRendezVous)
+            INNER JOIN PlageHoraire AS ph ON r.IdPlage       = ph.IdPlage";
             if (!string.IsNullOrEmpty(semaineDebutFilter) && semaineDebutFilter != "All")
                 sqlRaw += " WHERE ph.SemaineDebut = ?";
 
@@ -320,7 +319,7 @@ FROM
             dataGridViewConsultations.Rows.Clear();
             if (consults.Count == 0) return;
 
-            // 2) Récupérer les noms des médecins
+            //  Récupérer les noms des médecins
             var rdvIds = consults.Select(c => c.RdvId).Distinct().ToList();
             string inRdv = "(" + string.Join(",", rdvIds) + ")";
             var medNames = new Dictionary<int, string>();
@@ -341,7 +340,7 @@ FROM
                 connection.Close();
             }
 
-            // 3) Récupérer les noms des patients
+            //  Récupérer les noms des patients
             var rdvToPat = new Dictionary<int, int>();
             string sqlRdvPat = $@"
             SELECT IdRendezVous, IdPatient
@@ -375,7 +374,7 @@ FROM
                 connection.Close();
             }
 
-            // 4) Construire les lignes du DataGridView, en utilisant SemaineDebut
+            // 4 Construire les lignes du DataGridView, en utilisant SemaineDebut
             foreach (var (rdvId, date, semDebut) in consults)
             {
                 string semaine = semDebut;  // <-- directement depuis la colonne SemaineDebut
@@ -448,7 +447,7 @@ FROM
 
                         dataGridViewDisponibilites.Rows[rowIndex].Cells["IdPlage"].Value = reader["IdPlage"];
                         dataGridViewDisponibilites.Rows[rowIndex].Cells["Jour"].Value = reader["Jour"];
-                        dataGridViewDisponibilites.Rows[rowIndex].Cells["HeureDebut"].Value = heureDebut.ToString("HH:mm");//enlever la date 
+                        dataGridViewDisponibilites.Rows[rowIndex].Cells["HeureDebut"].Value = heureDebut.ToString("HH:mm"); 
                         dataGridViewDisponibilites.Rows[rowIndex].Cells["HeureFin"].Value = heureFin.ToString("HH:mm");
                         dataGridViewDisponibilites.Rows[rowIndex].Cells["SemaineDebut"].Value = reader["SemaineDebut"];
                     }
@@ -641,7 +640,6 @@ FROM
                 using (var cmd = new OleDbCommand(sql, connection))
                 {
                     connection.Open();
-                    Console.WriteLine("Connection opened for UpdateChart.");
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -649,11 +647,9 @@ FROM
                             string dept = reader["Specialite"].ToString();
                             int count = Convert.ToInt32(reader["ConsultationCount"]);
                             consultationsByDept[dept] = count;
-                            Console.WriteLine($"Consultation counted: Dept={dept}, Count={count}");
                         }
                     }
                     connection.Close();
-                    Console.WriteLine("Connection closed after UpdateChart query.");
                 }
 
                 // Update the chart
@@ -661,11 +657,9 @@ FROM
                 foreach (var kvp in consultationsByDept.OrderBy(k => k.Key))
                 {
                     chartConsultations.Series["Consultations"].Points.AddXY(kvp.Key, kvp.Value);
-                    Console.WriteLine($"Chart point added: Dept={kvp.Key}, Count={kvp.Value}");
                 }
 
                 chartConsultations.Refresh();
-                Console.WriteLine($"Chart updated. Total departments displayed: {consultationsByDept.Count}");
             }
             catch (Exception ex)
             {

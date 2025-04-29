@@ -451,7 +451,7 @@ namespace prjframe
                 row.Visible = match;
             }
         }
-        //  charger les informations de paiement et vérifier les consultations
+        //  charger les informations de paiements (facture cree lors d'enregistrement d'une consultation
         private void LoadPaiementInfo()
         {
             try
