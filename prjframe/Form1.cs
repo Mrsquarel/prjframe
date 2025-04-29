@@ -94,8 +94,6 @@ namespace prjframe
                     WHERE m.IdUtilisateur = ?";
 
             connection.Open();
-
-
             using (OleDbCommand cmd = new OleDbCommand(query, connection))
             {
                 cmd.Parameters.AddWithValue("?", _idUtilisateur);
@@ -138,7 +136,7 @@ namespace prjframe
 
         private void LoadDayAppointments(int doctorUserId)
         {
-            // Calcul du jour courant en français (majuscule initiale)
+            // retourner le nom du jour courant en français (majuscule initiale)
             var fr = CultureInfo.GetCultureInfo("fr-FR");
             string rawDayName = fr.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
             string todayName = char.ToUpper(rawDayName[0]) + rawDayName.Substring(1);
@@ -307,6 +305,7 @@ namespace prjframe
                 }
                 connection.Close();
             }
+
         }
 
         private void CreateNewDossier(int patientId)
@@ -378,16 +377,7 @@ namespace prjframe
                 }
             }
 
-            // Toujours fermer la connexion
             connection.Close();
-
-           
-
-            // Optionnel : Afficher un message si aucune consultation n'est trouvée
-            if (dataGridView2.Rows.Count == 0)
-            {
-                MessageBox.Show("Aucune consultation trouvée pour ce patient.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
         private void LoadDocumentHistory(int dossierId)
         {
@@ -411,20 +401,17 @@ namespace prjframe
                         string nomFichier = reader["NomFichier"].ToString();
                         string chemin = reader["CheminFichier"].ToString();
 
-                        // Optionally get the file date:
                         string date = "";
                         if (File.Exists(chemin))
                             date = File.GetLastWriteTime(chemin).ToString("dd/MM/yyyy");
 
                         int rowIndex = dataGridView3.Rows.Add(date, nomFichier);
-                        // Store the path in the row’s Tag so we can retrieve it later
                         dataGridView3.Rows[rowIndex].Tag = chemin;
                     }
                 }
                 connection.Close();
             }
 
-            // If no docs, show a placeholder
             if (dataGridView3.Rows.Count == 0)
                 dataGridView3.Rows.Add("", "Aucun document", null);
         }
@@ -450,6 +437,8 @@ namespace prjframe
         {
             ProfileDoctor profile = new ProfileDoctor(_idUtilisateur);
             profile.Show();
+
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -459,8 +448,10 @@ namespace prjframe
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Close();
             Patient_infos patient = new Patient_infos(idPatient,_idUtilisateur,idRdv);
             patient.Show();
+            
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -584,41 +575,32 @@ namespace prjframe
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Only handle clicks on the “Voir” button column
+            // Ne traiter que le clic sur la colonne "Voir"
             if (e.RowIndex < 0 || dataGridView3.Columns[e.ColumnIndex].Name != "Voir")
                 return;
 
-            // Retrieve the path we stored in Tag
+            // Récupérer le chemin stocké dans Tag
             var chemin = dataGridView3.Rows[e.RowIndex].Tag as string;
-            if (String.IsNullOrEmpty(chemin) || !File.Exists(chemin))
+            if (string.IsNullOrEmpty(chemin) || !File.Exists(chemin))
             {
                 MessageBox.Show("Fichier introuvable.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Ensure it’s a PDF
-            if (Path.GetExtension(chemin).Equals(".jpeg", StringComparison.OrdinalIgnoreCase))
+            try
             {
-                try
+                // Ouvrir le fichier quel qu'il soit avec l'application par défaut
+                var psi = new ProcessStartInfo
                 {
-                    // Open with default PDF viewer
-                    var psi = new ProcessStartInfo
-                    {
-                        FileName = chemin,
-                        UseShellExecute = true
-                    };
-                    Process.Start(psi);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Impossible d’ouvrir le jpeg :\n{ex.Message}", "Erreur",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    FileName = chemin,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Seuls les fichiers jpeg peuvent être ouverts.", "Type non pris en charge",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Impossible d’ouvrir le fichier :\n{ex.Message}", "Erreur",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

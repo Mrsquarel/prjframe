@@ -117,9 +117,7 @@ namespace prjframe
                     using (var gfx = XGraphics.FromPdfPage(page))
                     {
                         double margin = 40;
-                        // -------------------------------------------------------
-                        // Header (« footer style » mais en haut)
-                        // -------------------------------------------------------
+                       
                         var hfFont = new XFont("Verdana", 8, XFontStyle.Italic);
                         double y = margin;
 
@@ -140,7 +138,7 @@ namespace prjframe
                         y += 20;
 
                         // -------------------------------------------------------
-                        // Corps de la prescription (multiligne + wrapping)
+                        // Corps de la prescription 
                         // -------------------------------------------------------
                         var bodyFont = new XFont("Verdana", 10, XFontStyle.Regular);
                         double currentY = y;
@@ -180,7 +178,7 @@ namespace prjframe
                         // Footer : infos du médecin
                         // -------------------------------------------------------
                         var footerFont = new XFont("Verdana", 8, XFontStyle.Italic);
-                        double footerY = Math.Max(page.Height - margin - 45, currentY + 20); // Ajuste la position du footer
+                        double footerY = Math.Max(page.Height - margin - 45, currentY + 20); 
                         gfx.DrawLine(XPens.Gray, margin, footerY, page.Width - margin, footerY);
                         footerY += 5;
 
@@ -201,8 +199,8 @@ namespace prjframe
 
                 // 4) Enregistre dans la table Prescription
                 const string insertSql = @"
-INSERT INTO Prescription (IdConsultation, CheminFichier)
-VALUES (?, ?)";
+                    INSERT INTO Prescription (IdConsultation, CheminFichier)
+                    VALUES (?, ?)";
                 connection.Open();
                 using (var cmd = new OleDbCommand(insertSql, connection))
                 {
@@ -218,6 +216,7 @@ VALUES (?, ?)";
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
+                this.Close();
             }
             catch (Exception ex)
             {

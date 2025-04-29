@@ -427,13 +427,14 @@ FROM
 
             string query = "SELECT IdPlage,Jour, HeureDebut, HeureFin, SemaineDebut " +
                           "FROM PlageHoraire " +
-                          "WHERE IdMedecin = ?";
+                          "WHERE IdMedecin = ? AND EstValide=?";
 
             connection.Open();
 
             using (OleDbCommand cmd = new OleDbCommand(query, connection))
             {
                 cmd.Parameters.AddWithValue("?", doctorId);
+                cmd.Parameters.AddWithValue("?", false);
 
                 using (OleDbDataReader reader = cmd.ExecuteReader())
                 {

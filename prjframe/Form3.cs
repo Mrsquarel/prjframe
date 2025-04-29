@@ -588,7 +588,7 @@ namespace prjframe
                             row.Cells["DatePaiement"].Value = DateTime.Now.ToShortDateString();
                             row.DefaultCellStyle.BackColor = Color.LightGreen; // Couleur verte
                                                                                // Retirer la ligne car StatutPaiement est maintenant true
-                            dataGridViewPaiements.Rows.RemoveAt(e.RowIndex);
+                           // dataGridViewPaiements.Rows.RemoveAt(e.RowIndex);
                             MessageBox.Show("Paiement validé avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -600,8 +600,13 @@ namespace prjframe
                     string columnNames = string.Join(", ", dataGridViewPaiements.Columns.Cast<DataGridViewColumn>().Select(c => c.Name));
                     Console.WriteLine($"DataGridView columns: {columnNames}");
 
-                    // Générer le PDF
-                    string pdfPath = $"Facture_{idFacture}.pdf";
+                    string baseDir = Application.StartupPath;                          // ou Environment.CurrentDirectory
+                    string facturesDir = Path.Combine(baseDir, "Factures");
+                    if (!Directory.Exists(facturesDir))
+                        Directory.CreateDirectory(facturesDir);
+
+                    // 2) Construire le chemin complet du PDF dans ce dossier
+                    string pdfPath = Path.Combine(facturesDir, $"Facture_{idFacture}.pdf");
                     Document doc = new Document(PageSize.A4);
                     try
                     {

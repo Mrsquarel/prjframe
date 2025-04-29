@@ -159,7 +159,6 @@ namespace prjframe
             // Supprimer les lignes de grille pour un look plus propre
             dataGridViewHistorique.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-
             try
             {
                 // Étape 1 : Récupérer le dossierId du patient
@@ -197,69 +196,58 @@ namespace prjframe
                     return;
                 }
 
-                // Étape 2 : Charger la liste des consultations
-                var consultations = new List<(int IdDossier, int IdRendezVous, string Notes)>();
-                int consultationId = 0;
-                const string sqlCons = @"
-                SELECT c.IdConsultation,c.IdDossier, c.IdRendezVous, c.Notes
-                FROM Consultation AS c
-                WHERE c.IdDossier = ?";
-                using (var cmd = new OleDbCommand(sqlCons, connection))
+                // Étape 2 : Charger la liste des consultations avec leur prescription
+                var consultations = new List<(int IdDossier, int IdRendezVous, string Notes, string PrescriptionPath)>();
+                const string sqlConsAvecPresc = @"
+            SELECT 
+                c.IdConsultation,
+                c.IdDossier, 
+                c.IdRendezVous, 
+                c.Notes,
+                p.CheminFichier
+            FROM Consultation AS c
+            LEFT JOIN (
+                SELECT IdConsultation, CheminFichier
+                FROM Prescription
+            ) AS p ON c.IdConsultation = p.IdConsultation
+            WHERE c.IdDossier = ?";
+                using (var cmd = new OleDbCommand(sqlConsAvecPresc, connection))
                 {
                     cmd.Parameters.AddWithValue("?", dossierId);
-                    Console.WriteLine($"Executing sqlCons with IdDossier: {dossierId}");
+                    Console.WriteLine($"Executing sqlConsAvecPresc with IdDossier: {dossierId}");
                     connection.Open();
-                    Console.WriteLine("Connection opened for sqlCons.");
+                    Console.WriteLine("Connection opened for sqlConsAvecPresc.");
                     using (var rd = cmd.ExecuteReader())
                     {
                         while (rd.Read())
                         {
-                           consultationId= Convert.ToInt32(rd["IdConsultation"]);
-                           var consultation = (
+                            consultations.Add((
                                 IdDossier: Convert.ToInt32(rd["IdDossier"]),
                                 IdRendezVous: Convert.ToInt32(rd["IdRendezVous"]),
-                                Notes: rd["Notes"].ToString()
+                                Notes: rd["Notes"].ToString(),
+                                PrescriptionPath: rd["CheminFichier"] as string
+                            ));
+                            Console.WriteLine(
+                                $"Consultation: Dossier={rd["IdDossier"]}, RV={rd["IdRendezVous"]}, " +
+                                $"Notes={rd["Notes"]}, Presc={rd["CheminFichier"]}"
                             );
-                            consultations.Add(consultation);
-                            Console.WriteLine($"Consultation found: IdDossier={consultation.IdDossier}, IdRendezVous={consultation.IdRendezVous}, Notes={consultation.Notes}");
                         }
                     }
                     connection.Close();
-                    Console.WriteLine("Connection closed after sqlCons.");
+                    Console.WriteLine("Connection closed after sqlConsAvecPresc.");
                 }
 
-                Console.WriteLine($"Total consultations found: {consultations.Count}");
+                Console.WriteLine($"Total consultations trouvées : {consultations.Count}");
                 if (consultations.Count == 0)
                 {
-                    Console.WriteLine("No consultations found for dossierId: " + dossierId);
                     MessageBox.Show("Aucune consultation trouvée pour ce dossier.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                // Étape 3 : Charger le chemin de la prescription (s’il y en a qu’une)
-                string prescriptionPath = null;
-                const string sqlPresc = @"
-                SELECT TOP 1 CheminFichier 
-                FROM Prescription
-                WHERE   IdConsultation = ? 
-                 ";
-               
-                using (var cmd = new OleDbCommand(sqlPresc, connection))
-                {
-                    cmd.Parameters.AddWithValue("?", consultationId);
-                    connection.Open();
-                    Console.WriteLine("Connection opened for sqlPresc.");
-                    prescriptionPath = cmd.ExecuteScalar() as string;
-                    Console.WriteLine($"Prescription Path: {(prescriptionPath ?? "No prescription found")}");
-                    connection.Close();
-                    Console.WriteLine("Connection closed after sqlPresc.");
-                }
-               
-
-                // Étape 4 : Pour chaque consultation, récupérer le médecin
+                // Étape 4 : Pour chaque consultation, récupérer le médecin et remplir le DataGridView
                 const string sqlDoctor = @"
             SELECT
-                uDoc.Nom AS DoctorNom,
-                uDoc.Prenom AS DoctorPrenom,
+                uDoc.Nom      AS DoctorNom,
+                uDoc.Prenom   AS DoctorPrenom,
                 uDoc.IdUtilisateur AS DoctorIdUtilisateur
             FROM
                 ((RendezVous AS r
@@ -267,18 +255,15 @@ namespace prjframe
                 INNER JOIN Utilisateur AS uDoc ON m.IdUtilisateur = uDoc.IdUtilisateur)
             WHERE
                 r.IdRendezVous = ?";
-
-                // Parcourir les consultations et peupler le DataGridView
-                foreach (var consultation in consultations)
+                foreach (var consult in consultations)
                 {
                     string doctorName = null;
                     int doctorIdUtilisateur = 0;
 
-                    // Récupérer les informations du médecin pour cette consultation
                     using (var cmd = new OleDbCommand(sqlDoctor, connection))
                     {
-                        cmd.Parameters.AddWithValue("?", consultation.IdRendezVous);
-                        Console.WriteLine($"Executing sqlDoctor with IdRendezVous: {consultation.IdRendezVous}");
+                        cmd.Parameters.AddWithValue("?", consult.IdRendezVous);
+                        Console.WriteLine($"Executing sqlDoctor with IdRendezVous: {consult.IdRendezVous}");
                         connection.Open();
                         Console.WriteLine("Connection opened for sqlDoctor.");
                         using (var rd = cmd.ExecuteReader())
@@ -291,30 +276,27 @@ namespace prjframe
                             }
                             else
                             {
-                                Console.WriteLine($"No doctor found for IdRendezVous: {consultation.IdRendezVous}");
+                                Console.WriteLine($"No doctor found for IdRendezVous: {consult.IdRendezVous}");
                             }
                         }
                         connection.Close();
                         Console.WriteLine("Connection closed after sqlDoctor.");
                     }
 
-                    // Préparer les données pour la ligne
-                    string consultationName = "Consultation Générale"; // Remplacer par un champ réel si disponible
-                    string notes = consultation.Notes;
-                    int idDossier = consultation.IdDossier;
-
-                    // Ajouter la ligne au DataGridView
-                    int rowIndex = dataGridViewHistorique.Rows.Add(doctorName, consultationName, notes);
-                    Console.WriteLine($"Row added to DataGridView: Doctor={doctorName}, Consultation={consultationName}, Notes={notes}, RowIndex={rowIndex}");
-
-                    // Stocker IdDossier, DoctorIdUtilisateur et CheminFichier dans le Tag
+                    int rowIndex = dataGridViewHistorique.Rows.Add(
+                        doctorName,
+                        "Consultation Générale",
+                        consult.Notes
+                    );
                     dataGridViewHistorique.Rows[rowIndex].Tag = new
                     {
-                        IdDossier = idDossier,
+                        IdDossier = consult.IdDossier,
                         DoctorIdUtilisateur = doctorIdUtilisateur,
-                        PrescriptionPath = prescriptionPath
+                        PrescriptionPath = consult.PrescriptionPath
                     };
-                    Console.WriteLine($"Row Tag set: IdDossier={idDossier}, DoctorIdUtilisateur={doctorIdUtilisateur}, PrescriptionPath={(prescriptionPath ?? "null")}");
+                    Console.WriteLine(
+                        $"Row added: Doctor={doctorName}, Notes={consult.Notes}, PrescPath={consult.PrescriptionPath}"
+                    );
                 }
 
                 Console.WriteLine($"DataGridView population complete. Total rows: {dataGridViewHistorique.Rows.Count}");
@@ -329,11 +311,6 @@ namespace prjframe
                     Console.WriteLine("Connection closed after error.");
                 }
             }
-
-            
-
-    
-
         }
     
         //charger les specilaites des docteurs pour prendre un rdv
@@ -419,35 +396,39 @@ namespace prjframe
         }
         private void LoadAvailableRDVs(int doctorId)
         {
-            checkedListBoxRDV.Items.Clear(); 
-            checkedListBoxRDV.DisplayMember = "Display"; 
+            checkedListBoxRDV.Items.Clear();
+            checkedListBoxRDV.DisplayMember = "Display";
 
             DateTime now = DateTime.Now;
-            DateTime tomorrow = now.Date.AddDays(1); // le patient peut prendre un rdv à partir de demain
+            // Nombre de jours restants jusqu'à la fin de la semaine (Samedi)
             int daysLeft = 6 - (int)now.DayOfWeek;
 
-            Dictionary<string, int> frenchDayToIndex = new Dictionary<string, int>
-            {
-                { "Dimanche", 0 },
-                { "Lundi", 1 },
-                { "Mardi", 2 },
-                { "Mercredi", 3 },
-                { "Jeudi", 4 },
-                { "Vendredi", 5 },
-                { "Samedi", 6 }
-            };
+            var frenchDayToIndex = new Dictionary<string, int>
+    {
+        { "Dimanche", 0 },
+        { "Lundi",    1 },
+        { "Mardi",    2 },
+        { "Mercredi", 3 },
+        { "Jeudi",    4 },
+        { "Vendredi", 5 },
+        { "Samedi",   6 }
+    };
 
-            
-            string query = "SELECT IdPlage, Jour, HeureDebut, HeureFin, SemaineDebut " +
-                           "FROM PlageHoraire " +
-                           "WHERE IdMedecin = ? AND EstValide = true AND Prise = false AND SemaineDebut = ?";
+            const string query = @"
+        SELECT IdPlage, Jour, HeureDebut, HeureFin, SemaineDebut
+        FROM PlageHoraire
+        WHERE IdMedecin = ? 
+          AND EstValide = true 
+          AND Prise = false 
+          AND SemaineDebut = ?";
 
-            using (OleDbCommand cmd = new OleDbCommand(query, connection))
+            using (var cmd = new OleDbCommand(query, connection))
             {
                 cmd.Parameters.AddWithValue("?", doctorId);
-                cmd.Parameters.AddWithValue("?", label_week.Text); 
+                cmd.Parameters.AddWithValue("?", label_week.Text);
                 connection.Open();
-                using (OleDbDataReader reader = cmd.ExecuteReader())
+
+                using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -455,39 +436,41 @@ namespace prjframe
                         string jour = reader["Jour"].ToString();
                         string heureDebutStr = reader["HeureDebut"].ToString();
                         string heureFinStr = reader["HeureFin"].ToString();
-                       
 
-                        if (frenchDayToIndex.ContainsKey(jour))
+                        if (!frenchDayToIndex.TryGetValue(jour, out int jourIndex))
+                            continue;
+
+                        int todayIndex = (int)now.DayOfWeek;
+                        int dayOffset = (jourIndex - todayIndex + 7) % 7;
+
+                        // On parse seulement la partie "heure"
+                        var heureDebutTime = DateTime.Parse(heureDebutStr);
+                        var heureFinTime = DateTime.Parse(heureFinStr);
+                        // On recrée un DateTime complet pour comparer avec 'now'
+                        DateTime heureDebutDate = now.Date.Add(heureDebutTime.TimeOfDay);
+
+                        // Nouveau filtre :
+                        // - même jour (dayOffset == 0) si l'heure de début est encore à venir
+                        // - ou jour futur dans la semaine (dayOffset > 0 && dayOffset <= daysLeft)
+                        if ((dayOffset == 0 && heureDebutDate > now) ||
+                            (dayOffset > 0 && dayOffset <= daysLeft))
                         {
-                            int jourIndex = frenchDayToIndex[jour];
-                            int todayIndex = (int)now.DayOfWeek;
-                            int dayOffset = (jourIndex - todayIndex + 7) % 7;
+                            string debut = heureDebutTime.ToString("H:mm");
+                            string fin = heureFinTime.ToString("H:mm");
+                            string rdv = $"{jour} {debut} - {fin}";
 
-                            DateTime rdvDate = now.Date.AddDays(dayOffset);
-
-                            if (dayOffset > 0 && dayOffset <= daysLeft)
-                            {
-                                // Parse HeureDebut et HeureFin pour extraire seulement la partie des heures (HH:mm)
-                                DateTime heureDebut = Convert.ToDateTime(heureDebutStr);
-                                DateTime heureFin = Convert.ToDateTime(heureFinStr);
-
-                                string formattedHeureDebut = heureDebut.ToString("H:mm");
-                                string formattedHeureFin = heureFin.ToString("H:mm");
-
-                               
-                                string rdv = $"{jour} {formattedHeureDebut} - {formattedHeureFin}";
-
-                                // stocker lidplage avec la chiane du rdv pour faciliter la reservation
-                                checkedListBoxRDV.Items.Add(new { Display = rdv, IdPlage = idPlage }, false);
-                            }
-                                                 }
+                            checkedListBoxRDV.Items.Add(
+                                new { Display = rdv, IdPlage = idPlage },
+                                false
+                            );
+                        }
                     }
                 }
 
                 connection.Close();
             }
 
-            checkedListBoxRDV.Refresh(); 
+            checkedListBoxRDV.Refresh();
 
             if (checkedListBoxRDV.Items.Count == 0)
                 MessageBox.Show("Aucun rendez-vous disponible à réserver pour les jours suivants.");

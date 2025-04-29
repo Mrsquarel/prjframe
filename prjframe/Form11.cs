@@ -64,9 +64,29 @@ namespace prjframe
             // datagrid view documents
             dataGridViewDocuments.Columns.Clear();
             dataGridViewDocuments.Rows.Clear();
-            dataGridViewDocuments.Columns.Add("NomFichier", "Nom du document");
-            dataGridViewDocuments.Columns.Add("CheminFichier", "Chemin du fichier");
 
+            // Colonne Nom du document
+            dataGridViewDocuments.Columns.Add("NomFichier", "Nom du document");
+            // Colonne Chemin (readonly)
+            var cheminCol = new DataGridViewTextBoxColumn
+            {
+                Name = "CheminFichier",
+                HeaderText = "Chemin du fichier",
+                ReadOnly = true
+            };
+            dataGridViewDocuments.Columns.Add(cheminCol);
+
+            // Colonne Parcourir
+            var btnBrowse = new DataGridViewButtonColumn
+            {
+                Name = "Parcourir",
+                HeaderText = "Parcourir…",
+                Text = "...",
+                UseColumnTextForButtonValue = true
+            };
+            dataGridViewDocuments.Columns.Add(btnBrowse);
+
+            // Colonne Voir
             var btnVoir = new DataGridViewButtonColumn
             {
                 Name = "Voir",
@@ -93,6 +113,16 @@ namespace prjframe
         }
         private void OpenDossierMedical()
         {
+            if (_idUtilisateur == 0) { 
+                MessageBox.Show(
+                    "Aucun patient sélectionné.",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                this.Close();
+                return;
+            }
             // 1) Requête des infos patient + dossier
             const string patientSql = @"
             SELECT 
@@ -109,6 +139,7 @@ namespace prjframe
                 INNER JOIN Utilisateur  AS u  ON p.IdUtilisateur    = u.IdUtilisateur
             WHERE 
                 dm.IdPatient = ?";
+            
 
             using (var cmd = new OleDbCommand(patientSql, connection))
             {
@@ -194,6 +225,7 @@ namespace prjframe
 
         private void LoadDocuments()
         {
+            dataGridViewDocuments.Rows.Clear();
             if (dossierId == 0) return;
 
             const string sql = @"
@@ -353,18 +385,15 @@ namespace prjframe
 
                 newDocRow = dataGridViewDocuments.Rows.Add();
                 var row = dataGridViewDocuments.Rows[newDocRow.Value];
-                row.DefaultCellStyle.BackColor = Color.LightYellow; // Indiquer que c'est une nouvelle ligne
-
-                // Pas besoin de BeginEdit avec EditOnEnter
+                row.DefaultCellStyle.BackColor = Color.LightYellow;
                 btnAddDocument.Text = "Enregistrer";
             }
             else
             {
-                if (!newDocRow.HasValue || newDocRow.Value >= dataGridViewDocuments.Rows.Count)
+                if (!newDocRow.HasValue)
                 {
                     MessageBox.Show("Rien à enregistrer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnAddDocument.Text = "Ajouter";
-                    newDocRow = null;
                     return;
                 }
 
@@ -374,23 +403,18 @@ namespace prjframe
 
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(path))
                 {
-                    MessageBox.Show("Tous les champs sont obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridViewDocuments.Rows.RemoveAt(newDocRow.Value);
-                    newDocRow = null;
-                    btnAddDocument.Text = "Ajouter";
+                    MessageBox.Show("Vous devez sélectionner un fichier.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                // Valider que le fichier existe
                 if (!File.Exists(path))
                 {
-                    MessageBox.Show("Le chemin du fichier est invalide ou le fichier n'existe pas.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Le fichier n'existe pas.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 const string insert = @"
-                INSERT INTO Document (IdDossier, NomFichier, CheminFichier)
-                VALUES (?, ?, ?)";
+            INSERT INTO Document (IdDossier, NomFichier, CheminFichier)
+            VALUES (?, ?, ?)";
                 using (var cmd = new OleDbCommand(insert, connection))
                 {
                     cmd.Parameters.AddWithValue("?", dossierId);
@@ -403,7 +427,7 @@ namespace prjframe
 
                 newDocRow = null;
                 btnAddDocument.Text = "Ajouter";
-                LoadDocuments();
+                LoadDocuments(); // recharge la grille
             }
         }
 
@@ -447,18 +471,37 @@ namespace prjframe
 
         private void dataGridViewDocuments_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || dataGridViewDocuments.Columns[e.ColumnIndex].Name != "Voir")
-                return;
+            if (e.RowIndex < 0) return;
 
-            var tag = dataGridViewDocuments.Rows[e.RowIndex].Tag as int?;
-            string path;
+            var column = dataGridViewDocuments.Columns[e.ColumnIndex].Name;
+            var row = dataGridViewDocuments.Rows[e.RowIndex];
 
-            path = dataGridViewDocuments.Rows[e.RowIndex].Cells["CheminFichier"].Value.ToString();
-
-            if (File.Exists(path))
-                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
-            else
-                MessageBox.Show("Fichier introuvable.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (column == "Parcourir")
+            {
+                using (var ofd = new OpenFileDialog())
+                {
+                    ofd.Title = "Sélectionner un document";
+                    ofd.Filter = "Tous les fichiers|*.*";
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        // On remplit le nom et le chemin automatiquement
+                        row.Cells["NomFichier"].Value = Path.GetFileName(ofd.FileName);
+                        row.Cells["CheminFichier"].Value = ofd.FileName;
+                    }
+                }
+            }
+            else if (column == "Voir")
+            {
+                var path = row.Cells["CheminFichier"].Value?.ToString();
+                if (!string.IsNullOrWhiteSpace(path) && File.Exists(path))
+                {
+                    Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+                }
+                else
+                {
+                    MessageBox.Show("Fichier introuvable.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

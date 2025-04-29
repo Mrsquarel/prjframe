@@ -37,7 +37,7 @@ namespace prjframe
 
             if (reader.Read())
             {
-                // Email exists, check password
+                //si email existe ,passer au mdp
                 if (reader["MotDePasse"].ToString() == mdptxt.Text)
                 {
                     
@@ -121,7 +121,9 @@ namespace prjframe
             connection.Close();
         }
 
-       
-       
+        private void signup_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
